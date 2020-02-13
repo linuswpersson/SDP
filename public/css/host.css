@@ -8,7 +8,37 @@
     
 }
 
+button {
+    font-size: 400%;
+}
+
 button:hover {
     cursor: pointer;
     color: blue;
+}
+
+
+.wrapper {
+    margin: 200px;
+    padding: 100px;
+    display: grid;
+    grid-row-gap: 200px;
+    grid-template-columns: 500px 500px;
+}
+
+.box {
+    background-color: red;
+}
+
+.a {
+    grid-row: 1 / 2;
+    background-color: blue;
+}
+
+.b {
+    grid-row: 2 / 3;
+    background-color:yellow;
+}
+
+#myEventSpace {
 }

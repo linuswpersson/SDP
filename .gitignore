@@ -1,0 +1,15 @@
+# Prerequisites
+*.d
+
+#Node_Stuff
+app.js
+node_modules/
+package-lock.json
+package.json
+LICENSE
+
+#emacs
+*.html~
+*.js~
+*.css~
+*.json~

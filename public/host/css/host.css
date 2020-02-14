@@ -1,0 +1,46 @@
+
+.hostTitle {
+    text-align: center;
+}
+
+.hostbuttons {
+    font-size: 200%;
+    
+}
+
+button {
+    font-size: 400%;
+    width: 400px;
+}
+
+button:hover {
+    cursor: pointer;
+    color: blue;
+}
+
+
+.wrapper {
+    display: grid;
+    grid-row-gap: 50px;
+}
+
+.box {
+    background-color: red;
+}
+
+.a {
+
+    grid-column: 2 / 1;
+    background-color: blue;
+    text-align: center;
+}
+
+.b {
+    grid-column: 2 / 1;
+    background-color:yellow;
+    height: 500px;
+    text-align: center;
+}
+
+#myEventSpace {
+}

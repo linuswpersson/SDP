@@ -20,8 +20,11 @@ button:hover {
 
 
 .wrapper {
+    margin: 200px;
+    padding: 100px;
     display: grid;
-    grid-row-gap: 50px;
+    grid-row-gap: 200px;
+    grid-template-columns: 500px 500px;
 }
 
 .box {
@@ -29,17 +32,17 @@ button:hover {
 }
 
 .a {
-
-    grid-column: 2 / 1;
-    background-color: blue;
     text-align: center;
+    grid-row: 1 / 2;
+    background-color: blue;
+    width: 400px;
 }
 
 .b {
-    grid-column: 2 / 1;
-    background-color:yellow;
-    height: 500px;
     text-align: center;
+    grid-row: 2 / 3;
+    background-color:yellow;
+    width: 400px;
 }
 
 #myEventSpace {

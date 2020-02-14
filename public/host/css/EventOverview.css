@@ -2,32 +2,56 @@
     display: grid;
     grid-column-gap: 10px;
     grid-row-gap: 10px;
+    margin: 5px;
 }
 
 .box {
-    background-color: blue;
-    height: 200px;
+    height: 393px;
+    width: 720px;
+}
+
+.list1 {
+  border: black;
+  padding: 8px 20px;
+  line-height: 1.3em;
+  opacity: 0;
+  color: white;
+  width: 200px;
+  margin: 0 auto;
+  margin-top: 30px;
+  transform: translateZ(0);
+  perspective: 1000px;
+  backface-visibility: hidden;
+  background: black;
+  transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); 
 }
 
 .a {
 
-    grid-column: 1;
+    grid-column: 1/;
+    grid-row: 1/ 2;
     background-color: red;
     text-align: center;
 }
 
 .b {
-    grid-column: 2 / 3 ;
-    grid-row: 2 / 3;
-    background-color: #8888ee;
+    grid-column: 2;
+    grid-row: 1/ span 5;
+    text-align:center;
+    background-color: pink;
+    height: 1200px;
+    overflow:auto;
 }
 .c {
     grid-column: 3;
-    background-color: black;
+    grid-row: 1;
+    background-color: grey;
+    text-align:center;
 }
 .d {
-    grid-row: 2 ;
-    background-color: red;
+    grid-column: 1;
+    grid-row: 3;
+    background-color: olive;
     text-align: center;
 }
 
@@ -37,12 +61,32 @@
     background-color: yellow;
 }
 .f {
-    grid-row: 3;
-    background-color: black;
+    grid-column: 1;
+    grid-row: 2;
+    background-color: blue;
 }
 
 .g {
     grid-row: 3;
     grid-column: 3;
-    background-color: black;
+    background-color: orange;
+    text-align: center;
+    
 }
+
+.h{
+    grid-column: 2;
+    grid-row: 3/ 4;
+    background-color: teal;
+    text-align: center;
+
+}
+button {
+    font-size: 200%;
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+}
+
+
+

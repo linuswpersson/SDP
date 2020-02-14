@@ -1,0 +1,48 @@
+.wrapper {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+.box {
+    background-color: blue;
+    height: 200px;
+}
+
+.a {
+
+    grid-column: 1;
+    background-color: red;
+    text-align: center;
+}
+
+.b {
+    grid-column: 2 / 3 ;
+    grid-row: 2 / 3;
+    background-color: #8888ee;
+}
+.c {
+    grid-column: 3;
+    background-color: black;
+}
+.d {
+    grid-row: 2 ;
+    background-color: red;
+    text-align: center;
+}
+
+.e {
+    grid-colum: 3;
+    grid-row: 2;
+    background-color: yellow;
+}
+.f {
+    grid-row: 3;
+    background-color: black;
+}
+
+.g {
+    grid-row: 3;
+    grid-column: 3;
+    background-color: black;
+}

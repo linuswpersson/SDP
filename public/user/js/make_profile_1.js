@@ -7,7 +7,7 @@ const vm = new Vue({
 	seeking : '',
 	
 	next : 'make_profile_2.html',
-	back : 'user.html',
+	back : 'user_home.html',
     },
     methods: {
 	sendInfo: function() {    /* placeholder-function */

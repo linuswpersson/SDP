@@ -13,11 +13,17 @@
       A
     </div>
     
-    <div class="box b">
-     <div id="app">
-      <div class="list1" v-scroll="onScroll">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A atque amet harum aut ab veritatis earum porro praesentium ut corporis. Quasi provident dolorem officia iure fugiat, eius mollitia sequi quisquam.</p>
-      </div>
+    <div class="box b" id="app">
+      <div v-for="names in list">
+	<div class="box j"  v-if="names.gender">
+	  <button id="jbutton"> {{names.name}} </button>
+	</div>
+      <div class="box i" v-if="names.gender">
+    <button id="heartbutton"> <img src="../img/redheart.png" height="50px"></button>
+	</div>
+      <div class="box k" v-if="!names.gender">
+	  <button id="kbutton"> {{names.name}} </button>
+	</div>
       </div>
     </div>
     <div class="box h">

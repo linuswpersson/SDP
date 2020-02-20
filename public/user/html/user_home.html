@@ -2,17 +2,22 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="/user/css/user_home.css">
+    <script src="https://vuejs.org/js/vue.js" defer></script>
+    <script src="/user/js/user_home.js" defer></script>
+    
     <title>User view home</title>
   </head>
   <body>
     <h1>Speed Dating</h1>
-    <div id="buttonWrapper">
-      <button>Join Event</button>
-      <button>Event Times</button>
-      <button>Edit Profile</button>
-    </div>
-    <div id="rmButtonWrapper">
-      <button>Recent Matches</button>
+    <div id="buttons">
+      <div id="buttonWrapper">
+	<button v-on:click="joinEventClick()">Join Event</button>
+	<button v-on:click="eventTimesClick()">Event Times</button>
+	<button v-on:click="editProfileClick()">Edit Profile</button>
+      </div>
+      <div id="rmButtonWrapper">
+	<button v-on:click="recentMatchesClick()">Recent Matches</button>
+      </div>
     </div>
   </body>
 </html>

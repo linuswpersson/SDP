@@ -3,29 +3,65 @@
   <head>
     <link rel="stylesheet" type="text/css" href="/user/css/meeting_list.css">
     <script src="https://vuejs.org/js/vue.js" defer></script>
+    <script src="/user/js/meeting_list.js" defer></script>
     <title>Meeting List</title>
   </head>
   <body>
-    <div id="header">
-      <h1>Meeting List</h1>
-    </div>
-    <div id="info">
-      <p>Who would you like to share contact information with?</p>
-    </div>
-    <div id="matchesWrapper">
-      <div class="match" id="match1">
+    <div id="pageWrapper">
+      <div id="header">
+	<h1>Meeting List</h1>
+      </div>
+      <div id="info">
+	<p>Who would you like to share contact information with?</p>
+      </div>
+      
+      <div id="matchesWrapper">
 	
-	<p>Per-Åke</p>
+	<div class="match" id="match1">
+	  
+	  <div class="imgWrapper" >
+	    <img class="profileImg" src="/user/img/pp_test/stock1.jpeg">
+	  </div>
+	  
+	  <span>Per-Åke</span>
+	  
+	  <div class="shareCheckbox">
+	    <input type="checkbox" id="checkbox_1">
+	    <label for="checkbox_1">Share?</label>
+	  </div>
+	  
+	</div>
+	
+	<div class="match" id="match2">
+	  <div class="imgWrapper" >
+	    <img class="profileImg" src="/user/img/pp_test/stock2.jpg">
+	  </div>
+	  <span>Erik</span>
+
+	  <div class="shareCheckbox">
+	    <input type="checkbox" id="checkbox_2">
+	    <label for="checkbox_2">Share?</label>
+	  </div>
+	  
+	</div>
+	
+	<div class="match" id="match3">
+	  <div class="imgWrapper" >
+	    <img class="profileImg" src="/user/img/pp_test/stock3.jpg">
+	  </div>
+	  <span>Marcus</span>
+
+	  <div class="shareCheckbox">
+	    <input type="checkbox" id="checkbox_3">
+	    <label for="checkbox_3">Share?</label>
+	  </div>
+	  
+	</div>
+	
       </div>
-      <div class="match" id="match2">
-	<p>Erik</p>
+      <div id="okButton">
+	<button class="linkButton" id="nextButton" type="submit" v-on:click="nextClick()"></button>
       </div>
-      <div class="match" id="match3">
-	<p>Marcus</p>
-      </div>
-    </div>
-    <div id="okButton">
-      <button class="linkButton" id="nextButton" type="submit" v-on:click="nextClick()"></button>
     </div>
   </body>
 </html>

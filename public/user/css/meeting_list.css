@@ -1,0 +1,22 @@
+.linkButton {
+    position: fixed;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background:  #e5e8e8;
+    border: 1px  #99a3a4 solid;
+}
+
+#nextButton {
+    bottom: 30px;
+    right: 135px;
+
+    background: #90EE90; /* placeholder, should be changed for a picture */
+}
+
+.match {
+    background-color: pink;
+    height: 300 px;
+    border: 2px black solid;
+    margin: 20px;
+}

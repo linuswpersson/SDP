@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="/user/css/meeting_list.css">
+    <script src="https://vuejs.org/js/vue.js" defer></script>
+    <title>Meeting List</title>
+  </head>
+  <body>
+    <div id="header">
+      <h1>Meeting List</h1>
+    </div>
+    <div id="info">
+      <p>Who would you like to share contact information with?</p>
+    </div>
+    <div id="matchesWrapper">
+      <div class="match" id="match1">
+	
+	<p>Per-Åke</p>
+      </div>
+      <div class="match" id="match2">
+	<p>Erik</p>
+      </div>
+      <div class="match" id="match3">
+	<p>Marcus</p>
+      </div>
+    </div>
+    <div id="okButton">
+      <button class="linkButton" id="nextButton" type="submit" v-on:click="nextClick()"></button>
+    </div>
+  </body>
+</html>

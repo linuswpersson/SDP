@@ -1,97 +1,44 @@
 
 
-/* The device with borders */
-.smartphone {
-  position: relative;
-  width: 360px;
-  height: 640px;
-  margin: auto;
-  border: 16px black solid;
-  border-top-width: 60px;
-  border-bottom-width: 60px;
-  border-radius: 36px;
-}
-
-/* The horizontal line on the top of the device */
-.smartphone:before {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 5px;
-  position: absolute;
-  top: -30px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #333;
-  border-radius: 10px;
-}
-
-/* The circle on the bottom of the device */
-.smartphone:after {
-  content: '';
-  display: block;
-  width: 35px;
-  height: 35px;
-  position: absolute;
-  left: 50%;
-  bottom: -65px;
-  transform: translate(-50%, -50%);
-  background: #333;
-  border-radius: 50%;
-}
-
-/* The screen (or content) of the device */
-.smartphone .content {
-  width: 360px;
-  height: 640px;
-  background: white;
-
-  
-}
-
-.smartphone .header{
-  width: 360px;
-  height: 50px;
+.header{
+  margin: 0;
+  width: 310px;
+  height: 40px;
   background: #F74AA5;
+	position: relative;
+	left: -8px;
+	top: -10px;
+	
 }
 
-.smartphone .headertext{
+.headertext{
+    margin: 0px 4px;
 	text-align: center;
 	font-family: Arial, sans-serif;
 	font-size: 20pt;	
 	font-weight: bold;
 	color: white;
-	margin: 0px 4px;
-	
+	position: relative;
+    top: 5px;
 }
 
-.smartphone .bodytext{
-  margin: 0px 2px;
+.bodytext{
+  margin: 0px 0px;
 text-align: center;
 	font-family: Arial, sans-serif;
 		font-size: 15pt;
 }
 
-.smartphone .stars{
-text-align: center;
-font-size: 30px;
-
-}
-
-.smartphone .checked {
-  color: orange;
-
-}
-
-.smartphone .starbutton1{
 	
-}
-		
+#rating { font-size: 0; text-align: center; position: relative; top: 100px;}
+#rating span { font-size: 40px; }
+#rating span::before { content: "☆"; }
+#rating span.active::before {content: "★"; }
+#rating span:hover { cursor: pointer; }
 
 
-
-.smartphone .button{
-  background-color: blue; /* Green */
+.checkmarkbutton{
+  background-color: lightgreen; /* Green */
   border: none;
   color: white;
   padding: 10px;
@@ -101,17 +48,19 @@ font-size: 30px;
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+	
+  min-width: 35px;
+  max-height: 35px;
+  position: relative;
+  left:128px;
+  top: 320px;
 
-  position: static;
-  left:0px;
-  top: 310px;
 
-
-  border-radius: 50%;
+  border-radius: 100%;
 	
 }
 
-.smartphone .button:hover {
+.checkmarkbutton:hover {
   background-color: lightblue;
 }
 

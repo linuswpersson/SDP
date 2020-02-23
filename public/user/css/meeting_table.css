@@ -29,7 +29,12 @@ text-align: center;
 		font-size: 15pt;
 }
 
-.leavebutton {
+.meetingtext{
+	text-align: center;
+	margin: 0;
+}
+
+.iamherebutton {
   background-color:#F74AA5; 
   border: none;
   color: white;
@@ -41,17 +46,46 @@ text-align: center;
   border-radius: 6px;
     display: block;
     margin: 0 auto;
-  position: relative;
-  left:0px;
-  top: 100px;
-
 }
 
-.leavebutton:hover {
+.iamherebuttonn:hover {
   background-color: pink;
 }
 
-.nextbutton{
-	float: right;
+
+
+.infobutton {
+  background-color: teal; 
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+
+	
+  min-width: 35px;
+  max-height: 35px;
+  position: relative;
+  left:15px;
+  top: 60px;
+
+
+  border-radius: 100%;
+	
 }
+
+.infobutton:hover {
+  background-color: lightblue;
+}
+
+#helptext{
+	float: bottom;
+}
+
+
+
 

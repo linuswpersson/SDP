@@ -1,0 +1,42 @@
+.linkButton {
+    position: fixed;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background:  #e5e8e8;
+    border: 1px  #99a3a4 solid;
+}
+
+#nextButton {
+    bottom: 30px;
+    right: 135px;
+
+    background: #90EE90; /* placeholder, should be changed for a picture */
+}
+
+.match {
+    background-color: pink;
+    height: 100px;
+    border: 2px black solid;
+    margin: 20px;
+    padding: 5px;
+}
+
+.profileImg {
+    height: 100%;
+    width: 100%;  
+    object-fit: cover;
+}
+
+.imgWrapper {
+    display: inline-block;
+    height: 100%;
+    width: 30%;
+    border: 1px black solid;	      
+}
+
+.shareCheckbox {
+    position: relative;
+    float: right;
+    top: 40px;
+}

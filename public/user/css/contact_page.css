@@ -1,9 +1,38 @@
+.header{
+  margin: 0 auto;
+  width: 310px;
+  height: 40px;
+  background: #F74AA5;
+	position: relative;
+	left: -8px;
+	top: -10px;
+
+}
+
+.headertext{
+    margin: 0px 4px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-size: 20pt;	
+	font-weight: bold;
+	color: white;
+	position: relative;
+    top: 5px;
+
+}
+
+
+span {
+    color: white;
+}
+
 .match {
     position: relative;
     cursor: pointer;
-    background-color: pink;
+    background-color: #F74AA5;
     height: 100px;
     border: 2px black solid;
+    border-radius: 6px;
     margin: 20px;
     padding: 5px;
 }

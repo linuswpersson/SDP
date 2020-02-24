@@ -4,7 +4,7 @@ const vm = new Vue({
 	joinEvent: 'join_event.html',
 	eventTimes: 'event_times.html',
 	editProfile: 'make_profile_1.html',
-	recentMatches: 'meeting_list.html'
+	recentMatches: 'contact_page.html'
     },
     methods: {
 	joinEventClick: function() {

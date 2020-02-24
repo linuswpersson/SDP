@@ -2,6 +2,10 @@ h1 {
     text-align: center;
 }
 
+span {
+    color: white;
+}
+
 #buttonWrapper {
     position: relative;
     top: 25px;
@@ -16,12 +20,12 @@ h1 {
 
 button {
     display: inline-block;
-    border-radius: 15px;
-    background-color: pink;
-    border: 2px solid black;
+    border-radius: 6px;
+    background-color: #F74AA5;
     font-size: 16px;
     text-align: center;
     width: 80%;
     padding: 10px 20px;
     margin: 10px 20px;
+    border: none;
 }

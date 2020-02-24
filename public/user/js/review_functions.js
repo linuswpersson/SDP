@@ -1,11 +1,11 @@
 const vm = new Vue({
     el: '#buttons',
     data: {
-	userHome: 'user_home.html',
+	meetingList: 'meeting_list.html',
     },
     methods: {
 	userHomeClick: function() {
-	    document.location.href = this.userHome;
+	    document.location.href = this.meetingList;
 	},
 	
     },

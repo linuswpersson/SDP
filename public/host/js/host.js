@@ -66,7 +66,7 @@ createform.appendChild(emailbreak);
 
 // FÖR LOCATION - OBS ingen tillagd karta!!!!
 var locationlabel = document.createElement('label');
-locationlabel.innerHTML = "Location : ";
+locationlabel.innerHTML = "Location  :";
 createform.appendChild(locationlabel);
 
 var locationelement = document.createElement('input');
@@ -77,6 +77,18 @@ createform.appendChild(locationelement);
 var locationbreak = document.createElement('br');
 createform.appendChild(locationbreak);
 
+// För Date
+var datelabel = document.createElement('label');
+datelabel.innerHTML = "Date  :";
+createform.appendChild(datelabel);
+
+var dateelement = document.createElement('input');
+dateelement.setAttribute("type", "text");
+dateelement.setAttribute("date", "ddate");
+createform.appendChild(dateelement);
+
+var datebreak = document.createElement('br');
+createform.appendChild(datebreak);
 
 // För textruta
 var messagelabel = document.createElement('label'); 
@@ -91,9 +103,14 @@ var messagebreak = document.createElement('br');
 createform.appendChild(messagebreak);
 
 //OBS HAR INTE LÖST hur man ska skicka infon!
-var submitelement = document.createElement('input'); 
+/*var submitelement = document.createElement('input'); 
 submitelement.setAttribute("type", "submit");
 submitelement.setAttribute("name", "dsubmit");
 submitelement.setAttribute("value", "Submit");
-createform.appendChild(submitelement);
+createform.appendChild(submitelement);*/
+
+function createBtn() {
+  alert("Event created!");
+  modal.style.display = "none";
+}
 

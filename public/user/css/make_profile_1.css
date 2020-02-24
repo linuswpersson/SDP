@@ -34,7 +34,7 @@
 #headerItem {
     height: 35px;
     width: auto;
-    border: 1px red solid;
+    border: 2px pink solid;
     border-bottom: none;
     text-align: center;
 }
@@ -49,7 +49,7 @@
     height: 80px;
     width: auto;
     grid-template-columns: 97px 98px 97px;
-    border: 1px red solid;
+    border: 2px pink solid;
     border-top: none;
     margin: auto;
 }

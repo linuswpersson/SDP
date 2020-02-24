@@ -48,7 +48,34 @@ body {
 
     grid-column: 1/;
     grid-row: 1/ 2;
-    background-color: green;
+    background-color: lightgrey;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+#boxAHeader{
+  margin: 0 auto;
+  width: 100%;
+  height: 40px;
+  background: #F74AA5;
+  position: relative;
+}
+
+#boxAHeadertext{
+    margin: 0px 4px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 20pt;	
+    font-weight: bold;
+    color: white;
+    position: relative;
+    top: 5px;
+}
+
+.boxAText {
+    height: 20%;
+    width: 100%;
     text-align: center;
 }
 
@@ -63,6 +90,7 @@ body {
     text-align: left;
 
 }
+
   /*IGNORE ANYTHING CONTAINING OMEGA, It is the grid inside box b. */
 .OMEGA {
     display: grid;

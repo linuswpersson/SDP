@@ -9,5 +9,9 @@ const vm = new Vue({
 	backClick: function() {
 	    document.location.href = this.back;
 	},
+
+	nextClick: function() {
+	    document.location.href = this.next;
+	}
     },
 })

@@ -3,7 +3,7 @@
   <head>
     <link rel="stylesheet" type="text/css" href="/user/css/contact_page.css">
     <script src="https://vuejs.org/js/vue.js" defer></script>
-    
+    <script src="/user/js/contact_page.js" defer></script>
     <title>Contact page</title>
   </head>
   
@@ -11,21 +11,33 @@
     
     <div id="contactsWrapper">
       
-	<div class="match" id="match1">
+	<div class="match" id="match1" v-on:click="showInfo()">
 	  
 	  <div class="imgWrapper" >
 	    <img class="profileImg" src="/user/img/pp_test/stock1.jpeg">
 	  </div>
-	  
-	  <span>Per-Åke vill kontakta dig!</span>
-	  
+	  <div id="textWrapper">
+	    <span>Per-Åke vill kontakta dig!</span>
+	  </div>
 	</div>
 	
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <span class="close" v-on:click="closeModal()">&times;</span>
+	    <p>Namn: Per-Åke</p>
+	    <p>E-mail: per_åke@hotmail.com</p>
+	    <p>Tel: 0701234567</p>
+	  </div>
+	</div>
+	
+	
+	<div id="okButton">
+	  <button class="linkButton" id="nextButton" type="submit" v-on:click="nextClick()"></button>
+	</div>
     </div>
     
-    <div id="okButton">
-      <button class="linkButton" id="nextButton" type="submit" v-on:click="nextClick()"></button>
-    </div>
   </body>
 
 </html>

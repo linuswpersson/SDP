@@ -28,8 +28,9 @@
 
 #heartbutton {
     width: 150px;
+    height: 75px;
     color: pink;
-    background-color: pink;
+    background-color: grey;
     border: 0;
     text-align: center;
 }
@@ -44,45 +45,57 @@
 
 .b {
     grid-column: 2;
-    grid-row: 1/ span 5;
-   
-    background-color: pink;
+    grid-row: 1/ span 5;   
+    background-color: grey;
     height: 800px;
     width: 720px;
+    overflow-x: hidden;
     overflow-y: auto;
+    text-align: left;
+
+}
+  /*IGNORE ANYTHING CONTAINING OMEGA, It is the grid inside box b. */
+.OMEGA {
     display: grid;
-    grid-gap: 500px;
-    grid-template-columns: 500px 500px 500px;
+    grid-template-columns: 225px 225px 225px;
+    grid-template-rows: 50px 50px 50px 50px;
+    grid-gap: 5px;
+    margin: 15px;
+    padding: 15px;
+    line-height: 1.3em;
     
 }
-
-.j {
-    grid-column: 1/2;
-    background-color: orange;
+.OMEGA .j {
+    grid-column: 0/1;
 
 }
-#jbutton {
+
+#breakline {
+    grid-column: 0;
+   
+}
+
+.infobutton {
     width: 150px;
     text-align:center;
+    color: blue;
+}
+.OMEGA .box {
+    height: 100px;
+    width: 300px;
+}
+.OMEGA .i {
+    grid-column: 2;    
 }
 
-.i {
-    grid-column: 2/3;
-    background-color: black;
 
-    
+.OMEGA .k {
+    grid-column: 3;
+    absolute: top;
 }
-
-.k {
-    grid-column: 3/4;
-    background-color:red;
-  
-
-    
-	       
-}
-#kbutton {
+.kbutton {
     width:150px;
+    color: red;
 }
 
 
@@ -131,6 +144,85 @@ button {
     padding: 10px;
     margin: 10px;
 }
+ /* Nav for male */
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.2s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
 
 
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
 
+/* Nav for female */
+
+.sidenavF {
+  right: 0;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.2s;
+  padding-top: 60px;
+}
+
+.sidenavF a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenavF a:hover {
+  color: #f1f1f1;
+}
+
+.sidenavF .closebtnF {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+
+@media screen and (max-height: 450px) {
+  .sidenavF {padding-top: 15px;}
+  .sidenavF a {font-size: 18px;}
+}

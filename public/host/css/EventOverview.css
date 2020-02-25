@@ -13,12 +13,15 @@ body {
     grid-row-gap: 5px;
     /*margin: 5px;*/
 }
+
 /*
 .box {
     height: 393px;
     width: 720px;
 }
-*/
+
+
+
 .list1 {
   border: black;
   padding: 8px 20px;
@@ -35,13 +38,15 @@ body {
   transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); 
 }
 
-#heartbutton {
-    width: 150px;
-    height: 75px;
+*/
+
+.heartButton {
+    width: 100%;
+    height: 100%;;
     color: pink;
     background-color: grey;
     border: 0;
-    text-align: center;
+    object-fit: contain;
 }
 
 .a {
@@ -56,27 +61,43 @@ body {
     grid-column: 2;
     grid-row: 1/ 3;   
     background-color: grey;
-    /*height: 800px;
-    width: 720px;*/
     overflow-x: hidden;
-    overflow-y: auto;
-    text-align: left;
+    overflow-y: scroll;
 
 }
   /*IGNORE ANYTHING CONTAINING OMEGA, It is the grid inside box b. */
 .OMEGA {
     display: grid;
-    grid-template-columns: 225px 225px 225px;
-    grid-template-rows: 50px 50px 50px 50px;
-    grid-gap: 5px;
-    margin: 15px;
-    padding: 15px;
-    line-height: 1.3em;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 33% 33% 33%;
+    margin: 0;
     
 }
-.OMEGA .j {
-    grid-column: 0/1;
 
+.innerGrid {
+    display: grid;
+    height: 66vh;
+    width: 100%;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(10, 15%);
+    grid-gap: 3%;
+    padding: 3%;
+}
+
+.innerGrid .manUser {
+    width : 100%;
+    height : 100%;
+}
+
+.innerGrid .heart {
+    width : 100%;
+    height : 100%;
+}
+
+
+.innerGrid .femaleUser {
+    width : 100%;
+    height : 100%;
 }
 
 #breakline {
@@ -84,29 +105,19 @@ body {
    
 }
 
-.infobutton {
-    width: 150px;
+.maleButton {
+    width : 100%;
+    height : 100%;
     text-align:center;
     color: blue;
 }
-.OMEGA .box {
-    height: 100px;
-    width: 300px;
-}
-.OMEGA .i {
-    grid-column: 2;    
-}
 
-
-.OMEGA .k {
-    grid-column: 3;
-    absolute: top;
+.femaleButton {
+    width : 100%;
+    height : 100%;
+    text-align:center;
+    color : red;
 }
-.kbutton {
-    width:150px;
-    color: red;
-}
-
 
 .c {
     grid-column: 3;
@@ -147,16 +158,12 @@ body {
     text-align: center;
 
 }
-button {
-    font-size: 200%;
-    width: 300px;
-    padding: 10px;
-    margin: 10px;
-}
+
  /* Nav for male */
-.sidenav {
+.sidenavM {
+  display: none;
   height: 100%;
-  width: 0;
+  width: 33%;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -167,7 +174,7 @@ button {
   padding-top: 60px;
 }
 
-.sidenav a {
+.sidenavM a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
@@ -176,11 +183,7 @@ button {
   transition: 0.3s;
 }
 
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-.sidenav .closebtn {
+.sidenavM .closebtn {
   position: absolute;
   top: 0;
   right: 25px;
@@ -190,8 +193,8 @@ button {
 
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+  .sidenavM {padding-top: 15px;}
+  .sidenavM a {font-size: 18px;}
 }
 
 /* Nav for female */
@@ -216,10 +219,6 @@ button {
   color: #818181;
   display: block;
   transition: 0.3s;
-}
-
-.sidenavF a:hover {
-  color: #f1f1f1;
 }
 
 .sidenavF .closebtnF {

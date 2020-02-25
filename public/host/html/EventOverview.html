@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <link rel="stylesheet" type="text/css" href="../css/EventOverview.css">
-  <script src="/vue/vue.js" defer></script>
-  <script src="../js/EventOverviewVue.js" defer> </script>
-  <script src="../js/EventOverview.js" defer></script>
-  <!--<h1 class="hostTitle">Welcome to the Event overview!</h1>-->
-      <title>Event overview</title>
+	<link rel="stylesheet" type="text/css" href="../css/EventOverview.css">
+	<script src="/vue/vue.js" defer></script>
+	<script src="../js/EventOverviewVue.js" defer> </script>
+	<script src="../js/EventOverview.js" defer></script>
+	<!--<h1 class="hostTitle">Welcome to the Event overview!</h1>-->
+	<title>Event overview</title>
 </head>
-<body>
+<body onload="startTime()">
   <div class="wrapper">      
     <div class="box a">
       <div id="boxAHeader">
@@ -49,16 +50,41 @@
       <button> REORDER </button> <br>
       
 	 </div>
-	 
-    <div class="box c">
-      <h2> WEEW KLOCKA! </h2>
-    </div>
-    <div class="box d">
-      <button> START EVENT</button>
-    </div>
-    <div class="box e">
-      E
-    </div>
+			<div class="box c">
+			<div class="clocktext"> Time </div>
+			<div id=clock></div>
+		</div>
+		<div class="box d">
+			<div class="starteventtext">
+				<p>Next Phase:</p>
+				<hr>
+				<p>
+					<!-- time schedule--> 14:35 </p>
+			</div>
+			<button id="startevent"> START EVENT</button>
+		</div>
+		<div class="box e">
+			<br>
+			<div class="scheduletext">
+				Schedule
+			</div>
+			<hr>
+			<footer>
+				<p> Meeting 1</p>
+				<p> 15:15 - 15:35 </p>
+			</footer>
+			<hr>
+			<footer>
+				<p> Meeting 2</p>
+				<p> 15:45 - 16:05 </p>
+			</footer>
+			<hr>
+			<footer>
+				<p> Meeting 3</p>
+				<p> 16:15 - 16:35 </p>
+			</footer>
+			<hr>
+  </div>
     <div class="box f">
       F
     </div>
@@ -68,5 +94,7 @@
       <hr>
     </div>
   </div>
+
 </body>
+
 </html>

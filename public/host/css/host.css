@@ -1,3 +1,6 @@
+body {
+    background: #4d2c3b;
+}
 
 .modal {
   display: none; 
@@ -13,7 +16,7 @@
 }
 
 .modal-content {
-  background-color: #fefefe;
+  background-color:  ivory;
   margin: 15% auto; 
   padding: 20px;
   border: 1px solid #888;
@@ -27,8 +30,7 @@
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close:hover, .close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
@@ -36,6 +38,7 @@
 
 .hostTitle {
     text-align: center;
+    color: white;
 }
 
 .hostbuttons {
@@ -46,23 +49,27 @@
 button {
     font-size: 400%;
     width: 400px;
+    background-color: #CE6679;
+    border: 0;
+    border-radius: 6px;
+    transition-duration: 0.4s;
+    color: lightgrey;
 }
 
 button:hover {
     cursor: pointer;
-    color: blue;
+    background-color: #de3e53;
 }
 
 
 .wrapper {
-    display: grid;
-    grid-row-gap: 50px;
+    text-align: center;
 }
 
 .box {
-    background-color: red;
+    height: 20vh;
 }
-
+/*
 .a {
 
     grid-column: 2 / 1;
@@ -76,7 +83,4 @@ button:hover {
     height: 500px;
     text-align: center;
 }
-
-#myEventSpace {
-}
-
+*/

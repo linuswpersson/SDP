@@ -2,6 +2,11 @@
 var modal = document.getElementById("createEventModal");
 var btn = document.getElementById("createEventClick");
 var span = document.getElementsByClassName("close")[0];
+var eventViewBtn = document.getElementById("eventViewClick");
+
+eventViewBtn.onclick = function() {
+    window.location = '/host/html/EventOverview.html';
+}
 
 btn.onclick = function() {
   modal.style.display = "block";

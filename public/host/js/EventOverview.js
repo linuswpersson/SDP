@@ -107,3 +107,15 @@ function unMatch() {
     document.getElementById('heartbutton').appendChild(img); 
     
 }
+
+let peopleArray = ["Karl Gustav", "August", "Karl","Mona Lisa", "Malin", "Samantha", "Kim", "Johanna","Lukas", "Amanda", "Richard"];
+let myElement = document.getElementById("participants");
+  		for(var i = 0; i<peopleArray.length; i++){
+  		var listElement = document.createElement("LI");
+  		var listValue = document.createTextNode( peopleArray[i]);
+  		listElement.appendChild(listValue)
+  		myElement.appendChild(listElement);
+
+  		var linebreak = document.createElement('br');
+		myElement.appendChild(linebreak);
+  		}

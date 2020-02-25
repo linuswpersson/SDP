@@ -166,6 +166,7 @@ const vm = new Vue({
 		var tmp = this.femaleArray[oldFemaleIndex];
 		this.femaleArray.splice(oldFemaleIndex, 1, this.femaleArray[i]);
 		this.femaleArray.splice(i, 1, tmp);
+		document.getElementById(this.maleArray[this.currMale].image).src="../img/redheart.png";	
 	    }
 	},
     },

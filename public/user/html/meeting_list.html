@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="/user/css/meeting_list.css">
+    <script src="https://vuejs.org/js/vue.js" defer></script>
+    <script src="/user/js/meeting_list.js" defer></script>
+    <title>Meeting List</title>
+  </head>
+  <body>
+    <div id="pageWrapper">
+      <div class="header">
+	<div class="headertext">Meeting List</div>
+      </div>
+      <div id="info">
+	<p>Who would you like to share contact information with?</p>
+      </div>
+      
+      <div id="matchesWrapper">
+	
+	<div class="match" id="match1">
+	  
+	  <div class="imgWrapper" >
+	    <img class="profileImg" src="/user/img/pp_test/stock1.jpeg">
+	  </div>
+	  
+	  <span>Per-Åke</span>
+	  
+	  <div class="shareCheckbox">
+	    <input type="checkbox" id="checkbox_1">
+	    <label for="checkbox_1"><span>Share?</span></label>
+	  </div>
+	  
+	</div>
+	
+	<div class="match" id="match2">
+	  <div class="imgWrapper" >
+	    <img class="profileImg" src="/user/img/pp_test/stock2.jpg">
+	  </div>
+	  <span>Erik</span>
+
+	  <div class="shareCheckbox">
+	    <input type="checkbox" id="checkbox_2">
+	    <label for="checkbox_2"><span>Share?</span></label>
+	  </div>
+	  
+	</div>
+	<div class="match" id="match3">
+	  <div class="imgWrapper" >
+	    <img class="profileImg" src="/user/img/pp_test/stock3.jpg">
+	  </div>
+	  <span>Marcus</span>
+
+	  <div class="shareCheckbox">
+	    <input type="checkbox" id="checkbox_3">
+	    <label for="checkbox_3"><span>Share?</span></label>
+	  </div>
+	  
+	</div>
+	
+      </div>
+      <div id="okButton">
+	<button class="linkButton" id="nextButton" type="submit" v-on:click="nextClick()">✔</button>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 body {
-    background: #525252;
+    background: #4d2c3b;
 }
 
 .modal {
@@ -16,7 +16,7 @@ body {
 }
 
 .modal-content {
-  background-color: #fefefe;
+  background-color:  ivory;
   margin: 15% auto; 
   padding: 20px;
   border: 1px solid #888;
@@ -58,7 +58,7 @@ button {
 
 button:hover {
     cursor: pointer;
-    background-color: #4d2c3b;
+    background-color: #de3e53;
 }
 
 
@@ -84,4 +84,3 @@ button:hover {
     text-align: center;
 }
 */
-

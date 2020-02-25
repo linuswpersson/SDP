@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="/user/css/make_profile_3.css">
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="/user/js/make_profile_3.js" defer></script>
+    <title>make_profile_3</title>
+  </head>
+  <body>
+      <section id="progress_section">
+	<div id="headerItem">
+	  <h4 id="headerTitle">Profile Creation</h4>
+	</div>
+	<div class="progressGrid">
+	  <div class="gridBox">
+	    <div class="progressCircle" id="pc1">Info</div>
+	    <hr />
+	  </div>
+	  <div class="gridBox">
+	    <div class="progressCircle" id="pc2">Picture</div>
+	    <hr />
+	  </div>
+	  <div class="gridBox">
+	    <div class="progressCircle" id="pc3">Bubbles</div>
+	    <hr />
+	  </div>
+	</div>
+      </section>
+      <p id="infoText">Now it's time to add some Love-Bubbles! This is things our match-makers will use to try and match you with people with similar bubbles! <br> <br> So Love-Bubbles is things you'd like to share with a date, and NOT a summary of yourself! <br><br> If you feel especially adventurous, you could not choose any bubbles at all! ;)  <p>
+      <section id="buttons_section">
+	<div id="buttonContainer">
+	  <button id="nextButton" v-on:click="nextClick()">Press here to continue!</button>
+	</div>
+	<p>
+	  <button class="linkButton" id="backButton" v-on:click="backClick()"></button>
+	</p>
+      </section>
+  </body>
+</html>

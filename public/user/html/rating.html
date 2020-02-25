@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" type="text/css" href="/user/css/review_style.css">
+<script src="https://vuejs.org/js/vue.js"></script>
+<script src="/user/js/review_functions.js" defer></script>
+
+</head>
+
+<body>
+<div class="content">
+<div class="header">
+<div class="headertext">
+Partner review
+</div>
+</div>
+<br>
+
+<div class="bodytext">
+What did you think about the meeting? 
+<br><br>
+Rate below!
+</div>
+
+<div id='rating'> 
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<section id="buttons">
+<button class="checkmarkbutton" v-on:click="userHomeClick()">✔</button>
+ </section>
+<!--<button class="checkmarkbutton" onclick="window.history.go(-1)"> ✔  </button>-->
+ 
+</div>
+</body>
+</html>

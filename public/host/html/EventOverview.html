@@ -9,40 +9,48 @@
 	<!--<h1 class="hostTitle">Welcome to the Event overview!</h1>-->
 	<title>Event overview</title>
 </head>
-
 <body onload="startTime()">
-	<div class="wrapper">
-		<div class="box a">
-			asd
-		</div>
-		<div class="box b" id="app">
-			<div class="OMEGA" v-for="names in list">
-				<div class="box j">
-					<button class="infobutton" v-bind:id="names.no" onclick="openNav(id)">
-						{{names.male}} </button>
-					<div id="mySidenav" class="sidenav">
-						<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-					</div>
-					<img id="breakline" src="../img/Blackline.png" height="200px">
-				</div>
-				<div class="box i">
-					<input id="heartbutton" onclick="unMatch()" type="image" src="../img/redheart.png"></image>
-				</div>
-				<div class="box k">
-					<button class="kbutton" v-bind:id="names.noF" onclick="openFemaleNav(id)"> {{names.female}}
-					</button>
-					<div id="mySidenavf" class="sidenavF">
-						<a href="javascript:void(0)" class="closebtnF" onclick="closeNavF()">&times;</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="box h">
-			<button> REORDER </button> <br>
-
-		</div>
-
-		<div class="box c">
+  <div class="wrapper">      
+    <div class="box a">
+      <div id="boxAHeader">
+	<div id="boxAHeadertext">Demo Event</div>
+      </div>
+      <div id="eventTime" class="boxAText">
+	<div>14:00 - 16:00</div>
+      </div>
+      <div id="eventAddress" class="boxAText">
+	Lägerhyddsvägen 2
+      </div>
+      <div id="eventCode" class="boxAText">
+	Code: XYC831
+      </div>
+    </div>
+    <div class="box b" id="app">
+      <div class="OMEGA" v-for="names in list">
+	<div class="box j">
+	  <button  class="infobutton" v-bind:id="names.no" onclick="openNav(id)">
+	    {{names.male}} </button>
+	  <div id="mySidenav" class="sidenav">
+	    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	  </div>
+	  <img id="breakline" src="../img/Blackline.png" height="200px">
+	</div>
+	<div class="box i"> 
+	    <input id="heartbutton" onclick="unMatch()" type="image" src="../img/redheart.png"></image>	 
+	</div>
+	<div class="box k">
+	  <button class="kbutton" v-bind:id="names.noF" onclick="openFemaleNav(id)"> {{names.female}} </button>
+	   <div id="mySidenavf" class="sidenavF">
+	    <a href="javascript:void(0)" class="closebtnF" onclick="closeNavF()">&times;</a>
+	  </div>
+	</div>
+      </div>
+      </div>
+    <div class="box h">
+      <button> REORDER </button> <br>
+      
+	 </div>
+			<div class="box c">
 			<div class="clocktext"> Time </div>
 			<div id=clock></div>
 		</div>
@@ -76,17 +84,17 @@
 				<p> 16:15 - 16:35 </p>
 			</footer>
 			<hr>
+  </div>
+    <div class="box f">
+      F
+    </div>
+    <div class="box g">
+    <h1> Participants: </h1>
+    <div id="participants">
+      <hr>
+    </div>
+  </div>
 
-		</div>
-		<div class="box f">
-			F
-		</div>
-		<div class="box g">
-			<button>hejsvejs </button><br>
-			<button>hejsvejs </button><br>
-			<button>hejsvejs </button><br>
-		</div>
-	</div>
 </body>
 
 </html>

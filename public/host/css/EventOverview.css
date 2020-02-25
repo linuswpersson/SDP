@@ -160,7 +160,7 @@ body {
     grid-column: 3;
     background-color: orange;
     text-align: center;
-    
+    overflow-y: auto;
 }
 
 .h{

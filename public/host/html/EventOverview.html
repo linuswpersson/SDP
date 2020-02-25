@@ -12,16 +12,16 @@
 <body onload="startTime()">
   <div class="wrapper">      
     <div class="box a">
-      <div id="boxAHeader">
-	<div id="boxAHeadertext">Demo Event</div>
+      <div class="boxHeader">
+	<div class="boxHeadertext">Demo Event</div>
       </div>
-      <div id="eventTime" class="boxAText">
+      <div id="eventTime" class="boxText">
 	<div>14:00 - 16:00</div>
       </div>
-      <div id="eventAddress" class="boxAText">
+      <div id="eventAddress" class="boxText">
 	Lägerhyddsvägen 2
       </div>
-      <div id="eventCode" class="boxAText">
+      <div id="eventCode" class="boxText">
 	Code: XYC831
       </div>
     </div>
@@ -36,7 +36,7 @@
 	  <img id="breakline" src="../img/Blackline.png" height="200px">
 	</div>
 	<div class="box i"> 
-	    <input id="heartbutton" onclick="unMatch()" type="image" src="../img/redheart.png"></image>	 
+	    <input id="heartbutton" type="image" src="../img/redheart.png"></input>	 
 	</div>
 	<div class="box k">
 	  <button class="kbutton" v-bind:id="names.noF" onclick="openFemaleNav(id)"> {{names.female}} </button>
@@ -49,7 +49,8 @@
     <div class="box h">
       <button> REORDER </button> <br>
       
-	 </div>
+	
+ </div>
 			<div class="box c">
 			<div class="clocktext"> Time </div>
 			<div id=clock></div>
@@ -87,6 +88,7 @@
   </div>
     <div class="box f">
       F
+
     </div>
     <div class="box g">
     <h1> Participants: </h1>

@@ -1,5 +1,3 @@
-let userd = ["Karl Gustav", "August", "Karl Gustav", "Karl", "Karl Gustav", "August", "Karl Gustav", "Lisa Britt"];
-let Fuserd = ["Mona Lisa", "Malin", "Mona Lisa", "Malin", "Mona Lisa", "Malin", "Mona Lisa", "Malin"]
 
 let lastMaleIndex;
 let lastFemaleIndex;
@@ -28,7 +26,7 @@ function checkTime(i) {
 
 
 function openNav1() {
-  document.getElementById("mySidenav").style.width = "500px";
+  document.getElementById("mySidenav").style.width = "20vw";
   document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
 }
 
@@ -38,7 +36,7 @@ function openNav(no) {
 	closeNav();
 	lastMaleIndex = no;
 	let bignav = document.getElementById("mySidenav");
-	let fun = userd[no];
+	let fun = users[no].male;	
 	let newText = document.createTextNode(fun);
 	let nav1 = document.createElement("A");
 	button = document.getElementById(no);
@@ -49,10 +47,9 @@ function openNav(no) {
     }
     else {
 	hasOpened = true;
-	lastMaleIndex = no;
 	let bignav = document.getElementById("mySidenav");
 	button = document.getElementById(no);
-	let fun = userd[no];
+	let fun = users[no].male;
 	button.style.color = "green";
 	let a = document.createElement("A");
 	let nav1 = document.createTextNode(fun);
@@ -78,7 +75,7 @@ function openFemaleNav(no) {
 	closeNavF();
 	let bignav = document.getElementById("mySidenavf");
 	lastFemaleIndex = no;
-	let fun = Fuserd[no-8];
+	let fun = users[no-8].female;
 	let newText = document.createTextNode(fun);
 	let nav1 = document.createElement("A");
 	Fbutton = document.getElementById(no);
@@ -93,7 +90,7 @@ function openFemaleNav(no) {
 	lastFemaleIndex = no;
 	let bignav = document.getElementById("mySidenavf");
 	Fbutton = document.getElementById(no);
-	let fun = Fuserd[no-8];
+	let fun = users[no-8].female;
 	Fbutton.style.color = "green";
 	let a = document.createElement("A");
 	let nav1 = document.createTextNode(fun);
@@ -112,14 +109,18 @@ function openFemaleNav1() {
 function closeNavF() {
   document.getElementById("mySidenavf").style.width = "0";
     document.body.style.backgroundColor = "white";
-    	Fbutton.style.color = "blue";
+    	Fbutton.style.color = "red";
   
 }
 
 function unMatch() {
     let male = lastMaleIndex;
     let female = lastFemaleIndex;
-
+    if (male == female-10) {
+	unmatchedMale.push(users[male].no);
+	unmatchedFemale.push(users[male].noF);
+	users.splice(pos, male);
+    }
     var img = document.createElement('img'); 
     img.src = img/heart.png;
     document.getElementById('heartbutton').appendChild(img); 

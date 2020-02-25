@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="stylesheet" type="text/css" href="/user/css/bubbles.css">
-    <script src="https://vuejs.org/js/vue.js"></script>
-    <script src="/user/js/bubbles.js" defer></script>
-    <title>bubbles</title>
-  </head>
-  <body>
-    <section id="content">
-      <header>
-	<h2>Love Bubbles</h2>
-      </header>
-      <div class="bubbleWrapper">
-	<div class="bubbleBox" v-for="item in bubbleArray">
-	  <button class="bubbleButton" :name="item.name" :id="item.name" v-on:click="bubbleClick(item)"> {{item.name}} </button>
-	</div>
-      </div>
-      <div id="myTitle">
-	<h4>My Bubbles</h4>
-      </div>
-      <div class="bubbleWrapper">
-	<div class="bubbleBox" v-for="item in chosenBubbleArray">
-	  <button class="bubbleButton" :name="item.name" v-on:click="bubbleClick(item)"> {{item.name}} </button>
-	</div>
-      </div>
-      <section id="buttons_section">
-	<p>
-	  <button class="linkButton" id="backButton" v-on:click="backClick()"></button>
-	</p>
-	<p>
-	  <button class="linkButton" id="nextButton" type="submit" v-on:click="nextClick()"></button>
-	</p>
-      </section>
-    </section>
-  </body>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="/user/css/bubbles.css">
+	<script src="https://vuejs.org/js/vue.js"></script>
+	<script src="/user/js/bubbles.js" defer></script>
+	<meta charset="UTF-8">
+	<title>bubbles</title>
+</head>
+
+<body>
+	<section id="content">
+		<header>
+			<h2>Love Bubbles</h2>
+		</header>
+		<div class="bubbleWrapper">
+			<div class="bubbleBox" v-for="item in bubbleArray">
+				<button class="bubbleButton" :name="item.name" :id="item.name" v-on:click="bubbleClick(item)">
+					{{item.name}} </button>
+			</div>
+		</div>
+		<div id="myTitle">
+			<h4>My Bubbles</h4>
+		</div>
+		<div class="bubbleWrapper">
+			<div class="bubbleBox" v-for="item in chosenBubbleArray">
+				<button class="bubbleButton" :name="item.name" v-on:click="bubbleClick(item)"> {{item.name}} </button>
+			</div>
+		</div>
+		<section id="buttons_section">
+			<p>
+				<button class="linkButton" id="backButton" v-on:click="backClick()">←</button>
+			</p>
+			<p>
+				<button class="linkButton" id="nextButton" type="submit" v-on:click="nextClick()">✓</button>
+			</p>
+		</section>
+	</section>
+</body>
+
 </html>

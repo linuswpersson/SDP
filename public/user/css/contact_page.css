@@ -71,8 +71,12 @@ span {
 #nextButton {
     bottom: 30px;
     right: 135px;
-
+	color:white;
     background: #90EE90; /* placeholder, should be changed for a picture */
+}
+
+#nextButton:hover {
+  background-color: lightblue;
 }
 
 

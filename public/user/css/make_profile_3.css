@@ -1,7 +1,8 @@
 #infoText {
     height: 270px;
     width: auto;
-    border: 2px pink solid;
+    border: 1px pink solid;
+	text-align: center;
 }
 
 #buttonContainer {
@@ -11,7 +12,23 @@
 #nextButton {
     height: 100px;
     width: auto;
-    border: 2px pink solid;
+    border: 1px pink solid;
+
+  background-color:#CE6679; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  border-radius: 6px;
+  display: block;
+  margin: 0 auto;
+}
+
+#nextButton:hover {
+  background-color: pink;
 }
 
 .linkButton {
@@ -28,12 +45,18 @@
     left: 10px;
 }
 
+#backButton:hover {
+  background-color: lightblue;
+}
+
+
+
 /* CSS for the progress bar -elements bellow. */
 
 #headerItem {
     height: 35px;
     width: auto;
-    border: 2px pink solid;
+    border: 1px pink solid;
     border-bottom: none;
     text-align: center;
 }
@@ -48,7 +71,7 @@
     height: 80px;
     width: auto;
     grid-template-columns: 97px 98px 97px;
-    border: 2px pink solid;
+    border: 1px pink solid;
     border-top: none;
     margin: auto;
 }
@@ -63,7 +86,7 @@
     bottom: 43px;
     width: 100%;
     height: 1px;
-    background: black;
+    background: #888;
 }
 
 .progressCircle {
@@ -72,7 +95,7 @@
     text-align: center;
     line-height: 65px;
     border-radius: 50%;
-    border: 2px black solid;
+    border: 1px #888 solid;
     background: white;
     height: 65px;
     width: 65px;
@@ -89,5 +112,6 @@
 }
 
 #pc3 {
-    background: #6cc6c6
+    background: #CE6679;
 }
+

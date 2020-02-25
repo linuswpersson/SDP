@@ -1,0 +1,67 @@
+body{
+	overflow-y: auto;
+
+}
+
+.header{
+  margin: 0 auto;
+  width: 310px;
+  height: 40px;
+  background: #F74AA5;
+	position: relative;
+	left: -8px;
+	top: -10px;
+
+}
+
+.headertext{
+    margin: 0px 4px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-size: 20pt;	
+	font-weight: bold;
+	color: white;
+	position: relative;
+    top: 5px;
+
+}
+
+.content{
+		position: relative;
+}
+
+.bodytext{
+  margin: 0px 0px;
+text-align: center;
+	font-family: Arial, sans-serif;
+		font-size: 15pt;
+}
+
+.backbutton {
+  background-color: teal; 
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+
+  display: block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  min-width: 35px;
+  max-height: 35px;
+
+  position: absolute;
+  left:    0;
+  bottom:   -225px;
+
+  border-radius: 100%;
+	
+}
+
+.backbutton:hover {
+  background-color: lightblue;
+}
+
+

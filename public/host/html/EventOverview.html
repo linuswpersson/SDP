@@ -4,6 +4,7 @@
   <link rel="stylesheet" type="text/css" href="../css/EventOverview.css">
   <script src="/vue/vue.js" defer></script>
   <script src="../js/EventOverviewVue.js" defer> </script>
+  <script src="../js/EventOverview.js" defer> </script>
   <!--<h1 class="hostTitle">Welcome to the Event overview!</h1>-->
       <title>Event overview</title>
 </head>
@@ -16,27 +17,30 @@
       <div class="OMEGA">
 	<div class="box innerGrid">
 	  <div class="box manUser" v-for="user in maleArray">
-	    <button class="maleButton" v-on:click="maleClick(user)" :id="user.id"> {{user.name}} </button>
-	    <div id="maleSidenav" class="sidenavM">
+	    <button class="maleButton" v-on:click="maleClick(user.id)" :id="user.id"> {{user.name}} </button>
+	    <div id="mySidenav" class="sidenav">
+	      <a href="javascript:void(0)" class="closebtn" v-on:click="closeMaleNav()">&times;</a>
 	    </div>
 	  </div>
 	</div>
 	<div class="box innerGrid">
 	  <div class="box heart" v-for="male in maleArray"> 
-	    <input class="heartButton" type="image" src="../img/redheart.png">	 
+	    <input class="heartButton" type="image" src="../img/redheart.png" v-on:click="popup(male.id)" :id="male.image">	 
 	  </div>
 	</div>
 	<div class="box innerGrid">
 	  <div class="box femaleUser" v-for="user in femaleArray">
-	    <button class="femaleButton" v-on:click="femaleClick(user)" :id="user.id"> {{user.name}} </button>
-	    <div id="femaleSidenav" class="sidenavF">
+	    <button class="femaleButton" v-on:click="femaleClick(user.id)" :id="user.id"> {{user.name}} </button>
+	    <div id="mySidenavf" class="sidenavF">
+	      <a href="javascript:void(0)" class="closebtnF" v-on:click="closeFemaleNav()">&times;</a>
 	    </div>
 	  </div>
 	</div>
       </div>
     </div>
     <div class="box h">
-      <button v-on:click="rematch()"> REORDER </button> <br>
+      <button v-on:click="rematch()"> REMATCH </button> <br>
+      <button v-on:click="unmatch()"> UNMATCH </button>
       
 	 </div>
 	 

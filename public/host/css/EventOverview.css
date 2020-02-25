@@ -158,32 +158,34 @@ body {
     text-align: center;
 
 }
-
  /* Nav for male */
-.sidenavM {
-  display: none;
+.sidenav {
   height: 100%;
-  width: 33%;
+  width: 0;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: white;
+  background-color: #4d2c3b;
   overflow-x: hidden;
-  transition: 0.2s;
+  transition: 0.5s;
   padding-top: 60px;
 }
 
-.sidenavM a {
+.sidenav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: white;
   display: block;
   transition: 0.3s;
 }
 
-.sidenavM .closebtn {
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
   position: absolute;
   top: 0;
   right: 25px;
@@ -192,10 +194,15 @@ body {
 }
 
 
-@media screen and (max-height: 450px) {
-  .sidenavM {padding-top: 15px;}
-  .sidenavM a {font-size: 18px;}
-}
+
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 50px;}
+  
+  .sidenav div {
+      font-size: 50px;
+      color: white;
+		}
+
 
 /* Nav for female */
 
@@ -206,9 +213,9 @@ body {
   position: fixed;
   z-index: 1;
   top: 0;
-  background-color: white;
+  background-color: #4d2c3b;
   overflow-x: hidden;
-  transition: 0.2s;
+  transition: 0.5s;
   padding-top: 60px;
 }
 
@@ -216,9 +223,15 @@ body {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: white;
+  text-align:right;
   display: block;
   transition: 0.3s;
+  
+}
+
+.sidenavF a:hover {
+  color: #f1f1f1;
 }
 
 .sidenavF .closebtnF {
@@ -229,8 +242,12 @@ body {
   margin-left: 50px;
 }
 
-
-@media screen and (max-height: 450px) {
   .sidenavF {padding-top: 15px;}
-  .sidenavF a {font-size: 18px;}
-}
+  .sidenavF a {
+      font-size: 50px;
+  }
+  .sidenavF div {
+      font-size: 50px;
+      color: white;
+		}
+

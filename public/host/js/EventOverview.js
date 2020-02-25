@@ -1,16 +1,16 @@
-let userd = ["Karl Gustav", "August", "Karl Gustav", "Karl", "Karl Gustav", "August", "Karl Gustav", "Lisa Britt"];
-let Fuserd = ["Mona Lisa", "Malin", "Mona Lisa", "Malin", "Mona Lisa", "Malin", "Mona Lisa", "Malin"]
 
 let lastMaleIndex;
 let lastFemaleIndex;
 let hasOpened = false;
 let hasOpenedF = false;
+let repetitiveMale = false;
+let repetitiveFemale = false;
 let button;
 let Fbutton;
-
+/*
 
 function openNav1() {
-  document.getElementById("mySidenav").style.width = "500px";
+  document.getElementById("maleSidenav").style.width = "500px";
   document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
 }
 
@@ -20,7 +20,7 @@ function openNav(no) {
 	closeNav();
 	lastMaleIndex = no;
 	let bignav = document.getElementById("mySidenav");
-	let fun = userd[no];
+	let fun = vm.maleArray[no];
 	let newText = document.createTextNode(fun);
 	let nav1 = document.createElement("A");
 	button = document.getElementById(no);
@@ -34,7 +34,7 @@ function openNav(no) {
 	lastMaleIndex = no;
 	let bignav = document.getElementById("mySidenav");
 	button = document.getElementById(no);
-	let fun = userd[no];
+	let fun = this.data.maleArray[no];
 	button.style.color = "green";
 	let a = document.createElement("A");
 	let nav1 = document.createTextNode(fun);
@@ -43,8 +43,9 @@ function openNav(no) {
 	openNav1();
     }       
 }
-
+*/
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+/*
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
     document.body.style.backgroundColor = "white";
@@ -107,3 +108,4 @@ function unMatch() {
     document.getElementById('heartbutton').appendChild(img); 
     
 }
+*/

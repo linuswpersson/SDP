@@ -1,0 +1,75 @@
+.header{
+  margin: 0 auto;
+  width: 310px;
+  height: 40px;
+  background: #CE6679;
+	position: relative;
+	left: -8px;
+	top: -10px;
+
+}
+
+.headertext{
+    margin: 0px 4px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-size: 20pt;	
+	font-weight: bold;
+	color: white;
+	position: relative;
+    top: 5px;
+
+}
+
+
+.linkButton {
+    position: fixed;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background:  #e5e8e8;
+    border: 1px  #99a3a4 solid;
+}
+
+#nextButton {
+    bottom: 30px;
+    right: 135px;
+	color:white;
+    background: #90EE90; /* placeholder, should be changed for a picture */
+}
+
+#nextButton:hover{
+	background: lightblue;
+}
+
+.match {
+    background-color: #CE6679;
+    height: 100px;
+    border: 2px black solid;
+    margin: 20px;
+    padding: 5px;
+    border-radius: 6px;
+}
+
+.profileImg {
+    height: 100%;
+    width: 100%;  
+    object-fit: cover;
+}
+
+.imgWrapper {
+    display: inline-block;
+    height: 100%;
+    width: 30%;
+    border: 1px black solid;	      
+}
+
+.shareCheckbox {
+    position: relative;
+    float: right;
+    top: 40px;
+}
+
+span {
+    color: white;
+}

@@ -1,0 +1,62 @@
+
+
+.header{
+  margin: 0;
+  width: 310px;
+  height: 40px;
+  background: #CE6679;
+	position: relative;
+	left: -8px;
+	top: -10px;
+	
+}
+
+.headertext{
+    margin: 0px 4px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-size: 20pt;	
+	font-weight: bold;
+	color: white;
+	position: relative;
+    top: 5px;
+}
+
+.bodytext{
+  margin: 0px 0px;
+text-align: center;
+	font-family: Arial, sans-serif;
+		font-size: 15pt;
+}
+
+	
+#rating { font-size: 0; text-align: center; position: relative; top: 100px;}
+#rating span { font-size: 40px; }
+#rating span::before { content: "☆"; }
+#rating span.active::before {content: "★"; }
+#rating span:hover { cursor: pointer; }
+
+
+.checkmarkbutton{
+  background-color: lightgreen; /* Green */
+  color: white;
+  text-align: center;
+  margin: 4px 2px;
+  cursor: pointer;
+  position: absolute;
+  border-radius: 100%;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 1px  #99a3a4 solid;
+  left:132px;
+  top: 540px;
+
+}
+
+.checkmarkbutton:hover {
+  background-color: lightblue;
+}
+
+
+

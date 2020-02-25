@@ -1,6 +1,11 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #4d2c3b;
+}
+
+p {
+    color: lightgrey;
 }
 
 .wrapper {
@@ -11,34 +16,7 @@ body {
     grid-template-rows: 33% 33% 33%;
     grid-column-gap: 5px;
     grid-row-gap: 5px;
-    /*margin: 5px;*/
 }
-
-/*
-.box {
-    height: 393px;
-    width: 720px;
-}
-
-
-
-.list1 {
-  border: black;
-  padding: 8px 20px;
-  line-height: 1.3em;
-  opacity: 0;
-  color: white;
-  width: 200px;
-  margin: 0 auto;
-  margin-top: 30px;
-  transform: translateZ(0);
-  perspective: 1000px;
-  backface-visibility: hidden;
-  background: black;
-  transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1); 
-}
-
-*/
 
 .heartButton {
     width: 100%;
@@ -53,18 +31,58 @@ body {
 
     grid-column: 1/;
     grid-row: 1/ 2;
-    background-color: green;
+    background-color: #525252;
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
+
+.boxHeader{
+  margin: 0 auto;
+  width: 100%;
+  height: 40px;
+  background: #CE6679;
+  position: relative;
+}
+
+.boxHeadertext{
+    margin: 0px 4px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 20pt;	
+    font-weight: bold;
+    color: white;
+    position: relative;
+    top: 5px;
+}
+
+.boxText {
+    height: 20%;
+    width: 100%;
+    text-align: center;
+    font-size: 20pt;
+    color: lightgrey;
+}
+
+.boxTextBig {
+    height: 20%;
+    width: 100%;
+    text-align: center;
+    font-size: 50pt;
+    color: lightgrey;
+}
+
+
 
 .b {
     grid-column: 2;
     grid-row: 1/ 3;   
-    background-color: grey;
+    background-color: #525252;
     overflow-x: hidden;
     overflow-y: scroll;
 
 }
+
   /*IGNORE ANYTHING CONTAINING OMEGA, It is the grid inside box b. */
 .OMEGA {
     display: grid;
@@ -122,41 +140,81 @@ body {
 .c {
     grid-column: 3;
     grid-row: 1;
-    background-color: grey;
+    background-color: #525252;
     text-align:center;
 }
+
+.clocktext{
+	margin: 10px;
+	text-align: center;
+	font-size: 25px;
+}
+
+#clock{
+	text-align: center;
+	font-size: 42px;
+	color: lightgrey;
+}
+
 .d {
     grid-column: 1;
     grid-row: 3;
-    background-color: olive;
+    background-color: #525252;
+	
     text-align: center;
 }
 
+.starteventtext{
+	font-size: 25px;
+}
+
 .e {
-    grid-colum: 3;
+    grid-column: 3;
     grid-row: 2;
-    background-color: yellow;
+    background-color: #525252;
+    overflow-y: auto;
+}
+
+.scheduletext{
+	text-align: center;	
+	font-size: 25px;
+}
+
+footer{
+    margin: 10px;
 }
 .f {
     grid-column: 1;
     grid-row: 2;
-    background-color: blue;
+    background-color: #525252;
 }
 
 .g {
     grid-row: 3;
     grid-column: 3;
-    background-color: orange;
+    background-color: #525252;
     text-align: center;
-    
+    overflow-y: auto;
+
 }
 
 .h{
     grid-column: 2;
     grid-row: 3/ 4;
-    background-color: teal;
+    background-color: #525252;
     text-align: center;
+}
 
+#startevent {
+  background-color:#CE6679; 
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  border-radius: 6px;
+  margin: 0 auto;
 }
  /* Nav for male */
 .sidenav {
@@ -251,3 +309,10 @@ body {
       color: white;
 		}
 
+  .sidenavF a {font-size: 18px;}
+}
+
+
+#participants {
+    color: lightgrey;
+}

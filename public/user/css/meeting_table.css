@@ -1,0 +1,90 @@
+
+.header{
+  margin: 0 auto;
+  width: 310px;
+  height: 40px;
+  background: #CE6679;
+	position: relative;
+	left: -8px;
+	top: -10px;
+
+}
+
+.headertext{
+    margin: 0px 4px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-size: 20pt;	
+	font-weight: bold;
+	color: white;
+	position: relative;
+    top: 5px;
+
+}
+
+.bodytext{
+  margin: 0px 0px;
+text-align: center;
+	font-family: Arial, sans-serif;
+		font-size: 15pt;
+}
+
+.meetingtext{
+	text-align: center;
+	margin: 0;
+}
+
+.iamherebutton {
+  background-color:#CE6679; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  border-radius: 6px;
+    display: block;
+    margin: 0 auto;
+}
+
+.iamherebutton:hover {
+  background-color: pink;
+}
+
+
+.infobutton {
+  background-color: teal; 
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+
+	
+  min-width: 35px;
+  max-height: 35px;
+  position: relative;
+  left:15px;
+  top: 60px;
+
+
+  border-radius: 100%;
+	
+}
+
+.infobutton:hover {
+  background-color: lightblue;
+}
+
+#helptext{
+	float: bottom;
+}
+
+
+
+

@@ -1,0 +1,154 @@
+#pictureButton {
+    position: fixed;
+    left: 62px;
+    bottom: 100px;
+    margin: 0;
+    padding: 0;
+    height: 360px;
+    width: 186px;
+    border: 1px solid #888;
+}
+
+#profilePic {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.linkButton {
+    position: fixed;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background:  #e5e8e8;
+    border: 1px  #99a3a4 solid;
+}
+
+#nextButton {
+    bottom: 10px;
+    right: 10px;
+    visibility: hidden;
+    background: #90EE90; /* placeholder, should be changed for a picture */
+}
+
+#nextButton:hover {
+  background-color: lightblue;
+}
+#backButton {
+    bottom: 10px;
+    left: 10px;
+}
+
+#backButton:hover {
+  background-color: lightblue;
+}
+
+/* CSS for modular window -elements below*/
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+}
+
+.modalBox {
+    width: 80%;
+    height: 80%;
+    margin: 15% auto;
+    border: 1px solid #888;
+    background-color: white;
+}
+
+#closeButton {
+    position: relative;
+    left: -0.36em;
+    top: -0.60em;
+    font-size: 18pt;
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid #888;
+}
+
+#modalWrapper {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.modalWrapperBox {
+    margin: 0;
+    padding: 0;
+    border: 2px solid white;
+}
+
+.modalPicture {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* CSS for the progress bar -elements bellow. */
+
+#headerItem {
+    height: 35px;
+    width: auto;
+    border: 1px pink solid;
+    border-bottom: none;
+    text-align: center;
+}
+
+#headerTitle {
+    position: relative;
+    bottom: 10px;
+}
+
+.progressGrid {
+    display: grid;
+    height: 80px;
+    width: auto;
+    grid-template-columns: 97px 98px 97px;
+    border: 1px pink solid;
+    border-top: none;
+    margin: auto;
+}
+
+.gridBox {
+    height: 80px;
+    width: auto;
+}
+
+.gridBox > hr {
+    position: relative;
+    bottom: 43px;
+    width: 100%;
+    height: 1px;
+    background: #888;
+}
+
+.progressCircle {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    line-height: 65px;
+    border-radius: 50%;
+    border: 1px #888 solid;
+    background: white;
+    height: 65px;
+    width: 65px;
+    margin: 0 auto;
+    font-size: 11pt;
+}
+
+#pc1 {
+    background: #90EE90;
+}
+
+#pc2 {
+    background: #CE6679;
+}

@@ -9,8 +9,28 @@ let button;
 let Fbutton;
 /*
 
+function startTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('clock').innerHTML =
+  h + ":" + m + ":" + s;
+  var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+
+
+
 function openNav1() {
+
   document.getElementById("maleSidenav").style.width = "500px";
+
   document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
 }
 
@@ -31,10 +51,10 @@ function openNav(no) {
     }
     else {
 	hasOpened = true;
-	lastMaleIndex = no;
 	let bignav = document.getElementById("mySidenav");
 	button = document.getElementById(no);
 	let fun = this.data.maleArray[no];
+
 	button.style.color = "green";
 	let a = document.createElement("A");
 	let nav1 = document.createTextNode(fun);
@@ -61,7 +81,7 @@ function openFemaleNav(no) {
 	closeNavF();
 	let bignav = document.getElementById("mySidenavf");
 	lastFemaleIndex = no;
-	let fun = Fuserd[no-8];
+	let fun = users[no-8].female;
 	let newText = document.createTextNode(fun);
 	let nav1 = document.createElement("A");
 	Fbutton = document.getElementById(no);
@@ -76,7 +96,7 @@ function openFemaleNav(no) {
 	lastFemaleIndex = no;
 	let bignav = document.getElementById("mySidenavf");
 	Fbutton = document.getElementById(no);
-	let fun = Fuserd[no-8];
+	let fun = users[no-8].female;
 	Fbutton.style.color = "green";
 	let a = document.createElement("A");
 	let nav1 = document.createTextNode(fun);
@@ -95,17 +115,32 @@ function openFemaleNav1() {
 function closeNavF() {
   document.getElementById("mySidenavf").style.width = "0";
     document.body.style.backgroundColor = "white";
-    	Fbutton.style.color = "blue";
+    	Fbutton.style.color = "red";
   
 }
 
 function unMatch() {
     let male = lastMaleIndex;
     let female = lastFemaleIndex;
-
+    if (male == female-10) {
+	unmatchedMale.push(users[male].no);
+	unmatchedFemale.push(users[male].noF);
+	users.splice(pos, male);
+    }
     var img = document.createElement('img'); 
     img.src = img/heart.png;
     document.getElementById('heartbutton').appendChild(img); 
     
 }
 */
+let peopleArray = ["Karl Gustav", "August", "Karl","Mona Lisa", "Malin", "Samantha", "Kim", "Johanna","Lukas", "Amanda", "Richard"];
+let myElement = document.getElementById("participants");
+  		for(var i = 0; i<peopleArray.length; i++){
+  		var listElement = document.createElement("LI");
+  		var listValue = document.createTextNode( peopleArray[i]);
+  		listElement.appendChild(listValue)
+  		myElement.appendChild(listElement);
+
+  		var linebreak = document.createElement('br');
+		myElement.appendChild(linebreak);
+  		}

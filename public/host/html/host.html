@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
     <link rel="stylesheet" type="text/css" href="../css/host.css">
+    <script src="../js/host.js" defer></script>
     <title>Host view</title>
     <h1 class="hostTitle">Welcome to the Host View!</h1>
   </head>
   <body>
     <div class="wrapper">      
-	<div class="box a">
-	  <button>Create Event</button><br> <!--  TODO: När man trycker så ska ett formulär poppa upp-->
+      <div id="createEventModal" class="modal">
+	<div class="modal-content">
+	  <span class="close">&times;</span>
+	  <p><h2><center>Create an event</center></h2></p>
+	  <div id="eventInfo"> </div>
+	  <button onclick="createBtn()"> Create event</button>
 	</div>
-	<div class="box b">
-	  <section id="myEventSpace">	  
-		<button>My Event</button> <br>
-     <a href="/host/html/EventOverview.html">Event view</a>  
-	  </section> 
-	</div>
+      </div>
+      <div class="box a">
+	<section id="myEventSpace">	  
+	  <button id="createEventClick">Create Event</button> <br>	  
+	</section>
+      </div>
+      <div class="box b">
+	<button id="eventViewClick">My Event</button> <br>
+      </div>
     </div>
   </body>
 </html>
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link rel="stylesheet" type="text/css" href="/user/css/dating_progress.css">
+	<script src="https://vuejs.org/js/vue.js" defer></script>
+	<script src="/user/js/dating_progress.js" defer></script>
+
+</head>
+
+<body>
+	<div class="content">
+		<div class="header">
+			<div class="headertext">
+				Table X
+				<!-- Swap this out for a variable x for modularity -->
+			</div>
+		</div>
+		<br>
+
+		<div class="bodytext">
+			Go ahead and talk to each other!
+			<br><br>
+		</div>
+
+		<div class="meetingtext">
+			The host will notify you when the time's up.
+		</div>
+
+		<section id="buttons">
+
+			<button class="nextbutton" v-on:click="nextEventClick()">Next</button>
+
+
+		</section>
+
+
+	</div>
+</body>
+
+</html>

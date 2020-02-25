@@ -1,0 +1,47 @@
+
+.header{
+  margin: 0 auto;
+  width: 310px;
+  height: 40px;
+  background: #CE6679;
+	position: relative;
+	left: -8px;
+	top: -10px;
+
+}
+
+.headertext{
+    margin: 0px 4px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-size: 20pt;	
+	font-weight: bold;
+	color: white;
+	position: relative;
+    top: 5px;
+
+}
+
+.bodytext{
+  margin: 0px 0px;
+text-align: center;
+	font-family: Arial, sans-serif;
+		font-size: 15pt;
+}
+
+.meetingtext{
+	text-align: center;
+	margin: 0;
+}
+
+#helptext{
+	float: bottom;
+}
+
+.nextbutton{
+	float: right;
+}
+
+
+
+

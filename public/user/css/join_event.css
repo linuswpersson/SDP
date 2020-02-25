@@ -1,0 +1,115 @@
+
+.header{
+  margin: 0 auto;
+  width: 310px;
+  height: 40px;
+  background: #CE6679;
+	position: relative;
+	left: -8px;
+	top: -10px;
+
+}
+
+.headertext{
+    margin: 0px 4px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-size: 20pt;	
+	font-weight: bold;
+	color: white;
+	position: relative;
+    top: 5px;
+
+}
+
+.content{
+	position: relative;
+}
+.bodytext{
+  margin: 0px 0px;
+text-align: center;
+	font-family: Arial, sans-serif;
+		font-size: 15pt;
+}
+
+.form {
+position: relative;
+display: block;
+left: 10%;
+margin: 0 auto;
+width: 220px;
+height: 50px
+
+}
+
+.joinbutton {
+  background-color:#CE6679; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  border-radius: 6px;
+    display: block;
+    margin: 0 auto;
+}
+
+.joinbutton:hover {
+  background-color: pink;
+}
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  left: 20%;
+
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 150px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  padding: 5px 0;
+
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 30px;
+  left: 10%;
+
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.backbutton {
+  text-align: center;
+  margin: 4px 2px;
+  cursor: pointer;
+  position: absolute;
+  left:    0;
+  bottom:   -350px;
+  border-radius: 100%;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background:  #e5e8e8;
+  border: 1px  #99a3a4 solid;
+
+}
+
+.backbutton:hover {
+  background-color: lightblue;
+}
+
+
+

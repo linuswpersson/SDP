@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <link rel="stylesheet" type="text/css" href="../css/EventOverview.css">
-  <script src="/vue/vue.js" defer></script>
-  <script src="../js/EventOverviewVue.js" defer> </script>
-  <script src="../js/EventOverview.js" defer> </script>
-  <!--<h1 class="hostTitle">Welcome to the Event overview!</h1>-->
-      <title>Event overview</title>
+	<link rel="stylesheet" type="text/css" href="../css/EventOverview.css">
+	<script src="/vue/vue.js" defer></script>
+	<script src="../js/EventOverviewVue.js" defer> </script>
+	<script src="../js/EventOverview.js" defer></script>
+	<title>Event overview</title>
 </head>
-<body>
-  <div class="wrapper" id="app">      
+<body onload="startTime()">
+  <div class="wrapper">      
     <div class="box a">
-      asd
+      <div class="boxHeader">
+	<div class="boxHeadertext">Demo Event</div>
+      </div>
+      <div id="eventTime" class="boxText">
+	<div>14:00 - 16:00</div>
+      </div>
+      <div id="eventAddress" class="boxText">
+	Lägerhyddsvägen 2
+      </div>
+      <div id="eventCode" class="boxText">
+	Code: XYC831
+      </div>
     </div>
     <div class="box b">
       <div class="OMEGA">
@@ -22,7 +33,7 @@
 	      <a href="javascript:void(0)" class="closebtn" v-on:click="closeMaleNav()">&times;</a>
 	    </div>
 	  </div>
-	</div>
+        </div>
 	<div class="box innerGrid">
 	  <div class="box heart" v-for="male in maleArray"> 
 	    <input class="heartButton" type="image" src="../img/redheart.png" v-on:click="popup(male.id)" :id="male.image">	 
@@ -42,25 +53,68 @@
       <button v-on:click="rematch()"> REMATCH </button> <br>
       <button v-on:click="unmatch()"> UNMATCH </button>
       
-	 </div>
-	 
+	
+ </div>
     <div class="box c">
-      <h2> WEEW KLOCKA! </h2>
+      <div class= "boxHeader">
+	<div class="boxHeadertext"> Time </div>
+      </div>
+      <div id="clock"></div>
     </div>
     <div class="box d">
-      <button> START EVENT</button>
+      <div class="starteventtext">
+	<div class= "boxHeader">
+	<div class="boxHeadertext"> Next Phase: </div>
+      </div>
+	<hr>
+	<p>
+	  <!-- time schedule--> 14:35 </p>
+      </div>
+      <button id="startevent"> START EVENT</button>
     </div>
     <div class="box e">
-      E
+       <div class="boxHeader">
+	<div class="boxHeadertext">
+	   Schedule	  
+	</div>
+      </div>
+      <hr>
+      <footer>
+	<p> Meeting 1</p>
+	<p> 15:15 - 15:35 </p>
+      </footer>
+      <hr>
+      <footer>
+	<p> Meeting 2</p>
+	<p> 15:45 - 16:05 </p>
+      </footer>
+      <hr>
+      <footer>
+	<p> Meeting 3</p>
+	<p> 16:15 - 16:35 </p>
+      </footer>
+      <hr>
     </div>
-    <div class="box f">
-      F
+    <div class="box f">   
+      <div class="boxHeader">
+	<div class="boxHeadertext"> Current phase</div>
+	<br>
+	<div class="boxTextBig"> Date 1 </div>
+      </div>
+      
+
     </div>
     <div class="box g">
-      <button>hejsvejs </button><br>
-      <button>hejsvejs </button><br>
-       <button>hejsvejs </button><br>
+      <div class="boxHeader">
+	<div class="boxHeadertext">
+	   Participants:	  
+	</div>
+      </div>
+	<div id="participants">
+	  <hr>
     </div>
-  </div>
+      </div>
+      
 </body>
+
 </html>

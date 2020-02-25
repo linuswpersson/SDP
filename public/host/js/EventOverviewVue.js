@@ -48,7 +48,7 @@ const vm = new Vue({
 		let newText = document.createTextNode(fun);
 		let nav1 = document.createElement("Div");
 		button = document.getElementById(male);
-		button.style.color = "green";		
+		button.style.color = "darkgreen";		
 		nav1.appendChild(newText);
 		bignav.replaceChild(nav1, bignav.childNodes[1]);
 		this.openMaleNav();
@@ -60,7 +60,7 @@ const vm = new Vue({
 		repetitiveMale = true;
 		let bignav = document.getElementById("mySidenav");
 		button = document.getElementById(male);
-		button.style.color = "green";
+		button.style.color = "darkgreen";
 		let fun = this.maleArray[male].name;
 		let a = document.createElement("Div");
 		let nav1 = document.createTextNode(fun);
@@ -89,7 +89,7 @@ const vm = new Vue({
 		    let newText = document.createTextNode(fun);
 		    let nav1 = document.createElement("Div");
 		    Fbutton = document.getElementById(female);		
-		    Fbutton.style.color = "green";
+		    Fbutton.style.color = "darkgreen";
 		    nav1.appendChild(newText);
 		    bignav.replaceChild(nav1, bignav.childNodes[1]);
 		    this.openFemaleNav();
@@ -101,7 +101,7 @@ const vm = new Vue({
 		repetitiveFemale = true;
 		let bignav = document.getElementById("mySidenavf");
 		Fbutton = document.getElementById(female);
-		Fbutton.style.color = "green";
+		Fbutton.style.color = "darkgreen";
 		let fun = this.femaleArray[female-10].name;
 		let a = document.createElement("Div");
 		let nav1 = document.createTextNode(fun);
@@ -124,14 +124,12 @@ const vm = new Vue({
 	},
 	closeFemaleNav: function() {
 	    document.getElementById("mySidenavf").style.width = "0";
-	    document.body.style.backgroundColor = "white";
-    	    Fbutton.style.color = "red";
+    	    Fbutton.style.color = "darkred";
    
 	},
 	closeMaleNav: function() {
 	    document.getElementById("mySidenav").style.width = "0";
-	    document.body.style.backgroundColor = "white";
-	    button.style.color = "blue";
+	    button.style.color = "darkblue";
 	},
 	popup: function(both) {
 	    this.maleClick(both);

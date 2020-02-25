@@ -7,7 +7,7 @@ let repetitiveMale = false;
 let repetitiveFemale = false;
 let button;
 let Fbutton;
-/*
+
 
 function startTime() {
   var today = new Date();
@@ -25,7 +25,7 @@ function checkTime(i) {
   return i;
 }
 
-
+/*
 
 function openNav1() {
 

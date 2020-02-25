@@ -9,7 +9,7 @@
 	<title>Event overview</title>
 </head>
 <body onload="startTime()">
-  <div class="wrapper">      
+  <div class="wrapper" id="app">      
     <div class="box a">
       <div class="boxHeader">
 	<div class="boxHeadertext">Demo Event</div>
@@ -50,8 +50,11 @@
       </div>
     </div>
     <div class="box h">
-      <button v-on:click="rematch()"> REMATCH </button> <br>
-      <button v-on:click="unmatch()"> UNMATCH </button>
+      <br>
+      <br>
+      <br>
+      <button id="matchButton" v-on:click="rematch()"> REMATCH </button> <br>
+      <button id="matchButton" v-on:click="unmatch()"> UNMATCH </button>
       
 	
  </div>
@@ -66,7 +69,7 @@
 	<div class= "boxHeader">
 	<div class="boxHeadertext"> Next Phase: </div>
       </div>
-	<hr>
+	
 	<p>
 	  <!-- time schedule--> 14:35 </p>
       </div>
@@ -78,7 +81,7 @@
 	   Schedule	  
 	</div>
       </div>
-      <hr>
+      
       <footer>
 	<p> Meeting 1</p>
 	<p> 15:15 - 15:35 </p>
@@ -111,7 +114,7 @@
 	</div>
       </div>
 	<div id="participants">
-	  <hr>
+	  <br>
     </div>
       </div>
       

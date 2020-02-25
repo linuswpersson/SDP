@@ -19,8 +19,6 @@ span.onclick = function() {
 }*/
 
 // JAVA SCRIPT FÖR FORM!
-
-
 var x = document.getElementById("eventInfo");
 var createform = document.createElement('form'); 
 createform.setAttribute("action", ""); 

@@ -1,7 +1,7 @@
 const vm = new Vue({
     el: '#buttons',
     data: {
-	infoHelp: 'help',
+	infoHelp: '',
 	joinSeat: 'dating_progress.html',
     },
     methods: {

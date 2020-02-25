@@ -7,7 +7,7 @@ body{
   margin: 0 auto;
   width: 310px;
   height: 40px;
-  background: #F74AA5;
+  background: #CE6679;
 	position: relative;
 	left: -8px;
 	top: -10px;
@@ -38,30 +38,21 @@ text-align: center;
 }
 
 .backbutton {
-  background-color: teal; 
-  border: none;
-  color: white;
-  padding: 10px;
   text-align: center;
-  text-decoration: none;
-
-  display: block;
-  font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  min-width: 35px;
-  max-height: 35px;
-
   position: absolute;
   left:    0;
   bottom:   -225px;
-
   border-radius: 100%;
-	
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background:  #e5e8e8;
+  border: 1px  #99a3a4 solid;
 }
 
 .backbutton:hover {
   background-color: lightblue;
 }
-
 

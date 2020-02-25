@@ -8,15 +8,15 @@
       <title>Event overview</title>
 </head>
 <body>
-  <div class="wrapper">      
+  <div class="wrapper" id="app">      
     <div class="box a">
       asd
     </div>
-    <div class="box b" id="app">
+    <div class="box b">
       <div class="OMEGA">
 	<div class="box innerGrid">
 	  <div class="box manUser" v-for="user in maleArray">
-	    <button class="maleButton" :id="user.id"> {{user.name}} </button>
+	    <button class="maleButton" v-on:click="maleClick(user)" :id="user.id"> {{user.name}} </button>
 	    <div id="maleSidenav" class="sidenavM">
 	    </div>
 	  </div>
@@ -28,7 +28,7 @@
 	</div>
 	<div class="box innerGrid">
 	  <div class="box femaleUser" v-for="user in femaleArray">
-	    <button class="femaleButton"> {{user.name}} </button>
+	    <button class="femaleButton" v-on:click="femaleClick(user)" :id="user.id"> {{user.name}} </button>
 	    <div id="femaleSidenav" class="sidenavF">
 	    </div>
 	  </div>
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="box h">
-      <button> REORDER </button> <br>
+      <button v-on:click="rematch()"> REORDER </button> <br>
       
 	 </div>
 	 

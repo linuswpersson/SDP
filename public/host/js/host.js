@@ -3,7 +3,6 @@ var modal = document.getElementById("createEventModal");
 var btn = document.getElementById("createEventClick");
 var span = document.getElementsByClassName("close")[0];
 
-
 btn.onclick = function() {
   modal.style.display = "block";
 }
@@ -12,11 +11,11 @@ span.onclick = function() {
   modal.style.display = "none";
 }
 
-/*window.onclick = function(event) {
+window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
-}*/
+}
 
 // JAVA SCRIPT FÖR FORM!
 var x = document.getElementById("eventInfo");

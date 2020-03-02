@@ -2,7 +2,6 @@
 *.d
 
 #Node_Stuff
-app.js
 node_modules/
 package-lock.json
 package.json

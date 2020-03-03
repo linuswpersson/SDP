@@ -65,7 +65,7 @@ const data = new Data();
 io.on('connection', function(socket) {
     /* Using a socket.emit would instantly add data upon connection.*/
     
-    socket.emit('getUsers', data.users);
+    socket.emit('getUsers', {users: data.users, userIndex: data.userIndex});
 
     /* Stores user data and updates the local data. */
     socket.on('saveUsers', function(array){

@@ -15,7 +15,7 @@ const vm = new Vue({
 	next : 'make_profile_2.html',
 	back : 'user_home.html',
     },
-    /* Fetch the array from app.js */
+    /* Fetch the array from app.js aswell as the userIndex */
     created: function() {
 	socket.on('getUsers', function(data) {
 	    this.users = data.users;
@@ -30,21 +30,24 @@ const vm = new Vue({
 	    dataArray[1] = this.phone; 
 	    dataArray[2] = this.gender;
 	    dataArray[3] = this.seeking;
-	    this.users = dataArray;
+
 	    /* Saved for userInfo, remember to use .userInfo if you want to use the information stored */
 	    socket.emit('saveUsers', {
-		userInfo: this.users,
+		userInfo: dataArray,
 	    });
 	    this.testInfo();
 	}, /* Confirming that this shit is actually stored */	
 	testInfo: function(){
+	    console.log('Index number, could be used to show amount.');
 	    console.log(this.userIndex);
 	    socket.emit('printUser', function(print){
-		console.log('global storage');
+		console.log('global storage with pointer on most recent submit');
 		    console.log(print);
 	    });
-	    console.log('local storage');
-	    console.log(this.users);
+	    console.log('local storage only showing the first submit');
+	    let i = 0;
+		console.log(this.users[0].userInfo);
+
 
 	},
 	nextClick: function() {

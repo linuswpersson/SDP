@@ -36,7 +36,7 @@ app.get('/rating', function(req, res) {
 function Data() {
     this.rating = 0;
     this.ratingMessage = '';
-    this.users = {};
+    this.users = [];
     
 }
 
@@ -45,7 +45,7 @@ function Data() {
 /* Hopefully there is a better looking way of saving these. */
 Data.prototype.saveRating = function(rating, message) {
     this.rating = rating;
-    this.ratingMessage = message;
+    this.ratingMessage = message;aas
 }
 
 Data.prototype.getUserArray = function(){
@@ -54,8 +54,7 @@ Data.prototype.getUserArray = function(){
 /* Puts new array in the first slot of the user array */
 /* Probably not the best idea */
 Data.prototype.saveUserArray = function(array){
-    let length = this.users.length;
-    data.users[length] = array;
+    this.users[0] = array;
 }
 
 const data = new Data();
@@ -63,22 +62,23 @@ const data = new Data();
 
 io.on('connection', function(socket) {
     /* Using a socket.emit would instantly add data upon connection.*/
-
     
-    socket.emit('getUsers', { users: data.getUserArray()});
+    socket.emit('getUsers', data.users);
 
     socket.on('saveUsers', function(array){
 	data.saveUserArray(array);
-    })
+	socket.emit('getUsers',  data.users);
+    });
+
+    socket.on('printUser', function(print){
+	print(data.users[0].name);
+    });
     
     socket.on('saveRating', function (rating,message, fn) {
 	data.saveRating(rating, message);
 	fn(rating);
 
     });
-    socket.on('printUsers', function(print){
-	print(data.users[0]);
-    })
     /* A print function ensuring that things have been stored properly */
     socket.on('printALL', function(print){
 	print(data.ratingMessage + ' rating ' +data.rating);

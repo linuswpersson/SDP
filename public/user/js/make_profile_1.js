@@ -5,7 +5,7 @@ const socket = io();
 const vm = new Vue({
     el: '#input_section',
     data: {
-	users: {},
+	users: [],
 	fullname : '',
 	phone : '',
 	gender : '',
@@ -16,29 +16,30 @@ const vm = new Vue({
     },
     /* Fetch the array from app.js */
     created: function() {
-	socket.on('getusers', function(data) {
-	    this.users = data.users;    
+	socket.on('getUsers', function(data) {
+	    this.users = data.users;
 	}.bind(this));
     },
     methods: {
-	/* YEEP detta fungerar ej, jobbar på det */
+	/* Lyckas spara skiten, måste bara ha en variabel kan incrementas nu för index. */
 	sendInfo: function() {    /* placeholder-function */
 	    var dataArray = [];
-	    dataArray.push(this.fullname);
-	    dataArray.push(this.phone); 
-	    dataArray.push(this.gender);
-	    dataArray.push(this.seeking);
-	    socket.emit('saveUsers', function(dataArray){
-		this.users.push(dataArray);
-	    })
-	    console.log(this.users[0]);
+	    dataArray[0] = this.fullname;
+	    dataArray[1] = this.phone; 
+	    dataArray[2] = this.gender;
+	    dataArray[3] = this.seeking;
+	    this.users = dataArray;
+	    socket.emit('saveUsers', {
+		name: this.users
+	    });
 	    this.testInfo();
-	},
+	},	
 	testInfo: function(){
-	    socket.emit('printUsers', function(data){
-	    console.log(data);
-	    })},
+	    socket.emit('printUser', function(print){
+		console.log(print);
+	    })
 
+	},
 	nextClick: function() {
 	    this.sendInfo();
 	    document.location.href = this.next;

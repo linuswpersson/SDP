@@ -1,0 +1,5 @@
+{
+    users: [],
+    rating: 0,
+    ratingMessage = '',
+}

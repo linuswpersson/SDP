@@ -37,6 +37,7 @@ function Data() {
     this.rating = 0;
     this.ratingMessage = '';
     this.users = [];
+    this.userIndex = 0;
     
 }
 
@@ -49,12 +50,13 @@ Data.prototype.saveRating = function(rating, message) {
 }
 
 Data.prototype.getUserArray = function(){
-    return this.users;
+    return this.users.userInfo;
 }
 /* Puts new array in the first slot of the user array */
 /* Probably not the best idea */
 Data.prototype.saveUserArray = function(array){
-    this.users[0] = array;
+    this.users[this.userIndex] = array;
+    this.userIndex += 1;
 }
 
 const data = new Data();
@@ -65,13 +67,16 @@ io.on('connection', function(socket) {
     
     socket.emit('getUsers', data.users);
 
+    /* Stores user data and updates the local data. */
     socket.on('saveUsers', function(array){
 	data.saveUserArray(array);
-	socket.emit('getUsers',  data.users);
+	socket.emit('getUsers',{ users: data.users, userIndex: data.userIndex});
     });
 
     socket.on('printUser', function(print){
-	print(data.users[0].name);
+
+	    print(data.users[data.userIndex-1].userInfo);
+	
     });
     
     socket.on('saveRating', function (rating,message, fn) {
@@ -81,7 +86,7 @@ io.on('connection', function(socket) {
     });
     /* A print function ensuring that things have been stored properly */
     socket.on('printALL', function(print){
-	print(data.ratingMessage + ' rating ' +data.rating);
+	print(data.ratingMessage + ' rating ' + data.rating);
 
 	
     })

@@ -10,6 +10,7 @@ const vm = new Vue({
 	phone : '',
 	gender : '',
 	seeking : '',
+	userIndex: 0,
 	
 	next : 'make_profile_2.html',
 	back : 'user_home.html',
@@ -18,6 +19,7 @@ const vm = new Vue({
     created: function() {
 	socket.on('getUsers', function(data) {
 	    this.users = data.users;
+	    this.userIndex = data.userIndex;
 	}.bind(this));
     },
     methods: {
@@ -29,15 +31,20 @@ const vm = new Vue({
 	    dataArray[2] = this.gender;
 	    dataArray[3] = this.seeking;
 	    this.users = dataArray;
+	    /* Saved for userInfo, remember to use .userInfo if you want to use the information stored */
 	    socket.emit('saveUsers', {
-		name: this.users
+		userInfo: this.users,
 	    });
 	    this.testInfo();
-	},	
+	}, /* Confirming that this shit is actually stored */	
 	testInfo: function(){
+	    console.log(this.userIndex);
 	    socket.emit('printUser', function(print){
-		console.log(print);
-	    })
+		console.log('global storage');
+		    console.log(print);
+	    });
+	    console.log('local storage');
+	    console.log(this.users);
 
 	},
 	nextClick: function() {

@@ -33,13 +33,11 @@ const vm = new Vue({
     },
     methods: {	
 	maleClick: function(male) {
-
 	    if (hasOpened) {
 		if (this.currMale == male && repetitiveMale)
 		{
 		    this.closeMaleNav();
-		    repetitiveMale = false;
-		    
+		    repetitiveMale = false;	    
 		}
 		else {
 		this.closeMaleNav();
@@ -51,7 +49,7 @@ const vm = new Vue({
 		button.style.color = "darkgreen";		
 		nav1.appendChild(newText);
 		bignav.replaceChild(nav1, bignav.childNodes[1]);
-		this.openMaleNav();
+		this.openMaleNav(male);
 		    repetitiveMale = true;
 		}
 	    }
@@ -66,14 +64,12 @@ const vm = new Vue({
 		let nav1 = document.createTextNode(fun);
 		a.appendChild(nav1);
 		bignav.appendChild(a);
-		this.openMaleNav();
+		this.openMaleNav(male);
 	    }    
 	    /* check if only unselect or new */
 	    /* open profile-window */
 	    /* unselect prev */
 	    /* highlight */
-	    this.currMale = this.maleArray[male].id;
-	    
 	},
 	femaleClick: function(female) {
 	    if (hasOpenedF) {
@@ -92,7 +88,7 @@ const vm = new Vue({
 		    Fbutton.style.color = "darkgreen";
 		    nav1.appendChild(newText);
 		    bignav.replaceChild(nav1, bignav.childNodes[1]);
-		    this.openFemaleNav();
+		    this.openFemaleNav(female);
 		    repetitiveFemale = true;
 		}
 	    }
@@ -107,29 +103,32 @@ const vm = new Vue({
 		let nav1 = document.createTextNode(fun);
 		a.appendChild(nav1);
 		bignav.appendChild(a);
-		this.openFemaleNav();
+		this.openFemaleNav(female);
 	    }
 	    /* check if only unselect or new */
 	    /* open profile-window */
 	    /* unselect prev */
 	    /* highlight */
-	    this.currFemale = this.femaleArray[female-10].id;
 	},		
-	openMaleNav: function() {
+	openMaleNav: function(male) {
 	    document.getElementById("mySidenav").style.width = "30vw";
+	    this.currMale = male;
 	    
 	},
-	openFemaleNav: function() {
+	openFemaleNav: function(female) {
 	    document.getElementById("mySidenavf").style.width = "30vw";
+	    this.currFemale = female;
 	},
 	closeFemaleNav: function() {
 	    document.getElementById("mySidenavf").style.width = "0";
     	    Fbutton.style.color = "darkred";
+	    this.currFemale = -1;
    
 	},
 	closeMaleNav: function() {
 	    document.getElementById("mySidenav").style.width = "0";
 	    button.style.color = "darkblue";
+	    this.currMale = -1;
 	},
 	popup: function(both) {
 	    this.maleClick(both);
@@ -148,25 +147,26 @@ const vm = new Vue({
 			break;
 		    }
 		}
-		for(var ii = 0; ii < this.maleArray.length; ii++) {
-		    if(this.currMale == this.maleArray[ii].id) {
-			break;
-		    }
-		}
-
-		var oldFemaleIndex = this.maleArray[ii].matchId - 10;
-		var oldMaleIndex = this.femaleArray[i].matchId;
-
-		this.femaleArray[i].matchId = ii;
-		this.maleArray[ii].matchId = i+10;
 		
-		this.femaleArray[oldFemaleIndex].matchId = oldMaleIndex;
-		this.maleArray[oldMaleIndex].matchId = oldFemaleIndex;
+		var from = i;
+		var to = this.currMale;
+		var tmp = this.femaleArray[to]; // save tmp copy
+		this.femaleArray.splice(to, 1, this.femaleArray[from]); // splice the highligted female into the new match array-index.
+		this.femaleArray.splice(from, 1, tmp);  // splice the non-highligted female into the highlighted ones old array-Index.
+		document.getElementById(this.maleArray[this.currMale].image).src="../img/redheart.png";
 
-		var tmp = this.femaleArray[oldFemaleIndex];
-		this.femaleArray.splice(oldFemaleIndex, 1, this.femaleArray[i]);
-		this.femaleArray.splice(i, 1, tmp);
-		document.getElementById(this.maleArray[this.currMale].image).src="../img/redheart.png";	
+		this.femaleArray[from].matchId = from;
+		this.maleArray[from].matchId = from + 10;
+		
+		this.femaleArray[to].matchId = to;
+		this.maleArray[to].matchId = to + 10;
+
+		this.closeFemaleNav();
+		repetitiveFemale = false;
+		this.closeMaleNav();
+		repetitiveMale = false;
+		this.currFemale = -1;
+		this.currMale = -1;
 	    }
 	},
     },

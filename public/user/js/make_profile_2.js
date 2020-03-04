@@ -18,7 +18,7 @@ const vm = new Vue({
 	    {path : '../img/pp_test/stock5.jpg', buttonId : 'p5'},
 	],
     },
-    	/* TODO: Load the selected image upon load, well that's the plan... */
+    /* Loads the image upon load */
 	created: function(){
 	    socket.on('getImage', function(data){
 		this.picpath = data.userImagePath;

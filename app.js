@@ -31,15 +31,20 @@ app.get('/rating', function(req, res) {
   res.sendFile(path.join(__dirname, 'public/user/html/rating.html'));
 });
 
-// Store data in an object to keep the global namespace clean and
-// prepare for multiple instances of data if necessary
+/* TODO: Save user data so (ex) data.user[0] pulls out all relevant info for that specific user. */
+/* For now I will code it with only 1 user in consideration. */
 function Data() {
     this.rating = 0;
     this.ratingMessage = '';
     this.users = [''];
     this.userIndex = 0;
     this.userImagePath = '../img/plus.png';
+    this.userBubbles = [];
     
+}
+
+Data.prototype.saveBubbles = function(bubble){
+    this.userBubbles = bubble.bubbleArray;
 }
 
 Data.prototype.saveImage = function(image){
@@ -66,12 +71,13 @@ const data = new Data();
 
 
 io.on('connection', function(socket) {
-    /* Using a socket.emit would instantly add data upon connection.*/
-    
+    /* These are the things loaded upon load */
     socket.emit('getUsers', {users: data.users, userIndex: data.userIndex});
-
     socket.emit('getImage', {userImagePath: data.userImagePath});
+    socket.emit('getBubbles', {userBubbles: data.userBubbles});
+    /*-----------------------------------------------------------------*/
     
+    /* Updates image whenever a new one is selected. */
     socket.on('loadImage', function(load){
 	socket.emit('getImage', {userImagePath: data.userImagePath})
     });
@@ -80,7 +86,26 @@ io.on('connection', function(socket) {
 	data.saveUserArray(array);
 	socket.emit('getUsers',{ users: data.users, userIndex: data.userIndex});
     });
+    /* Stores the selected image */
+    socket.on('saveImage',function(image){
+	data.saveImage(image);
+    });
 
+    socket.on('updateBubble', function(bubble){
+	data.userBubbles = bubble.bubbleArray;
+    })
+
+    /*------------------------------------------------------------------*/
+
+
+    
+    /* None of the functions below serve any other purpose than for testing */
+
+    socket.on('printBubbles', function(print){
+	print(data.userBubbles.bubbleArray);
+    })
+
+    
     socket.on('printUser', function(print){
 	    print(data.users[data.userIndex-1].userInfo);
 	
@@ -97,22 +122,8 @@ io.on('connection', function(socket) {
     });
     /* A print function ensuring that things have been stored properly */
     socket.on('printALL', function(print){
-	print(data.ratingMessage + ' rating ' + data.rating);
-
-	
+	print(data.ratingMessage + ' rating ' + data.rating);	
     });
-
-    socket.on('saveImage',function(image){
-	data.saveImage(image);
-    });
-
-  // When a connected client emits an "addOrder" message
-  socket.on('addOrder', function(order) {
-    data.addOrder(order);
-    // send updated info to all connected clients,
-    // note the use of io instead of socket
-    io.emit('currentQueue', { orders: data.getAllOrders() });
-  });
 
 });
 

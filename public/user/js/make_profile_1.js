@@ -41,11 +41,11 @@ const vm = new Vue({
 	    console.log('Index number, could be used to show amount.');
 	    console.log(this.userIndex);
 	    socket.emit('printUser', function(print){
-		console.log('global storage with pointer on most recent submit');
+		console.log('global storage with pointer on last submit');
 		    console.log(print);
 	    });
 	    console.log('local storage only showing the first submit');
-	    let i = 0;
+	
 		console.log(this.users[0].userInfo);
 
 

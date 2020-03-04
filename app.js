@@ -36,21 +36,24 @@ app.get('/rating', function(req, res) {
 function Data() {
     this.rating = 0;
     this.ratingMessage = '';
-    this.users = [];
+    this.users = [''];
     this.userIndex = 0;
+    this.userImagePath = '../img/plus.png';
     
 }
 
-
+Data.prototype.saveImage = function(image){
+    this.userImagePath = image.path;
+}
 /* Add rating to queue */
 /* Hopefully there is a better looking way of saving these. */
 Data.prototype.saveRating = function(rating, message) {
     this.rating = rating;
-    this.ratingMessage = message;aas
+    this.ratingMessage = message;
 }
 
 Data.prototype.getUserArray = function(){
-    return this.users.userInfo;
+    return this.users;
 }
 /* Puts new array in the first slot of the user array */
 /* Probably not the best idea */
@@ -67,6 +70,11 @@ io.on('connection', function(socket) {
     
     socket.emit('getUsers', {users: data.users, userIndex: data.userIndex});
 
+    socket.emit('getImage', {userImagePath: data.userImagePath});
+    
+    socket.on('loadImage', function(load){
+	socket.emit('getImage', {userImagePath: data.userImagePath})
+    });
     /* Stores user data and updates the local data. */
     socket.on('saveUsers', function(array){
 	data.saveUserArray(array);
@@ -74,10 +82,13 @@ io.on('connection', function(socket) {
     });
 
     socket.on('printUser', function(print){
-
 	    print(data.users[data.userIndex-1].userInfo);
 	
     });
+
+    socket.on('printImage', function(print){
+	print(data.userImagePath);
+    })
     
     socket.on('saveRating', function (rating,message, fn) {
 	data.saveRating(rating, message);
@@ -89,7 +100,11 @@ io.on('connection', function(socket) {
 	print(data.ratingMessage + ' rating ' + data.rating);
 
 	
-    })
+    });
+
+    socket.on('saveImage',function(image){
+	data.saveImage(image);
+    });
 
   // When a connected client emits an "addOrder" message
   socket.on('addOrder', function(order) {

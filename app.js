@@ -34,13 +34,20 @@ app.get('/rating', function(req, res) {
 /* TODO: Save user data so (ex) data.user[0] pulls out all relevant info for that specific user. */
 /* For now I will code it with only 1 user in consideration. */
 function Data() {
+    this.profiles = [];
+    this.matches = [];
+
+    this.gender = '';
+    this.seeking = '';
+    this.phone = '';
+    this.name = '';
     this.rating = 0;
     this.ratingMessage = '';
     this.users = [''];
     this.userIndex = 0;
     this.userImagePath = '../img/plus.png';
     this.userBubbles = [];
-    
+    this.femaleIndex= 10;
 }
 
 Data.prototype.saveBubbles = function(bubble){
@@ -63,8 +70,12 @@ Data.prototype.getUserArray = function(){
 /* Puts new array in the first slot of the user array */
 /* Probably not the best idea */
 Data.prototype.saveUserArray = function(array){
+    this.name = array.name;
+    this.gender = array.gender;
+    this.seeking = array.seeking;
+    this.phone = array.phone;
     this.users[this.userIndex] = array;
-    this.userIndex += 1;
+
 }
 
 const data = new Data();
@@ -72,9 +83,10 @@ const data = new Data();
 
 io.on('connection', function(socket) {
     /* These are the things loaded upon load */
-    socket.emit('getUsers', {users: data.users, userIndex: data.userIndex});
+    socket.emit('getUsers', {username: data.name,phone: data.phone, gender: data.gender, seeking: data.seeking, userIndex: data.userIndex});
     socket.emit('getImage', {userImagePath: data.userImagePath});
     socket.emit('getBubbles', {userBubbles: data.userBubbles});
+    socket.emit('hello', { gender: data.gender, name: data.name});
     /*-----------------------------------------------------------------*/
     
     /* Updates image whenever a new one is selected. */
@@ -107,7 +119,7 @@ io.on('connection', function(socket) {
 
     
     socket.on('printUser', function(print){
-	    print(data.users[data.userIndex-1].userInfo);
+	    print(data.users[data.userIndex].id);
 	
     });
 

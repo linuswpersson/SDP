@@ -11,6 +11,7 @@ const vm = new Vue({
 	gender : '',
 	seeking : '',
 	userIndex: 0,
+	femaleIndex: 0,
 	
 	next : 'make_profile_2.html',
 	back : 'user_home.html',
@@ -18,22 +19,28 @@ const vm = new Vue({
     /* Fetch the array from app.js aswell as the userIndex */
     created: function() {
 	socket.on('getUsers', function(data) {
-	    this.users = data.users;
 	    this.userIndex = data.userIndex;
+	    this.fullname = data.username;
+	    this.phone = data.phone;
+	    this.gender = data.gender;
+	    this.seeking = data.seeking;
+
 	}.bind(this));
     },
     methods: {
 	/* Lyckas spara skiten, måste bara ha en variabel kan incrementas nu för index. */
 	sendInfo: function() {    /* placeholder-function */
-	    var dataArray = [];
-	    dataArray[0] = this.fullname;
-	    dataArray[1] = this.phone; 
-	    dataArray[2] = this.gender;
-	    dataArray[3] = this.seeking;
 
 	    /* Saved for userInfo, remember to use .userInfo if you want to use the information stored */
 	    socket.emit('saveUsers', {
-		userInfo: dataArray,
+		gender: this.gender,
+		name: this.fullname,
+		seeking: this.seeking,
+		id: this.userIndex,
+		phone: this.phone,
+		matched: false,
+		picpath: '',
+		bubbles: '',
 	    });
 	    this.testInfo();
 	}, /* Confirming that this shit is actually stored */	
@@ -46,7 +53,7 @@ const vm = new Vue({
 	    });
 	    console.log('local storage only showing the first submit');
 	
-		console.log(this.users[0].userInfo);
+		console.log(this.fullname);
 
 
 	},

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="/user/css/review_style.css">
+  <link rel="stylesheet" type="text/css" href="/user/css/review_style.css">
+  <script src="/socket.io/socket.io.js" defer></script>
 <script src="https://vuejs.org/js/vue.js"></script>
 <script src="/user/js/review_functions.js" defer></script>
-
+ 
 </head>
 
 <body>
@@ -29,8 +30,8 @@ Rate below!
   <span></span>
   <span></span>
 </div>
-
 <section id="buttons">
+<input v-model="ratingMessage" type="textbox" placeholder="Describe how the date went"> </input>
 <button class="checkmarkbutton" v-on:click="userHomeClick()">✔</button>
  </section>
 <!--<button class="checkmarkbutton" onclick="window.history.go(-1)"> ✔  </button>-->

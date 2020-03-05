@@ -1,3 +1,7 @@
+'use strict';
+const socket = io();
+
+
 const vm = new Vue({
     el: '#app',
     data: {
@@ -30,6 +34,17 @@ const vm = new Vue({
 	    {name : 'Johanna', matchId : 8, id : 18},
 	    {name : 'Stina', matchId : 9, id : 19},
 	],
+    },
+    created: function(){
+	socket.on('hello', function(data) {
+	    if (data.gender[0] == ('M')){
+		this.maleArray[0].name = data.name;
+	    }
+	    else {
+		this.femaleArray[0].name = data.name;
+	    }
+	
+	}.bind(this));
     },
     methods: {	
 	maleClick: function(male) {

@@ -1,9 +1,13 @@
+'use strict';
+const socket = io();
+
+
 const vm = new Vue({
     el: '#content',
     data: {
 	next : 'user_home.html',
 	back : 'make_profile_3.html',
-
+	toBeSavedArray: [],
 	chosenBubbleArray : [],
 
 	bubbleArray : [
@@ -28,6 +32,12 @@ const vm = new Vue({
 	    {name : 'Plants', selected : false},
 	],
     },
+	created: function(){
+	    socket.on('getBubbles', function(data){
+		this.toBeSavedArray = data.userBubbles;
+	    }.bind(this));
+	    
+	},
     methods: {
 	
 	backClick: function() {
@@ -35,6 +45,13 @@ const vm = new Vue({
 	},
 
 	nextClick: function() {
+	    	/* Saves the selected bubbles */
+		socket.on('updateBubbles', {
+		    bubbleArray: this.toBeSavedArray
+		});
+	    socket.emit('printBubbles', function(print){
+		console.log(print);
+	    })
 	    document.location.href = this.next;
 	},
 
@@ -61,6 +78,7 @@ const vm = new Vue({
 		currbubble.style.border = "2px solid green";
 		item.selected = true;
 		this.chosenBubbleArray.push(item);
+		this.toBeSavedArray.push(item.name);
 	    }
 	    
 	},

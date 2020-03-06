@@ -74,12 +74,11 @@ const vm = new Vue({
 		    image.height = 250;
 		    let newText = document.createTextNode(fun);
 		    let nav1 = document.createElement("Div");
-		    button = document.getElementById(male);
-		    button.style.color = "darkgreen";		
 		    nav1.appendChild(newText);
 		    bignav.replaceChild(nav1, bignav.childNodes[1]);
 		    bignav.replaceChild(image, bignav.childNodes[2]);
 		    /* RATINGS */
+		    /* This is kinda scuffed */
 		    if (this.maleArray[male].rating[0] != null){
 						    
 			let date1 = document.createElement("H6")
@@ -109,14 +108,19 @@ const vm = new Vue({
 			    let rating2 = document.createElement("P");
 			    let fetchedrating2 = document.createTextNode("rating : "+this.maleArray[male].rating[1]);
 			    rating2.appendChild(fetchedrating2);
-			    if (this.maleNode != 4) {
+			    console.log(this.maleNodes);
+			    let a = this.maleNodes;
+			    if (a != 4) {
+				
 				bignav.replaceChild(date2, bignav.childNodes[5]);
 				bignav.replaceChild(rating2, bignav.childNodes[6]);
-			    }
+							    }
 			    else {
+				
 				bignav.appendChild(date2);
 				bignav.appendChild(rating2);
 				this.maleNodes += 2;
+
 			    }
 			    
 			    if(this.maleArray[male].rating[2] != null){
@@ -152,8 +156,6 @@ const vm = new Vue({
 		hasOpened = true;
 		repetitiveMale = true;
 		let bignav = document.getElementById("mySidenav");
-		button = document.getElementById(male);
-		button.style.color = "darkgreen";
 		let fun = this.maleArray[male].name;
 		/* IMAGE */
 		let image = document.createElement('img');
@@ -229,8 +231,6 @@ const vm = new Vue({
 		    image.src = this.femaleArray[female-10].picpath;
 		    image.width = 350;
 		    image.height = 250;
-		    Fbutton = document.getElementById(female);		
-		    Fbutton.style.color = "darkgreen";
 		    nav1.appendChild(newText);
 		    bignav.replaceChild(nav1, bignav.childNodes[1]);
 		    bignav.replaceChild(image, bignav.childNodes[2]);
@@ -265,7 +265,6 @@ const vm = new Vue({
 			    let rating2 = document.createElement("P");
 			    let fetchedrating2 = document.createTextNode("rating :" + this.femaleArray[female-10].rating[1]);
 			    rating2.appendChild(fetchedrating2);
-			    
 			    if (this.femaleNode != 4) {
 				
 				bignav.replaceChild(date2, bignav.childNodes[5]);
@@ -311,8 +310,6 @@ const vm = new Vue({
 		hasOpenedF = true;
 		repetitiveFemale = true;
 		let bignav = document.getElementById("mySidenavf");
-		Fbutton = document.getElementById(female);
-		Fbutton.style.color = "darkgreen";
 		let fun = this.femaleArray[female-10].name;
 		let a = document.createElement("Div");
 		let image = document.createElement('img');
@@ -362,7 +359,7 @@ const vm = new Vue({
 			    bignav.appendChild(date3);
 			    bignav.appendChild(rating3);
 			    
-			    this.femaleNode += 3;
+			    this.femaleNode += 2;
 			}
 		    }
 		}
@@ -384,13 +381,13 @@ const vm = new Vue({
 	},
 	closeFemaleNav: function() {
 	    document.getElementById("mySidenavf").style.width = "0";
-    	    Fbutton.style.color = "darkred";
+
 	    this.currFemale = -1;
    
 	},
 	closeMaleNav: function() {
 	    document.getElementById("mySidenav").style.width = "0";
-	    button.style.color = "darkblue";
+
 	    this.currMale = -1;
 	},
 	startEvent: function() {
@@ -430,10 +427,20 @@ const vm = new Vue({
 		let newTimes = document.createTextNode("Event completed");
 		times.appendChild(newTimes);
 		oldtimes.replaceChild(times, oldtimes.childNodes[0]);
-
-		
-		
 	    }
+	    let newfirstIndex = this.femaleArray[9];
+	
+	    this.femaleArray.unshift(newfirstIndex);
+	    this.femaleArray[0] = this.femaleArray[10];
+	    this.femaleArray.splice(10);
+	    for (var i = 0; i < this.femaleArray.length; i++){
+		this.femaleArray[i].matchId += 1;
+		this.femaleArray[i].id += 1;
+	    }
+	    this.femaleArray[0].id = 10;
+	    this.femaleArray[0].matchId = 0;
+	    this.closeFemaleNav();
+	    this.closeMaleNav();
 	       
 	},
 	popup: function(both) {
@@ -467,6 +474,11 @@ const vm = new Vue({
 		this.femaleArray[to].matchId = to;
 		this.maleArray[to].matchId = to + 10;
 
+		this.femaleArray[to].id = to +10;
+		this.femaleArray[from].id = from+10;
+		
+
+		
 		this.closeFemaleNav();
 		repetitiveFemale = false;
 		this.closeMaleNav();

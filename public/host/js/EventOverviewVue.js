@@ -61,11 +61,11 @@ const vm = new Vue({
 	    if (hasOpened) {
 		if (this.currMale == male && repetitiveMale)
 		{
-		    this.closeMaleNav();
+		    this.closeMaleNav(male);
 		    repetitiveMale = false;	    
 		}
 		else {
-		    this.closeMaleNav();
+		    this.closeMaleNav(male);
 		    let bignav = document.getElementById("mySidenav");
 		    let fun = this.maleArray[male].name;
 		    let image = document.createElement('img');
@@ -74,6 +74,9 @@ const vm = new Vue({
 		    image.height = 250;
 		    let newText = document.createTextNode(fun);
 		    let nav1 = document.createElement("Div");
+		    button = document.getElementById(male);
+		    button.style.color = "darkgreen";
+		 
 		    nav1.appendChild(newText);
 		    bignav.replaceChild(nav1, bignav.childNodes[1]);
 		    bignav.replaceChild(image, bignav.childNodes[2]);
@@ -157,6 +160,8 @@ const vm = new Vue({
 		repetitiveMale = true;
 		let bignav = document.getElementById("mySidenav");
 		let fun = this.maleArray[male].name;
+		button = document.getElementById(male);
+		button.style.color = "darkgreen";
 		/* IMAGE */
 		let image = document.createElement('img');
 		image.width = 350;
@@ -218,12 +223,14 @@ const vm = new Vue({
 	    if (hasOpenedF) {
 		if (this.currFemale == female && repetitiveFemale)
 		{	    
-		    this.closeFemaleNav();
+		    this.closeFemaleNav(female);
 		    repetitiveFemale = false;
 		}
 		else {
-		    this.closeFemaleNav();
-		    let bignav = document.getElementById("mySidenavf");
+		    this.closeFemaleNav(female);
+		    let bignav = document.getElementById("mySidenavf");		    
+		    Fbutton = document.getElementById(female);
+		    Fbutton.style.color = "darkgreen";
 		    let fun = this.femaleArray[female-10].name;
 		    let newText = document.createTextNode(fun);
 		    let nav1 = document.createElement("Div");
@@ -308,7 +315,9 @@ const vm = new Vue({
 	    }
 	    else {
 		hasOpenedF = true;
-		repetitiveFemale = true;
+		repetitiveFemale = true;		
+		Fbutton = document.getElementById(female);
+		Fbutton.style.color = "darkgreen";
 		let bignav = document.getElementById("mySidenavf");
 		let fun = this.femaleArray[female-10].name;
 		let a = document.createElement("Div");
@@ -379,15 +388,16 @@ const vm = new Vue({
 	    document.getElementById("mySidenavf").style.width = "30vw";
 	    this.currFemale = female;
 	},
-	closeFemaleNav: function() {
+	closeFemaleNav: function(female) {
 	    document.getElementById("mySidenavf").style.width = "0";
+	    Fbutton.style.color = "darkred";
 
 	    this.currFemale = -1;
    
 	},
-	closeMaleNav: function() {
+	closeMaleNav: function(male) {
 	    document.getElementById("mySidenav").style.width = "0";
-
+	    button.style.color = "darkblue";
 	    this.currMale = -1;
 	},
 	startEvent: function() {

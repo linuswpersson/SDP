@@ -67,8 +67,7 @@ Data.prototype.saveRating = function(rating, message) {
 Data.prototype.getUserArray = function(){
     return this.users;
 }
-/* Puts new array in the first slot of the user array */
-/* Probably not the best idea */
+
 Data.prototype.saveUserArray = function(array){
     this.name = array.name;
     this.gender = array.gender;
@@ -86,7 +85,7 @@ io.on('connection', function(socket) {
     socket.emit('getUsers', {username: data.name,phone: data.phone, gender: data.gender, seeking: data.seeking, userIndex: data.userIndex});
     socket.emit('getImage', {userImagePath: data.userImagePath});
     socket.emit('getBubbles', {userBubbles: data.userBubbles});
-    socket.emit('hello', { gender: data.gender, name: data.name});
+    socket.emit('hello', { gender: data.gender, name: data.name, picpath: data.userImagePath});
     /*-----------------------------------------------------------------*/
     
     /* Updates image whenever a new one is selected. */

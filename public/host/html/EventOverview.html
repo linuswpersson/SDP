@@ -71,10 +71,10 @@
 	<div class="boxHeadertext"> Next Phase: </div>
       </div>
 	
-	<p>
+	<p id="times">
 	  <!-- time schedule--> 14:35 </p>
       </div>
-      <button id="startevent"> START EVENT</button>
+      <button id="startevent"  v-on:click="startEvent()"> START EVENT</button>
     </div>
     <div class="box e">
        <div class="boxHeader">
@@ -84,18 +84,18 @@
       </div>
       
       <footer>
-	<p> Meeting 1</p>
-	<p> 15:15 - 15:35 </p>
+	<p> Date 1</p>
+	<p> 14:35 - 14:55 </p>
       </footer>
       <hr>
       <footer>
-	<p> Meeting 2</p>
-	<p> 15:45 - 16:05 </p>
+	<p> Date 2</p>
+	<p> 15:05 - 15:25 </p>
       </footer>
       <hr>
       <footer>
-	<p> Meeting 3</p>
-	<p> 16:15 - 16:35 </p>
+	<p> Date 3</p>
+	<p> 15:35 - 15:55 </p>
       </footer>
       <hr>
     </div>
@@ -103,7 +103,7 @@
       <div class="boxHeader">
 	<div class="boxHeadertext"> Current phase</div>
 	<br>
-	<div class="boxTextBig"> Date 1 </div>
+	<div class="boxTextBig" id="phase"> Date 1 </div>
       </div>
       
 

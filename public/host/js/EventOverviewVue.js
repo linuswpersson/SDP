@@ -41,15 +41,19 @@ const vm = new Vue({
     },
     created: function(){
 	socket.on('hello', function(data) {
-	    if (data.gender[0] == ('M')){
-		this.maleArray[0].name = data.name;
-		this.maleArray[0].picpath = data.picpath;
+	    if (data.name != ''){
+		if (data.gender[0] == ('M')){
+		    
+		    this.maleArray[0].name = data.name;
+		    this.maleArray[0].picpath = data.picpath;
+		    
+		}
+		else {
+		    this.femaleArray[0].name = data.name;
+		    this.femaleArray[0].picpath = data.picpath;
+		}
 	    }
-	    else {
-		this.femaleArray[0].name = data.name;
-		this.femaleArray[0].picpath = data.picpath;
-	    }
-	
+	    
 	}.bind(this));
     },
     methods: {	
@@ -142,7 +146,6 @@ const vm = new Vue({
 		    
 		    this.openMaleNav(male);
 		    repetitiveMale = true;
-		    console.log(bignav.childNodes);
 		}
 	    }
 	    else {
@@ -363,7 +366,6 @@ const vm = new Vue({
 			}
 		    }
 		}
-		console.log(bignav.childNodes);
 		this.openFemaleNav(female);
 	    }
 	    /* check if only unselect or new */
@@ -379,7 +381,6 @@ const vm = new Vue({
 	openFemaleNav: function(female) {
 	    document.getElementById("mySidenavf").style.width = "30vw";
 	    this.currFemale = female;
-	    console.log(this.maleArray[1].rating[2]);
 	},
 	closeFemaleNav: function() {
 	    document.getElementById("mySidenavf").style.width = "0";
@@ -400,8 +401,8 @@ const vm = new Vue({
 		let i = 0;
 		/* simulate ratings from 0 to 5*/ 
 		for (i ; i < 10; i++) {
-		    this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 6);
-		    this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 6);
+		    this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
+		    this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		}
 		
 	    this.phase += 1;
@@ -418,8 +419,8 @@ const vm = new Vue({
 	    else {
 		let i = 0;
 		for (i ; i < 10; i++) {
-		    this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 6);
-		    this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 6);
+		    this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
+		    this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		}
 		let newphase = document.createElement("Div");
 		let updatephase = document.createTextNode("Event Completed");

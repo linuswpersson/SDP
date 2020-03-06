@@ -333,6 +333,9 @@ footer{
       font-size: 50px;
       color: white;
   }
-
+  .sidenavF h6 {
+      font-size: 20px;
+      color: white;
+  }
   .sidenavF a {font-size: 18px;}
 }

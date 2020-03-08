@@ -102,20 +102,15 @@ io.on('connection', function(socket) {
 	data.saveImage(image);
     });
 
-    socket.on('updateBubble', function(bubble){
+    socket.on('updateBubbles', function(bubble){
 	data.userBubbles = bubble.bubbleArray;
-    })
+    });
 
     /*------------------------------------------------------------------*/
 
 
     
     /* None of the functions below serve any other purpose than for testing */
-
-    socket.on('printBubbles', function(print){
-	print(data.userBubbles.bubbleArray);
-    })
-
     
     socket.on('printUser', function(print){
 	    print(data.users[data.userIndex].id);

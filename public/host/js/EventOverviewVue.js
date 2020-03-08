@@ -5,10 +5,18 @@ const socket = io();
 const vm = new Vue({
     el: '#app',
     data: {
+	eventName: '',
+	eventTimeTo: '',
+	eventTimeFrom: '',
+	eventMessage: '',
+	eventDate: '',
+	eventEmail: '',
+	eventLocation: '',
 	phase: 1,
 	maleNodes: 0, /* For keeping track of whether to replace or append objects into the html object */
 	femaleNode: 0,
-	times: ["14:35", "15:05", "15:35"],
+	times: [],
+	dateSpan: [],
 	currMale : -1,
 	currFemale : -1,
 	
@@ -53,10 +61,36 @@ const vm = new Vue({
 		    this.femaleArray[0].picpath = data.picpath;
 		}
 	    }
+	    this.eventName = data.eventName;
+	    this.eventTimeFrom = data.eventTimeFrom;
+	    this.eventTimeTo = data.eventTimeTo;
+	    this.eventMessage = data.eventMessage;
+	    this.eventDate = data.eventDate;
+	    this.eventEmail = data.eventEmail;
+	    this.eventLocation = data.eventLocation;
+	    this.calculateDateTimes();
 	    
 	}.bind(this));
     },
-    methods: {	
+    methods: {
+	calculateDateTimes: function(){
+	    /* i here stands for the number of dates */
+	    /* Default is 3 dates */
+	    let date1 = this.eventTimeFrom;
+	    let newTime;
+	    let i = 0;
+	    for(i; i<3; i++){
+		newTime = addTimes(date1, '00:30');
+		this.times[i] = newTime;
+		this.dateSpan[i] = addTimes(this.times[i], '00:20');
+		date1 = newTime;
+	    }
+
+
+	
+	    
+	},
+	
 	maleClick: function(male) {
 	    if (hasOpened) {
 		if (this.currMale == male && repetitiveMale)
@@ -391,7 +425,6 @@ const vm = new Vue({
 	closeFemaleNav: function(female) {
 	    document.getElementById("mySidenavf").style.width = "0";
 	    Fbutton.style.color = "darkred";
-
 	    this.currFemale = -1;
    
 	},
@@ -439,7 +472,9 @@ const vm = new Vue({
 		oldtimes.replaceChild(times, oldtimes.childNodes[0]);
 	    }
 	    let newfirstIndex = this.femaleArray[9];
-	
+
+
+	    /* Moves the female buttons */
 	    this.femaleArray.unshift(newfirstIndex);
 	    this.femaleArray[0] = this.femaleArray[10];
 	    this.femaleArray.splice(10);
@@ -449,8 +484,8 @@ const vm = new Vue({
 	    }
 	    this.femaleArray[0].id = 10;
 	    this.femaleArray[0].matchId = 0;
-	    this.closeFemaleNav();
-	    this.closeMaleNav();
+	    this.closeFemaleNav(10);
+	    this.closeMaleNav(0);
 	       
 	},
 	popup: function(both) {

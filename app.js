@@ -48,6 +48,16 @@ function Data() {
     this.userImagePath = '../img/plus.png';
     this.userBubbles = [];
     this.femaleIndex= 10;
+
+    this.eventName = '';
+    this.eventTimeTo = '';
+    this.eventTimeFrom = '';
+    this.eventMessage = '';
+    this.eventDate = '';
+    this.eventEmail = '';
+    this.eventLocation = '';
+    
+    
 }
 
 Data.prototype.saveBubbles = function(bubble){
@@ -77,6 +87,16 @@ Data.prototype.saveUserArray = function(array){
 
 }
 
+Data.prototype.saveHostInfo = function(data) {
+    this.eventName = data.eventName;
+    this.eventTimeTo = data.eventTimeTo;
+    this.eventTimeFrom = data.eventTimeFrom;
+    this.eventMessage = data.eventMessage;
+    this.eventDate = data.eventDate;
+    this.eventEmail = data.eventEmail;
+    this.eventLocation = data.eventLocation;
+}
+
 const data = new Data();
 
 
@@ -85,7 +105,7 @@ io.on('connection', function(socket) {
     socket.emit('getUsers', {username: data.name,phone: data.phone, gender: data.gender, seeking: data.seeking, userIndex: data.userIndex});
     socket.emit('getImage', {userImagePath: data.userImagePath});
     socket.emit('getBubbles', {userBubbles: data.userBubbles});
-    socket.emit('hello', { gender: data.gender, name: data.name, picpath: data.userImagePath});
+    socket.emit('hello', { gender: data.gender, name: data.name, picpath: data.userImagePath, eventName: data.eventName, eventTimeTo: data.eventTimeTo, eventTimeFrom: data.eventTimeFrom, eventMessage: data.eventMessage, eventDate: data.eventDate, eventEmail: data.eventEmail, eventLocation: data.eventLocation});
     /*-----------------------------------------------------------------*/
     
     /* Updates image whenever a new one is selected. */
@@ -104,7 +124,11 @@ io.on('connection', function(socket) {
 
     socket.on('updateBubble', function(bubble){
 	data.userBubbles = bubble.bubbleArray;
-    })
+    });
+
+    socket.on('hostInfo', function(datar){
+	data.saveHostInfo(datar);
+    });
 
     /*------------------------------------------------------------------*/
 

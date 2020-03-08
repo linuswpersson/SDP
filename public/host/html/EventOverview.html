@@ -16,10 +16,10 @@
 	<div class="boxHeadertext">Demo Event</div>
       </div>
       <div id="eventTime" class="boxText">
-	<div>14:00 - 16:00</div>
+	<div>{{eventTimeFrom}} - {{eventTimeTo}}</div>
       </div>
       <div id="eventAddress" class="boxText">
-	Lägerhyddsvägen 2
+	{{eventName}}
       </div>
       <div id="eventCode" class="boxText">
 	Code: XYC831
@@ -72,7 +72,7 @@
       </div>
 	
 	<p id="times">
-	  <!-- time schedule--> 14:35 </p>
+	  <!-- time schedule--> {{times[0]}} </p>
       </div>
       <button id="startevent"  v-on:click="startEvent()"> START EVENT</button>
     </div>
@@ -85,17 +85,17 @@
       
       <footer>
 	<p> Date 1</p>
-	<p> 14:35 - 14:55 </p>
+	<p> {{times[0]}} - {{dateSpan[0]}} </p>
       </footer>
       <hr>
       <footer>
 	<p> Date 2</p>
-	<p> 15:05 - 15:25 </p>
+	<p> {{times[1]}} - {{dateSpan[1]}} </p>
       </footer>
       <hr>
       <footer>
 	<p> Date 3</p>
-	<p> 15:35 - 15:55 </p>
+	<p> {{times[2]}} - {{dateSpan[2]}} </p>
       </footer>
       <hr>
     </div>

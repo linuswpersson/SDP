@@ -5,10 +5,18 @@ const socket = io();
 const vm = new Vue({
     el: '#app',
     data: {
+	eventName: '',
+	eventTimeTo: '',
+	eventTimeFrom: '',
+	eventMessage: '',
+	eventDate: '',
+	eventEmail: '',
+	eventLocation: '',
 	phase: 1,
 	maleNodes: 0, /* For keeping track of whether to replace or append objects into the html object */
 	femaleNode: 0,
-	times: ["14:35", "15:05", "15:35"],
+	times: [],
+	dateSpan: [],
 	currMale : -1,
 	currFemale : -1,
 	
@@ -53,19 +61,45 @@ const vm = new Vue({
 		    this.femaleArray[0].picpath = data.picpath;
 		}
 	    }
+	    this.eventName = data.eventName;
+	    this.eventTimeFrom = data.eventTimeFrom;
+	    this.eventTimeTo = data.eventTimeTo;
+	    this.eventMessage = data.eventMessage;
+	    this.eventDate = data.eventDate;
+	    this.eventEmail = data.eventEmail;
+	    this.eventLocation = data.eventLocation;
+	    this.calculateDateTimes();
 	    
 	}.bind(this));
     },
-    methods: {	
+    methods: {
+	calculateDateTimes: function(){
+	    /* i here stands for the number of dates */
+	    /* Default is 3 dates */
+	    let date1 = this.eventTimeFrom;
+	    let newTime;
+	    let i = 0;
+	    for(i; i<3; i++){
+		newTime = addTimes(date1, '00:30');
+		this.times[i] = newTime;
+		this.dateSpan[i] = addTimes(this.times[i], '00:20');
+		date1 = newTime;
+	    }
+
+
+	
+	    
+	},
+	
 	maleClick: function(male) {
 	    if (hasOpened) {
 		if (this.currMale == male && repetitiveMale)
 		{
-		    this.closeMaleNav();
+		    this.closeMaleNav(male);
 		    repetitiveMale = false;	    
 		}
 		else {
-		    this.closeMaleNav();
+		    this.closeMaleNav(male);
 		    let bignav = document.getElementById("mySidenav");
 		    let fun = this.maleArray[male].name;
 		    let image = document.createElement('img');
@@ -75,11 +109,13 @@ const vm = new Vue({
 		    let newText = document.createTextNode(fun);
 		    let nav1 = document.createElement("Div");
 		    button = document.getElementById(male);
-		    button.style.color = "darkgreen";		
+		    button.style.color = "darkgreen";
+		 
 		    nav1.appendChild(newText);
 		    bignav.replaceChild(nav1, bignav.childNodes[1]);
 		    bignav.replaceChild(image, bignav.childNodes[2]);
 		    /* RATINGS */
+		    /* This is kinda scuffed */
 		    if (this.maleArray[male].rating[0] != null){
 						    
 			let date1 = document.createElement("H6")
@@ -109,14 +145,19 @@ const vm = new Vue({
 			    let rating2 = document.createElement("P");
 			    let fetchedrating2 = document.createTextNode("rating : "+this.maleArray[male].rating[1]);
 			    rating2.appendChild(fetchedrating2);
-			    if (this.maleNode != 4) {
+			    console.log(this.maleNodes);
+			    let a = this.maleNodes;
+			    if (a != 4) {
+				
 				bignav.replaceChild(date2, bignav.childNodes[5]);
 				bignav.replaceChild(rating2, bignav.childNodes[6]);
-			    }
+							    }
 			    else {
+				
 				bignav.appendChild(date2);
 				bignav.appendChild(rating2);
 				this.maleNodes += 2;
+
 			    }
 			    
 			    if(this.maleArray[male].rating[2] != null){
@@ -152,9 +193,9 @@ const vm = new Vue({
 		hasOpened = true;
 		repetitiveMale = true;
 		let bignav = document.getElementById("mySidenav");
+		let fun = this.maleArray[male].name;
 		button = document.getElementById(male);
 		button.style.color = "darkgreen";
-		let fun = this.maleArray[male].name;
 		/* IMAGE */
 		let image = document.createElement('img');
 		image.width = 350;
@@ -216,12 +257,14 @@ const vm = new Vue({
 	    if (hasOpenedF) {
 		if (this.currFemale == female && repetitiveFemale)
 		{	    
-		    this.closeFemaleNav();
+		    this.closeFemaleNav(female);
 		    repetitiveFemale = false;
 		}
 		else {
-		    this.closeFemaleNav();
-		    let bignav = document.getElementById("mySidenavf");
+		    this.closeFemaleNav(female);
+		    let bignav = document.getElementById("mySidenavf");		    
+		    Fbutton = document.getElementById(female);
+		    Fbutton.style.color = "darkgreen";
 		    let fun = this.femaleArray[female-10].name;
 		    let newText = document.createTextNode(fun);
 		    let nav1 = document.createElement("Div");
@@ -229,8 +272,6 @@ const vm = new Vue({
 		    image.src = this.femaleArray[female-10].picpath;
 		    image.width = 350;
 		    image.height = 250;
-		    Fbutton = document.getElementById(female);		
-		    Fbutton.style.color = "darkgreen";
 		    nav1.appendChild(newText);
 		    bignav.replaceChild(nav1, bignav.childNodes[1]);
 		    bignav.replaceChild(image, bignav.childNodes[2]);
@@ -265,7 +306,6 @@ const vm = new Vue({
 			    let rating2 = document.createElement("P");
 			    let fetchedrating2 = document.createTextNode("rating :" + this.femaleArray[female-10].rating[1]);
 			    rating2.appendChild(fetchedrating2);
-			    
 			    if (this.femaleNode != 4) {
 				
 				bignav.replaceChild(date2, bignav.childNodes[5]);
@@ -309,10 +349,10 @@ const vm = new Vue({
 	    }
 	    else {
 		hasOpenedF = true;
-		repetitiveFemale = true;
-		let bignav = document.getElementById("mySidenavf");
+		repetitiveFemale = true;		
 		Fbutton = document.getElementById(female);
 		Fbutton.style.color = "darkgreen";
+		let bignav = document.getElementById("mySidenavf");
 		let fun = this.femaleArray[female-10].name;
 		let a = document.createElement("Div");
 		let image = document.createElement('img');
@@ -362,7 +402,7 @@ const vm = new Vue({
 			    bignav.appendChild(date3);
 			    bignav.appendChild(rating3);
 			    
-			    this.femaleNode += 3;
+			    this.femaleNode += 2;
 			}
 		    }
 		}
@@ -382,13 +422,13 @@ const vm = new Vue({
 	    document.getElementById("mySidenavf").style.width = "30vw";
 	    this.currFemale = female;
 	},
-	closeFemaleNav: function() {
+	closeFemaleNav: function(female) {
 	    document.getElementById("mySidenavf").style.width = "0";
-    	    Fbutton.style.color = "darkred";
+	    Fbutton.style.color = "darkred";
 	    this.currFemale = -1;
    
 	},
-	closeMaleNav: function() {
+	closeMaleNav: function(male) {
 	    document.getElementById("mySidenav").style.width = "0";
 	    button.style.color = "darkblue";
 	    this.currMale = -1;
@@ -430,10 +470,22 @@ const vm = new Vue({
 		let newTimes = document.createTextNode("Event completed");
 		times.appendChild(newTimes);
 		oldtimes.replaceChild(times, oldtimes.childNodes[0]);
-
-		
-		
 	    }
+	    let newfirstIndex = this.femaleArray[9];
+
+
+	    /* Moves the female buttons */
+	    this.femaleArray.unshift(newfirstIndex);
+	    this.femaleArray[0] = this.femaleArray[10];
+	    this.femaleArray.splice(10);
+	    for (var i = 0; i < this.femaleArray.length; i++){
+		this.femaleArray[i].matchId += 1;
+		this.femaleArray[i].id += 1;
+	    }
+	    this.femaleArray[0].id = 10;
+	    this.femaleArray[0].matchId = 0;
+	    this.closeFemaleNav(10);
+	    this.closeMaleNav(0);
 	       
 	},
 	popup: function(both) {
@@ -467,6 +519,11 @@ const vm = new Vue({
 		this.femaleArray[to].matchId = to;
 		this.maleArray[to].matchId = to + 10;
 
+		this.femaleArray[to].id = to +10;
+		this.femaleArray[from].id = from+10;
+		
+
+		
 		this.closeFemaleNav();
 		repetitiveFemale = false;
 		this.closeMaleNav();

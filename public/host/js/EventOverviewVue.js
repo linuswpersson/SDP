@@ -197,17 +197,17 @@ const vm = new Vue({
 	    this.currFemale = female;
 	},
 	closeFemaleNav: function(female) {
-    document.getElementById("mySideFnav").style.width = "0";
-    if(this.currFemale != -1) {
-      document.getElementById(this.currFemale).style.color = "darkred";
+	    document.getElementById("mySideFnav").style.width = "0";
+	    if(this.currFemale != -1) {
+		document.getElementById(this.currFemale).style.color = "darkred";
 
-      var nameElement = document.getElementById("mySideFnavName");
-      nameElement.removeChild(nameElement.childNodes[0]);
+		var nameElement = document.getElementById("mySideFnavName");
+		nameElement.removeChild(nameElement.childNodes[0]);
 
-      var datesElement = document.getElementById("mySideFnavDates");
-      var datesLength = datesElement.childNodes.length - 1;
-      for(; -1 < datesLength; datesLength--) {
-          datesElement.removeChild(datesElement.childNodes[datesLength]);
+		var datesElement = document.getElementById("mySideFnavDates");
+		var datesLength = datesElement.childNodes.length - 1;
+		for(; -1 < datesLength; datesLength--) {
+		    datesElement.removeChild(datesElement.childNodes[datesLength]);
 		}
 
 		var bubbleElement = document.getElementById("mySideFnavBubbles");
@@ -216,6 +216,7 @@ const vm = new Vue({
 		    bubbleElement.removeChild(bubbleElement.childNodes[bubbleLength]);
 		}
 		this.currFemale = -1;
+	    }
 	},
 	
 	/* Closes the maleNav and removes the current Name, Date, and bubble nodes from the Nav. Also sets currMale to -1 */
@@ -243,53 +244,53 @@ const vm = new Vue({
 	    }
 	},
 	startEvent: function() {
-	  let p = document.getElementById("phase");
-	  let oldtimes = document.getElementById("times");
-	  if (this.phase < 3){
-		  let i = 0;
+	    let p = document.getElementById("phase");
+	    let oldtimes = document.getElementById("times");
+	    if (this.phase < 3){
+		let i = 0;
 		/* simulate ratings from 0 to 5*/ 
-		  for (i ; i < 10; i++) {
+		for (i ; i < 10; i++) {
 		    this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		    this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		}
-      this.phase += 1;
-      let newphase = document.createElement("Div");
-      let updatephase = document.createTextNode("Date " + this.phase);
-      newphase.appendChild(updatephase);
-      p.replaceChild(newphase, p.childNodes[0]);	
-      let times = document.createElement("P");
-      let newTimes = document.createTextNode(this.times[this.phase-1]);
-      times.appendChild(newTimes);
-      oldtimes.replaceChild(times, oldtimes.childNodes[0]);
-	  }
-	  else {
-      let i = 0;
-        for (i ; i < 10; i++) {
-            this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
-            this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
-      }
-      let newphase = document.createElement("Div");
-      let updatephase = document.createTextNode("Event Completed");
-      newphase.appendChild(updatephase);
-      p.replaceChild(newphase, p.childNodes[0]);
-      let times = document.createElement("P");
-      let newTimes = document.createTextNode("Event completed");
-      times.appendChild(newTimes);
-      oldtimes.replaceChild(times, oldtimes.childNodes[0]);
-	  }
-	  let newfirstIndex = this.femaleArray[9];
+		this.phase += 1;
+		let newphase = document.createElement("Div");
+		let updatephase = document.createTextNode("Date " + this.phase);
+		newphase.appendChild(updatephase);
+		p.replaceChild(newphase, p.childNodes[0]);	
+		let times = document.createElement("P");
+		let newTimes = document.createTextNode(this.times[this.phase-1]);
+		times.appendChild(newTimes);
+		oldtimes.replaceChild(times, oldtimes.childNodes[0]);
+	    }
+	    else {
+		let i = 0;
+		for (i ; i < 10; i++) {
+		    this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
+		    this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
+		}
+		let newphase = document.createElement("Div");
+		let updatephase = document.createTextNode("Event Completed");
+		newphase.appendChild(updatephase);
+		p.replaceChild(newphase, p.childNodes[0]);
+		let times = document.createElement("P");
+		let newTimes = document.createTextNode("Event completed");
+		times.appendChild(newTimes);
+		oldtimes.replaceChild(times, oldtimes.childNodes[0]);
+	    }
+	    let newfirstIndex = this.femaleArray[9];
 	    /* Moves the female buttons */
-	  this.femaleArray.unshift(newfirstIndex);
-	  this.femaleArray[0] = this.femaleArray[10];
-	  this.femaleArray.splice(10);
-	  for (var i = 0; i < this.femaleArray.length; i++){
-		  this.femaleArray[i].matchId += 1;
-		  this.femaleArray[i].id += 1;
-	  }
-	  this.femaleArray[0].id = 10;
-    this.femaleArray[0].matchId = 0;	    
-    this.closeFemaleNav(10);
-	  this.closeMaleNav(0);     
+	    this.femaleArray.unshift(newfirstIndex);
+	    this.femaleArray[0] = this.femaleArray[10];
+	    this.femaleArray.splice(10);
+	    for (var i = 0; i < this.femaleArray.length; i++){
+		this.femaleArray[i].matchId += 1;
+		this.femaleArray[i].id += 1;
+	    }
+	    this.femaleArray[0].id = 10;
+	    this.femaleArray[0].matchId = 0;	    
+	    this.closeFemaleNav(10);
+	    this.closeMaleNav(0);     
 	},
 	popup: function(both) {
 	    this.maleClick(both);
@@ -303,11 +304,11 @@ const vm = new Vue({
 	},
 	rematch: function() {
 	    if(this.currMale >= 0 && this.currFemale >= 0){
-		    for(var i = 0; i < this.femaleArray.length; i++) {
-		      if(this.currFemale == this.femaleArray[i].id) {
-			      break;
-		      }
-		  }
+		for(var i = 0; i < this.femaleArray.length; i++) {
+		    if(this.currFemale == this.femaleArray[i].id) {
+			break;
+		    }
+		}
 		var from = i;
 		var to = this.currMale;
 		var tmp = this.femaleArray[to]; // save tmp copy
@@ -323,7 +324,7 @@ const vm = new Vue({
 
 		this.femaleArray[to].id = to +10;
 		this.femaleArray[from].id = from+10;
-        
+		
 		this.closeFemaleNav();
 		repetitiveFemale = false;
 		this.closeMaleNav();

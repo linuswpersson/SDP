@@ -105,7 +105,7 @@ io.on('connection', function(socket) {
     socket.emit('getUsers', {username: data.name,phone: data.phone, gender: data.gender, seeking: data.seeking, userIndex: data.userIndex});
     socket.emit('getImage', {userImagePath: data.userImagePath});
     socket.emit('getBubbles', {userBubbles: data.userBubbles});
-    socket.emit('hello', { gender: data.gender, name: data.name, picpath: data.userImagePath, eventName: data.eventName, eventTimeTo: data.eventTimeTo, eventTimeFrom: data.eventTimeFrom, eventMessage: data.eventMessage, eventDate: data.eventDate, eventEmail: data.eventEmail, eventLocation: data.eventLocation});
+    socket.emit('hello', { gender: data.gender, name: data.name, picpath: data.userImagePath, userBubbles: data.userBubbles, eventName: data.eventName, eventTimeTo: data.eventTimeTo, eventTimeFrom: data.eventTimeFrom, eventMessage: data.eventMessage, eventDate: data.eventDate, eventEmail: data.eventEmail, eventLocation: data.eventLocation});
 
     /*-----------------------------------------------------------------*/
     

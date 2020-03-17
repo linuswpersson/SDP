@@ -5,9 +5,16 @@ const socket = io();
 const vm = new Vue({
     el: '#app',
     data: {
+	eventName: '',
+	eventTimeTo: '',
+	eventTimeFrom: '',
+	eventMessage: '',
+	eventDate: '',
+	eventEmail: '',
+	eventLocation: '',
 	phase: 1,
-	femaleNode: 0, /// TODO: REMOVE ME
-	times: ["14:35", "15:05", "15:35"],
+	times: [],
+	dateSpan: [],
 	currMale : -1,
 	currFemale : -1,
 	
@@ -37,6 +44,8 @@ const vm = new Vue({
 	    {name : 'Johanna', matchId : 8, id : 18, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
 	    {name : 'Stina', matchId : 9, id : 19, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
 	],
+	
+	matches : Array(10),
     },
     created: function(){
 	socket.on('hello', function(data) {
@@ -54,10 +63,32 @@ const vm = new Vue({
 		    this.femaleArray[0].bubbleArray = data.userBubbles;
 		}
 	    }
+	    this.eventName = data.eventName;
+	    this.eventTimeFrom = data.eventTimeFrom;
+	    this.eventTimeTo = data.eventTimeTo;
+	    this.eventMessage = data.eventMessage;
+	    this.eventDate = data.eventDate;
+	    this.eventEmail = data.eventEmail;
+	    this.eventLocation = data.eventLocation;
+	    this.calculateDateTimes();
 	    
 	}.bind(this));
     },
     methods: {
+	calculateDateTimes: function(){
+	    /* i here stands for the number of dates */
+	    /* Default is 3 dates */
+	    let date1 = this.eventTimeFrom;
+	    let newTime;
+	    let i = 0;
+	    for(i; i<3; i++){
+		newTime = addTimes(date1, '00:30');
+		this.times[i] = newTime;
+		this.dateSpan[i] = addTimes(this.times[i], '00:20');
+		date1 = newTime;
+	    } 
+	},
+
 	maleClick: function(male) {
 	    if (this.currMale == male) {
 		this.closeMaleNav(male);
@@ -166,17 +197,17 @@ const vm = new Vue({
 	    this.currFemale = female;
 	},
 	closeFemaleNav: function(female) {
-	    document.getElementById("mySideFnav").style.width = "0";
-	    if(this.currFemale != -1) {
-		document.getElementById(this.currFemale).style.color = "darkred";
+    document.getElementById("mySideFnav").style.width = "0";
+    if(this.currFemale != -1) {
+      document.getElementById(this.currFemale).style.color = "darkred";
 
-		var nameElement = document.getElementById("mySideFnavName");
-		nameElement.removeChild(nameElement.childNodes[0]);
-		
-		var datesElement = document.getElementById("mySideFnavDates");
-		var datesLength = datesElement.childNodes.length - 1;
-		for(; -1 < datesLength; datesLength--) {
-		    datesElement.removeChild(datesElement.childNodes[datesLength]);
+      var nameElement = document.getElementById("mySideFnavName");
+      nameElement.removeChild(nameElement.childNodes[0]);
+
+      var datesElement = document.getElementById("mySideFnavDates");
+      var datesLength = datesElement.childNodes.length - 1;
+      for(; -1 < datesLength; datesLength--) {
+          datesElement.removeChild(datesElement.childNodes[datesLength]);
 		}
 
 		var bubbleElement = document.getElementById("mySideFnavBubbles");
@@ -185,7 +216,6 @@ const vm = new Vue({
 		    bubbleElement.removeChild(bubbleElement.childNodes[bubbleLength]);
 		}
 		this.currFemale = -1;
-	    }
 	},
 	
 	/* Closes the maleNav and removes the current Name, Date, and bubble nodes from the Nav. Also sets currMale to -1 */
@@ -213,57 +243,53 @@ const vm = new Vue({
 	    }
 	},
 	startEvent: function() {
-	    
-	    let p = document.getElementById("phase");
-	    let oldtimes = document.getElementById("times");
-	    if (this.phase < 3){
-		let i = 0;
+	  let p = document.getElementById("phase");
+	  let oldtimes = document.getElementById("times");
+	  if (this.phase < 3){
+		  let i = 0;
 		/* simulate ratings from 0 to 5*/ 
-		for (i ; i < 10; i++) {
+		  for (i ; i < 10; i++) {
 		    this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		    this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		}
-		
-	    this.phase += 1;
-	    let newphase = document.createElement("Div");
-		let updatephase = document.createTextNode("Date " + this.phase);
-		newphase.appendChild(updatephase);
-		p.replaceChild(newphase, p.childNodes[0]);	
-		let times = document.createElement("P");
-		let newTimes = document.createTextNode(this.times[this.phase-1]);
-		times.appendChild(newTimes);
-		oldtimes.replaceChild(times, oldtimes.childNodes[0]);
-		
-	    }
-	    else {
-		let i = 0;
-		for (i ; i < 10; i++) {
-		    this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
-		    this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
-		}
-		let newphase = document.createElement("Div");
-		let updatephase = document.createTextNode("Event Completed");
-		newphase.appendChild(updatephase);
-		p.replaceChild(newphase, p.childNodes[0]);
-		let times = document.createElement("P");
-		let newTimes = document.createTextNode("Event completed");
-		times.appendChild(newTimes);
-		oldtimes.replaceChild(times, oldtimes.childNodes[0]);
-	    }
-	    let newfirstIndex = this.femaleArray[9];
-	
-	    this.femaleArray.unshift(newfirstIndex);
-	    this.femaleArray[0] = this.femaleArray[10];
-	    this.femaleArray.splice(10);
-	    for (var i = 0; i < this.femaleArray.length; i++){
-		this.femaleArray[i].matchId += 1;
-		this.femaleArray[i].id += 1;
-	    }
-	    this.femaleArray[0].id = 10;
-	    this.femaleArray[0].matchId = 0;
-	    this.closeFemaleNav();
-	    this.closeMaleNav();
-	       
+      this.phase += 1;
+      let newphase = document.createElement("Div");
+      let updatephase = document.createTextNode("Date " + this.phase);
+      newphase.appendChild(updatephase);
+      p.replaceChild(newphase, p.childNodes[0]);	
+      let times = document.createElement("P");
+      let newTimes = document.createTextNode(this.times[this.phase-1]);
+      times.appendChild(newTimes);
+      oldtimes.replaceChild(times, oldtimes.childNodes[0]);
+	  }
+	  else {
+      let i = 0;
+        for (i ; i < 10; i++) {
+            this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
+            this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
+      }
+      let newphase = document.createElement("Div");
+      let updatephase = document.createTextNode("Event Completed");
+      newphase.appendChild(updatephase);
+      p.replaceChild(newphase, p.childNodes[0]);
+      let times = document.createElement("P");
+      let newTimes = document.createTextNode("Event completed");
+      times.appendChild(newTimes);
+      oldtimes.replaceChild(times, oldtimes.childNodes[0]);
+	  }
+	  let newfirstIndex = this.femaleArray[9];
+	    /* Moves the female buttons */
+	  this.femaleArray.unshift(newfirstIndex);
+	  this.femaleArray[0] = this.femaleArray[10];
+	  this.femaleArray.splice(10);
+	  for (var i = 0; i < this.femaleArray.length; i++){
+		  this.femaleArray[i].matchId += 1;
+		  this.femaleArray[i].id += 1;
+	  }
+	  this.femaleArray[0].id = 10;
+    this.femaleArray[0].matchId = 0;	    
+    this.closeFemaleNav(10);
+	  this.closeMaleNav(0);     
 	},
 	popup: function(both) {
 	    this.maleClick(both);
@@ -277,12 +303,11 @@ const vm = new Vue({
 	},
 	rematch: function() {
 	    if(this.currMale >= 0 && this.currFemale >= 0){
-		for(var i = 0; i < this.femaleArray.length; i++) {
-		    if(this.currFemale == this.femaleArray[i].id) {
-			break;
-		    }
-		}
-		
+		    for(var i = 0; i < this.femaleArray.length; i++) {
+		      if(this.currFemale == this.femaleArray[i].id) {
+			      break;
+		      }
+		  }
 		var from = i;
 		var to = this.currMale;
 		var tmp = this.femaleArray[to]; // save tmp copy
@@ -298,9 +323,7 @@ const vm = new Vue({
 
 		this.femaleArray[to].id = to +10;
 		this.femaleArray[from].id = from+10;
-		
-
-		
+        
 		this.closeFemaleNav();
 		repetitiveFemale = false;
 		this.closeMaleNav();
@@ -309,6 +332,65 @@ const vm = new Vue({
 		this.currMale = -1;
 	    }
 	},
+
+ 	////
+	//// TABLEPLACEMENT CODE
+	//// 
+	tablePlacementButton: function() {
+	    console.log("table placement clicked");
+	    document.getElementById("tablePlacement").style.display = "block";
+	    this.updateMatches();
+	},
+	getMatches: function() {
+	    for (let i = 0; i < this.matches.length; i++) {
+		this.matches.splice(i, 1, {maleName : this.maleArray[i].name, femaleName : this.femaleArray[i].name, tableNum : i});
+	    }
+	    console.log(this.matches);
+	},
+	
+	updateMatches: function (){
+	    for (let i = 0; i < this.matches.length; i++) {
+		if(this.matches[i].femaleName != this.femaleArray[i].name) {
+		    this.matches.splice(i, 1, {maleName : this.maleArray[i].name, femaleName : this.femaleArray[i].name, tableNum : i});
+		}
+		
+	    }
+	    console.log(this.matches);
+	},
+	
+	closeTablePlacement: function() {
+	    console.log("table placement modal closed");
+	    document.getElementById("tablePlacement").style.display = "none";
+	},
+	dragstartHandler: function(ev) {
+	    ev.dataTransfer.setData("text", ev.srcElement.id);
+	    console.log(ev.srcElement.id);
+	},
+	allowDrop : function(ev) {
+	    ev.preventDefault();
+	},
+	dropHandler: function(ev) {
+	    ev.preventDefault();
+	    var data = ev.dataTransfer.getData("text");
+	    console.log(ev.target.id);
+	    console.log(ev.target);
+	    this.matches[data.slice(-1)].tableNum = ev.target.id.slice(-1);
+	    console.log(this.matches);
+	    
+	},
+	confirmTablePlacement: function() {
+	    console.log(this.matches);
+	    socket.emit('sendTablePlacement', this.matches);
+	}
+	////
+	//// TABLEPLACEMENT CODE END
+	//// 
+
+    },
+    
+    //to get matches array before page loads
+    beforeMount(){
+	this.getMatches()
     },
 })
 

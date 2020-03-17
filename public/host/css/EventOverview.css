@@ -166,7 +166,6 @@ p {
     grid-column: 1;
     grid-row: 3;
     background-color: #525252;
-    
     text-align: center;
 }
 
@@ -224,7 +223,7 @@ footer{
     margin: 0 auto;
 }
 
-#matchButton {
+.matchButton {
     width: 80%;
     background-color:#CE6679; 
     color: white;

@@ -2,6 +2,8 @@
 <html lang="en">
   
   <head>
+    <script src="/socket.io/socket.io.js" defer></script>
+    	<script src="/vue/vue.js" defer></script>
     <link rel="stylesheet" type="text/css" href="../css/host.css">
     <script src="../js/host.js" defer></script>
     <title>Host view</title>
@@ -11,13 +13,35 @@
     <div class="wrapper">      
       <div id="createEventModal" class="modal">
 	<div class="modal-content">
+	  
 	  <span class="close">&times;</span>
 	  <p><h2><center>Create an event</center></h2></p>
-	  <div id="eventInfo"> </div>
+	  <div id="eventInfo">
+	    <form action="" method="post">
+	      <h2> Please fill in the information: </h2><hr><br>
+	      <div id="textBoxes">
+		<label> Name </label><br>
+		<input type="text" v-model="name" placeholder="Your name" width="200px"><br><hr>
+		<label> Email address </label><br>
+		<input type="text" v-model="email" placeholder="Email address"><br><hr>
+		<label> Location </label><br>
+		<input type="map" v-model="location" placeholder="Location"><br><hr>
+		<label> Date </label><br>
+		<input type="date" v-model="date" placeholder="Date" id="fuck"><br><hr>
+		<label> Time From - To </label><br>
+		<input type="time" v-model="timeFrom" placeholder="Date"> -
+		<input type="time" v-model="timeTo" placeholder="Date"><br><hr>
+		<label> Message </label><br>
+		<input type="text" v-model="message" placeholder="Your Message"><br><hr>
+		<div>Note: The recommended length of an event is 2 hours long </div> <br>
+	     </div>
+	  </div>
+	 
 	  <button onclick="createBtn()"> Create event</button>
 	</div>
       </div>
       <div class="box a">
+
 	<section id="myEventSpace">	  
 	  <button id="createEventClick">Create Event</button> <br>	  
 	</section>

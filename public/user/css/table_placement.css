@@ -1,88 +1,36 @@
-
-.header{
-  margin: 0 auto;
-  width: 310px;
-  height: 40px;
-  background: #CE6679;
-	position: relative;
-	left: -8px;
-	top: -10px;
-
+body {
+    margin: 0;
 }
 
-.headertext{
-    margin: 0px 4px;
-	text-align: center;
-	font-family: Arial, sans-serif;
-	font-size: 20pt;	
-	font-weight: bold;
+header {
+    text-align: center;
+    height: 50px;
+    width: 310px;
+    background-color: #CE6679;
+}
+
+header h2 {
+    margin: 0;
 	color: white;
-	position: relative;
-    top: 5px;
-
 }
 
-.bodytext{
-  margin: 0px 0px;
-text-align: center;
-	font-family: Arial, sans-serif;
-		font-size: 15pt;
+.wrapper {
+    display: grid;
+    height: 99vh;
+    width: 100vw;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 33% 33% 33%;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;   
 }
 
-.meetingtext{
-	text-align: center;
-	margin: 0;
-}
-
-.iamherebutton {
-  background-color:#CE6679; 
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: block;
-  font-size: 16px;
-  border-radius: 6px;
-    display: block;
-    margin: 0 auto;
-}
-
-.iamherebutton:hover {
-  background-color: pink;
-}
-
-
-.infobutton {
-  background-color: teal; 
-  border: none;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  text-decoration: none;
-  display: block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-
-	
-  min-width: 35px;
-  max-height: 35px;
-  position: relative;
-  left:15px;
-  top: 60px;
-
-
-  border-radius: 100%;
-	
-}
-
-.infobutton:hover {
-  background-color: lightblue;
-}
-
-#helptext{
-	float: bottom;
+.linkButton {
+    position: fixed;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background:  #e5e8e8;
+    border: 1px  #99a3a4 solid;
 }
 
  /* 
@@ -227,8 +175,30 @@ text-align: center;
 
 /*
   // table placement styling end
-/*   	   
+*/   	   
 
+
+
+
+
+#nextButton {
+    bottom: 10px;
+    right: 10px;
+    background: #90EE90; /* placeholder, should be changed for a picture */
+}
+
+#backButton {
+    bottom: 10px;
+    left: 10px;
+}
+
+#backButton:hover {
+  background-color: lightblue;
+}
+
+#nextButton:hover {
+  background-color: lightblue;
+}
 
 
 

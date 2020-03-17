@@ -1,5 +1,3 @@
-
-
 .header{
   margin: 0;
   width: 310px;
@@ -7,8 +5,7 @@
   background: #CE6679;
 	position: relative;
 	left: -8px;
-	top: -10px;
-	
+	top: -10px;	
 }
 
 .headertext{
@@ -30,12 +27,42 @@ text-align: center;
 }
 
 	
-#rating { font-size: 0; text-align: center; position: relative; top: 100px;}
+/*#rating { font-size: 0; text-align: center; position: relative; top: 100px;}
 #rating span { font-size: 40px; }
 #rating span::before { content: "☆"; }
 #rating span.active::before {content: "★"; }
-#rating span:hover { cursor: pointer; }
+#rating span:hover { cursor: pointer; }*/
+	
+ .star{
+          color: goldenrod;
+          font-size: 1.5rem;
+	     
+          /*padding: 0 1rem;  space out the stars */
+        }
+        .star::before{
+          content: '\2606';    /* star outline */
+          cursor: pointer;
+        }
+        .star.rated::before{
+          /* the style for a selected star */
+          content: '\2605';  /* filled star */
+        }
+        .stars{
+            counter-reset: rateme 0;
+            font-size: 1.5rem;
+            font-weight: 900;
+ 			text-align: center;
+        }
+        .star.rated{
+            counter-increment: rateme 1;
+        }
+        .stars::after{
+            content: counter(rateme) '/5';
+        }
 
+.textbox{
+	text-align: center;
+}
 
 .checkmarkbutton{
   background-color: lightgreen; /* Green */
@@ -51,7 +78,6 @@ text-align: center;
   border: 1px  #99a3a4 solid;
   left:132px;
   top: 540px;
-
 }
 
 .checkmarkbutton:hover {

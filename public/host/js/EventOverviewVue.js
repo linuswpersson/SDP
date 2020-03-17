@@ -198,12 +198,12 @@ const vm = new Vue({
 	    }
 	},
 	openMaleNav: function(male) {
-	    document.getElementById("mySidenav").style.width = "30vw";
+	    document.getElementById("mySidenav").style.width = "33vw";
 	    this.currMale = male;
 	    
 	},
 	openFemaleNav: function(female) {
-	    document.getElementById("mySideFnav").style.width = "30vw";
+	    document.getElementById("mySideFnav").style.width = "33vw";
 	    this.currFemale = female;
 	},
 	closeFemaleNav: function(female) {

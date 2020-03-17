@@ -584,6 +584,7 @@ const vm = new Vue({
 	},
 	confirmTablePlacement: function() {
 	    console.log(this.matches);
+	    socket.emit('sendTablePlacement', this.matches);
 	}
     },
     

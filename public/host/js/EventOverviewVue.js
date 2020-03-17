@@ -351,8 +351,11 @@ const vm = new Vue({
 	
 	updateMatches: function (){
 	    for (let i = 0; i < this.matches.length; i++) {
-		if(this.matches[i].femaleName != this.femaleArray[i].name) {
+		if(this.matches[i].maleName != this.maleArray[i].name || this.matches[i].femaleName != this.femaleArray[i].name) {
 		    this.matches.splice(i, 1, {maleName : this.maleArray[i].name, femaleName : this.femaleArray[i].name, tableNum : i});
+		}
+		if(this.matches[i].tableNum == 'e') {
+		    this.matches.splice(i, 1, {maleName : this.maleArray[i].name, femaleName : this.femaleArray[i].name, tableNum : 0});
 		}
 		
 	    }

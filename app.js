@@ -147,6 +147,10 @@ io.on('connection', function(socket) {
 	data.dateSpan = times.dateSpan;
 	
     });
+
+    socket.on('signal', function(){
+	socket.emit('signalFrom');
+    });
     /*------------------------------------------------------------------*/
 
 

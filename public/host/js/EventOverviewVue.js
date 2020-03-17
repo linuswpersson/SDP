@@ -254,6 +254,7 @@ const vm = new Vue({
 	    }
 	},
 	startEvent: function() {
+	    socket.emit('signal');
 	    let p = document.getElementById("phase");
 	    let oldtimes = document.getElementById("times");
 	    if (this.phase < 3){
@@ -307,7 +308,6 @@ const vm = new Vue({
 	    this.femaleArray[0].matchId = 0;	    
 	    this.closeFemaleNav(10);
 	    this.closeMaleNav(0);
-	    socket.emit('signal');
 	},
 	popup: function(both) {
 	    this.maleClick(both);

@@ -9,6 +9,7 @@ const vm = new Vue({
 	eventStartTime: '',
 	times: '',
 	dateSpan: '',
+	name: '',
 	
     },
     methods: {
@@ -21,6 +22,9 @@ const vm = new Vue({
 
     },
     created: function() {
+	socket.on('signalFrom', function(){
+	    document.location.href = 'meeting_table.html';
+	}.bind(this));
 	socket.on('getEventInfo', function(evInfo) {
 	    this.eventName = evInfo.eventName;
 	    this.eventStartTime = evInfo.eventStartTime;
@@ -28,6 +32,7 @@ const vm = new Vue({
 	    this.dateSpan = evInfo.dateSpan;
 	    console.log(this.eventName + this.eventStartTime + this.times + this.dateSpan);
 	}.bind(this));
+
     },
     
 })

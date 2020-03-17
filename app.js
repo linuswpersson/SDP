@@ -106,6 +106,7 @@ io.on('connection', function(socket) {
     socket.emit('getImage', {userImagePath: data.userImagePath});
     socket.emit('getBubbles', {userBubbles: data.userBubbles});
     socket.emit('hello', { gender: data.gender, name: data.name, picpath: data.userImagePath, eventName: data.eventName, eventTimeTo: data.eventTimeTo, eventTimeFrom: data.eventTimeFrom, eventMessage: data.eventMessage, eventDate: data.eventDate, eventEmail: data.eventEmail, eventLocation: data.eventLocation});
+
     /*-----------------------------------------------------------------*/
     
     /* Updates image whenever a new one is selected. */
@@ -122,14 +123,13 @@ io.on('connection', function(socket) {
 	data.saveImage(image);
     });
 
-    socket.on('updateBubble', function(bubble){
+    socket.on('updateBubbles', function(bubble){
 	data.userBubbles = bubble.bubbleArray;
     });
 
     socket.on('hostInfo', function(datar){
 	data.saveHostInfo(datar);
     });
-
     
     socket.on('sendTablePlacement', function(matches){
 	data.matches = matches;
@@ -140,11 +140,6 @@ io.on('connection', function(socket) {
 
     
     /* None of the functions below serve any other purpose than for testing */
-
-    socket.on('printBubbles', function(print){
-	print(data.userBubbles.bubbleArray);
-    })
-
     
     socket.on('printUser', function(print){
 	    print(data.users[data.userIndex].id);

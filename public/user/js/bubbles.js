@@ -7,7 +7,6 @@ const vm = new Vue({
     data: {
 	next : 'user_home.html',
 	back : 'make_profile_3.html',
-	toBeSavedArray: [],
 	chosenBubbleArray : [],
 
 	bubbleArray : [
@@ -32,12 +31,21 @@ const vm = new Vue({
 	    {name : 'Plants', selected : false},
 	],
     },
-	created: function(){
-	    socket.on('getBubbles', function(data){
-		this.toBeSavedArray = data.userBubbles;
-	    }.bind(this));
-	    
-	},
+    created: function(){
+	socket.on('getBubbles', function(data){
+	    this.chosenBubbleArray.splice(data.userBubbles.length);
+	    this.chosenBubbleArray = data.userBubbles;
+	    for(var i = 0; i < this.chosenBubbleArray.length; i++) {
+		var currBubble = this.chosenBubbleArray[i].name;
+		for(var v = 0; v < this.bubbleArray.length; v++) {
+		    if(currBubble.toString().localeCompare(this.bubbleArray[v].name.toString()) == 0) {
+			this.bubbleArray[v].selected = true;
+			break;
+		    }
+		}
+	    }	    
+	}.bind(this));
+    },
     methods: {
 	
 	backClick: function() {
@@ -45,13 +53,8 @@ const vm = new Vue({
 	},
 
 	nextClick: function() {
-	    	/* Saves the selected bubbles */
-		socket.on('updateBubbles', {
-		    bubbleArray: this.toBeSavedArray
-		});
-	    socket.emit('printBubbles', function(print){
-		console.log(print);
-	    })
+	    /* Saves the selected bubbles */
+	    socket.emit('updateBubbles', {bubbleArray : this.chosenBubbleArray});
 	    document.location.href = this.next;
 	},
 
@@ -78,9 +81,7 @@ const vm = new Vue({
 		currbubble.style.border = "2px solid green";
 		item.selected = true;
 		this.chosenBubbleArray.push(item);
-		this.toBeSavedArray.push(item.name);
 	    }
-	    
 	},
     },
 })

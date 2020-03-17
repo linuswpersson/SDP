@@ -21,6 +21,9 @@ const vm = new Vue({
 
     },
     created: function() {
+	socket.on('signalFrom', function(){
+	    document.location.href = 'meeting_table.html';
+	});
 	socket.on('getEventInfo', function(evInfo) {
 	    this.eventName = evInfo.eventName;
 	    this.eventStartTime = evInfo.eventStartTime;

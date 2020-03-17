@@ -56,8 +56,6 @@ function Data() {
     this.eventDate = '';
     this.eventEmail = '';
     this.eventLocation = '';
-    this.times = [];
-    this.dateSpan = [];
     
     
 }
@@ -107,12 +105,7 @@ io.on('connection', function(socket) {
     socket.emit('getUsers', {username: data.name,phone: data.phone, gender: data.gender, seeking: data.seeking, userIndex: data.userIndex});
     socket.emit('getImage', {userImagePath: data.userImagePath});
     socket.emit('getBubbles', {userBubbles: data.userBubbles});
-    socket.emit('hello', { gender: data.gender, name: data.name, picpath: data.userImagePath, userBubbles: data.userBubbles, eventName: data.eventName, eventTimeTo: data.eventTimeTo, eventTimeFrom: data.eventTimeFrom, eventMessage: data.eventMessage, eventDate: data.eventDate, eventEmail: data.eventEmail, eventLocation: data.eventLocation});
-
-    /*-----------------------------------------------------------------*/
-    // sending event info to user
-    socket.emit('getEventInfo', {eventName: data.eventName, eventStartTime: data.eventTimeFrom, times: data.times, dateSpan: data.dateSpan});
-
+    socket.emit('hello', { gender: data.gender, name: data.name, picpath: data.userImagePath, eventName: data.eventName, eventTimeTo: data.eventTimeTo, eventTimeFrom: data.eventTimeFrom, eventMessage: data.eventMessage, eventDate: data.eventDate, eventEmail: data.eventEmail, eventLocation: data.eventLocation});
     /*-----------------------------------------------------------------*/
     
     /* Updates image whenever a new one is selected. */
@@ -129,33 +122,24 @@ io.on('connection', function(socket) {
 	data.saveImage(image);
     });
 
-    socket.on('updateBubbles', function(bubble){
+    socket.on('updateBubble', function(bubble){
 	data.userBubbles = bubble.bubbleArray;
     });
 
     socket.on('hostInfo', function(datar){
 	data.saveHostInfo(datar);
     });
-    
-    socket.on('sendTablePlacement', function(matches){
-	data.matches = matches;
-	console.log(data.matches);
-    });
 
-    socket.on('sendDateTimes', function(times){
-	data.times = times.times;
-	data.dateSpan = times.dateSpan;
-	
-    });
-
-    socket.on('signal', function(){
-	socket.emit('signalFrom');
-    });
     /*------------------------------------------------------------------*/
 
 
     
     /* None of the functions below serve any other purpose than for testing */
+
+    socket.on('printBubbles', function(print){
+	print(data.userBubbles.bubbleArray);
+    })
+
     
     socket.on('printUser', function(print){
 	    print(data.users[data.userIndex].id);
@@ -175,6 +159,8 @@ io.on('connection', function(socket) {
     socket.on('printALL', function(print){
 	print(data.ratingMessage + ' rating ' + data.rating);	
     });
+
+    
 
 });
 

@@ -254,6 +254,7 @@ const vm = new Vue({
 	    }
 	},
 	startEvent: function() {
+	    socket.emit('signal');
 	    let p = document.getElementById("phase");
 	    let oldtimes = document.getElementById("times");
 	    if (this.phase < 3){

@@ -86,7 +86,8 @@ const vm = new Vue({
 		this.times[i] = newTime;
 		this.dateSpan[i] = addTimes(this.times[i], '00:20');
 		date1 = newTime;
-	    } 
+	    }
+	    socket.emit('sendDateTimes',{times: this.times, dateSpan: this.dateSpan});
 	},
 
 	maleClick: function(male) {
@@ -411,6 +412,7 @@ const vm = new Vue({
     //to get matches array before page loads
     beforeMount(){
 	this.getMatches()
+	
     },
 })
 

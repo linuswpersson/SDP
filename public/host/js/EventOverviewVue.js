@@ -538,16 +538,29 @@ const vm = new Vue({
 	tablePlacementButton: function() {
 	    console.log("table placement clicked");
 	    document.getElementById("tablePlacement").style.display = "block";
-	    this.getMatches();
+	    this.updateMatches();
 	},
 	getMatches: function() {
 	    for (let i = 0; i < this.matches.length; i++) {
 		//this.matches[i] = {maleName : this.maleArray[i].name, femaleName : this.femaleArray[i].name, matchNum : i};
-		this.matches.splice(i, 1, {maleName : this.maleArray[i].name, femaleName : this.femaleArray[i].name, matchNum : i});
+		this.matches.splice(i, 1, {maleName : this.maleArray[i].name, femaleName : this.femaleArray[i].name, tableNum : i});
+		
 		
 	    }
 	    console.log(this.matches);
 	},
+	
+	updateMatches: function (){
+	    for (let i = 0; i < this.matches.length; i++) {
+		//this.matches[i] = {maleName : this.maleArray[i].name, femaleName : this.femaleArray[i].name, matchNum : i};
+		if(this.matches[i].femaleName != this.femaleArray[i].name) {
+		    this.matches.splice(i, 1, {maleName : this.maleArray[i].name, femaleName : this.femaleArray[i].name, tableNum : i});
+		}
+		
+	    }
+	    console.log(this.matches);
+	},
+	
 	closeTablePlacement: function() {
 	    console.log("table placement modal closed");
 	    document.getElementById("tablePlacement").style.display = "none";
@@ -562,7 +575,15 @@ const vm = new Vue({
 	dropHandler: function(ev) {
 	    ev.preventDefault();
 	    var data = ev.dataTransfer.getData("text");
-	    ev.target.appendChild(document.getElementById(data));
+	    //ev.target.appendChild(document.getElementById(data));
+	    console.log(ev.target.id);
+	    console.log(ev.target);
+	    this.matches[data.slice(-1)].tableNum = ev.target.id.slice(-1);
+	    console.log(this.matches);
+	    
+	},
+	confirmTablePlacement: function() {
+	    console.log(this.matches);
 	}
     },
     

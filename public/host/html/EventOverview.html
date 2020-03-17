@@ -17,14 +17,20 @@
 	<div class="tablePlacementModal-content">
 	  <div id="closeModal" v-on:click="closeTablePlacement()">&times</div>
 	  <div id="tableMap">
-	    <div v-for="(_,index) in Array(10)" :id="'table' + index" :class="'table ' + index" v-on:dragover="allowDrop($event)" v-on:drop="dropHandler($event)">table{{index + 1}}</div>
-	  </div>
-	  <div id="matchList">
-	    <div class="matchItem" v-on:dragstart="dragstartHandler($event)" draggable="true" v-for="match in matches" :id="'match '+match.matchNum">
-	      <span id="maleName">{{match.maleName}}</span> <span id="femaleName">{{match.femaleName}}</span>
+	    <div v-for="(_,index) in Array(10)" :id="'table' + index" :class="'table ' + index" v-on:dragover="allowDrop($event)" v-on:drop="dropHandler($event)">table{{index + 1}}
+
+	      <div class="matchItem" v-for="(match, matchIndex) in matches" v-if="match.tableNum == index" v-on:dragstart="dragstartHandler($event)" draggable="true" :id="'match '+matchIndex">
+		<span id="maleName">{{match.maleName}}</span> <span id="femaleName">{{match.femaleName}}</span>
+	      </div>
+	      
 	    </div>
 	  </div>
-	  <button id="confirmPlacementButton" class="matchButton" v-on:click="">
+	  <div id="matchList">
+	   <!-- <div class="matchItem" v-on:dragstart="dragstartHandler($event)" draggable="true" v-for="match in matches" :id="'match '+match.matchNum">
+	      <span id="maleName">{{match.maleName}}</span> <span id="femaleName">{{match.femaleName}}</span>
+	    </div>-->
+	  </div>
+	  <button id="confirmPlacementButton" class="matchButton" v-on:click="confirmTablePlacement()">
 	    Confirm
 	  </button>
 	</div>

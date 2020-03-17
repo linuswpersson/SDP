@@ -19,30 +19,30 @@ const vm = new Vue({
 	currFemale : -1,
 	
 	maleArray : [
-	    {name : 'Johan', matchId : 10, id : 0, image: 20, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Erik', matchId : 11, id : 1, image: 21, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Hjalmar', matchId : 12, id : 2, image: 22, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Lars', matchId : 13, id : 3, image: 23, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Åke', matchId : 14, id : 4, image: 24, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Tor', matchId : 15, id : 5, image: 25, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Valdermar', matchId : 16, id : 6, image: 26, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Jan', matchId : 17, id : 7, image: 27, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Olle', matchId : 18, id : 8, image: 28, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Rolf', matchId : 19, id : 9, image: 29, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
+	    {name : 'Johan', matchId : 10, id : 0, image: 20, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Erik', matchId : 11, id : 1, image: 21, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Hjalmar', matchId : 12, id : 2, image: 22, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Lars', matchId : 13, id : 3, image: 23, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Åke', matchId : 14, id : 4, image: 24, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Tor', matchId : 15, id : 5, image: 25, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Valdermar', matchId : 16, id : 6, image: 26, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Jan', matchId : 17, id : 7, image: 27, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Olle', matchId : 18, id : 8, image: 28, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Rolf', matchId : 19, id : 9, image: 29, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
 	],
 
 
 	femaleArray : [
-            {name : 'Lina', matchId : 0, id : 10, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Frida', matchId : 1, id : 11, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Mona Lisa', matchId : 2, id : 12, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Erika', matchId : 3, id : 13, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Linn', matchId : 4, id : 14, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Simone', matchId : 5, id : 15, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Julia', matchId : 6, id : 16, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Bennilina', matchId : 7, id : 17, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Johanna', matchId : 8, id : 18, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
-	    {name : 'Stina', matchId : 9, id : 19, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: []},
+            {name : 'Lina', matchId : 0, id : 10, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Frida', matchId : 1, id : 11, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Mona Lisa', matchId : 2, id : 12, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Erika', matchId : 3, id : 13, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Linn', matchId : 4, id : 14, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Simone', matchId : 5, id : 15, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Julia', matchId : 6, id : 16, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Bennilina', matchId : 7, id : 17, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Johanna', matchId : 8, id : 18, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Stina', matchId : 9, id : 19, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
 	],
 	
 	matches : Array(10),
@@ -159,10 +159,14 @@ const vm = new Vue({
 		let dateHeader = document.createElement("H6");
 		let dateText = document.createTextNode("DATE " + date + ":");
 		dateHeader.appendChild(dateText);
+		let dateWith = document.createElement("p");
+		let dateWithWho = document.createTextNode("Date with : " + this.maleArray[male].previousDate[date-1]);
+		dateWith.appendChild(dateWithWho);
 		let ratingElement = document.createElement("p");
 		let fetchedRating = document.createTextNode("rating : "+this.maleArray[male].rating[date-1]);
 		ratingElement.appendChild(fetchedRating);
 		dateElement.appendChild(dateHeader);
+		dateElement.appendChild(dateWith);
 		dateElement.appendChild(ratingElement);
 		return true;
 	    }
@@ -176,10 +180,15 @@ const vm = new Vue({
 		let dateHeader = document.createElement("H6");
 		let dateText = document.createTextNode("DATE " + date + ":");
 		dateHeader.appendChild(dateText);
+		
+		let dateWith = document.createElement("p");
+		let dateWithWho = document.createTextNode("Date with : " + this.femaleArray[female-10].previousDate[date-1]);
+		dateWith.appendChild(dateWithWho);
 		let ratingElement = document.createElement("p");
 		let fetchedRating = document.createTextNode("rating : "+this.femaleArray[female-10].rating[date-1]);
 		ratingElement.appendChild(fetchedRating);
 		dateElement.appendChild(dateHeader);
+		dateElement.appendChild(dateWith);
 		dateElement.appendChild(ratingElement);
 		return true;
 	    }
@@ -250,6 +259,8 @@ const vm = new Vue({
 		let i = 0;
 		/* simulate ratings from 0 to 5*/ 
 		for (i ; i < 10; i++) {
+		    this.maleArray[i].previousDate[this.phase-1] = this.femaleArray[i].name;
+		    this.femaleArray[i].previousDate[this.phase-1] = this.maleArray[i].name;
 		    this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		    this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		}
@@ -266,6 +277,9 @@ const vm = new Vue({
 	    else {
 		let i = 0;
 		for (i ; i < 10; i++) {
+		  
+		    this.maleArray[i].previousDate[this.phase-1] = this.femaleArray[i].name;
+		    this.femaleArray[i].previousDate[this.phase-1] = this.maleArray[i].name;
 		    this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		    this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		}
@@ -278,6 +292,7 @@ const vm = new Vue({
 		times.appendChild(newTimes);
 		oldtimes.replaceChild(times, oldtimes.childNodes[0]);
 	    }
+	    
 	    let newfirstIndex = this.femaleArray[9];
 	    /* Moves the female buttons */
 	    this.femaleArray.unshift(newfirstIndex);
@@ -290,7 +305,8 @@ const vm = new Vue({
 	    this.femaleArray[0].id = 10;
 	    this.femaleArray[0].matchId = 0;	    
 	    this.closeFemaleNav(10);
-	    this.closeMaleNav(0);     
+	    this.closeMaleNav(0);
+	    socket.emit('signal');
 	},
 	popup: function(both) {
 	    this.maleClick(both);

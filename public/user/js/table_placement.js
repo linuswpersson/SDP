@@ -1,22 +1,22 @@
-
-
 const vm = new Vue({
-    el: '#buttons',
+    el: '#content',
     data: {
-	infoHelp: 'table_placement.html',
-	joinSeat: 'dating_progress.html',
+	next : 'dating_progress.html',
+	back : 'meeting_table.html',
     },
+
     methods: {
-	infoHelpClick: function() {
-	    document.location.href = this.infoHelp;
+	
+	backClick: function() {
+	    document.location.href = this.back;
 	},
-	joinSeatClick: function(){
 
-	    document.location.href = this.joinSeat;
-		
+	nextClick: function() {
+	    document.location.href = this.next;
+	},
+
+	
     },
-
-	},
 })
 
 const vm2 = new Vue({

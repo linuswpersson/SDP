@@ -1,41 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <link rel="stylesheet" type="text/css" href="/user/css/review_style.css">
-  <script src="/socket.io/socket.io.js" defer></script>
-<script src="https://vuejs.org/js/vue.js"></script>
-<script src="/user/js/review_functions.js" defer></script>
- 
+	<link rel="stylesheet" type="text/css" href="/user/css/review_style.css">
+	<script src="/socket.io/socket.io.js" defer></script>
+	<script src="https://vuejs.org/js/vue.js"></script>
+	<script src="/user/js/review_functions.js" defer></script>
 </head>
 
 <body>
-<div class="content">
-<div class="header">
-<div class="headertext">
-Partner review
-</div>
-</div>
-<br>
+	<div class="content">
+		<div class="header">
+			<div class="headertext">
+				Partner review
+			</div>
+		</div>
+		<br>
 
-<div class="bodytext">
-What did you think about the meeting? 
-<br><br>
-Rate below!
-</div>
+		<div class="bodytext">
+			What did you think about the meeting?
+			<br><br>
+			Rate below!
+		</div>
 
-<div id='rating'> 
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
-<section id="buttons">
-<input v-model="ratingMessage" type="textbox" placeholder="Describe how the date went"> </input>
-<button class="checkmarkbutton" v-on:click="userHomeClick()">✔</button>
- </section>
-<!--<button class="checkmarkbutton" onclick="window.history.go(-1)"> ✔  </button>-->
- 
-</div>
+		<!--<div id='rating'>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>-->
+
+		<div class="stars" data-rating="3">
+			<span class="star">&nbsp;</span>
+			<span class="star">&nbsp;</span>
+			<span class="star">&nbsp;</span>
+			<span class="star">&nbsp;</span>
+			<span class="star">&nbsp;</span>
+		</div>
+		<!--<p>The number shown after the CSS is generated with a CSS counter.</p>-->
+		<br>
+
+		<section id="apps">
+			<div class="textbox"> <input v-model="ratingMessage" type="textbox" placeholder="Describe your experience">
+				</input></div>
+			<button class="checkmarkbutton" v-on:click="userHomeClick()">ok</button>
+		</section>
+
+	</div>
 </body>
+
 </html>

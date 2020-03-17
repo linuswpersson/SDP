@@ -30,9 +30,6 @@
 	<div class="box innerGrid">
 	  <div class="box manUser" v-for="user in maleArray">
 	    <button class="maleButton" v-on:click="maleClick(user.id)" :id="user.id"> {{user.name}} </button>
-	    <div id="mySidenav" class="sidenav">
-	      <a href="javascript:void(0)" class="closebtn" v-on:click="closeMaleNav()">&times;</a>
-	    </div>
 	  </div>
         </div>
 	<div class="box innerGrid">
@@ -43,12 +40,23 @@
 	<div class="box innerGrid">
 	  <div class="box femaleUser" v-for="user in femaleArray">
 	    <button class="femaleButton" v-on:click="femaleClick(user.id)" :id="user.id"> {{user.name}} </button>
-	    <div id="mySidenavf" class="sidenavF">
-	      <a href="javascript:void(0)" class="closebtnF" v-on:click="closeFemaleNav()">&times;</a>
-	    </div>
 	  </div>
 	</div>
       </div>
+    </div>
+    <div id="mySidenav" class="sidenav maleNav">
+      <a href="javascript:void(0)" class="closebtn" v-on:click="closeMaleNav()">&times;</a>
+      <div id="mySidenavName" class="navName"></div>
+      <img id="mySidenavImg" class="navImg"></img>
+      <div id="mySidenavBubbles" class="navBubbles"></div>
+      <div id="mySidenavDates" class="navDates"></div>
+    </div>
+    <div id="mySideFnav" class="sidenav femNav">
+      <a href="javascript:void(0)" class="closebtnF" v-on:click="closeFemaleNav()">&times;</a>
+      <div id="mySideFnavName" class="navName"></div>
+      <img id="mySideFnavImg" class="navImg"></img>
+      <div id="mySideFnavBubbles" class="navBubbles"></div>
+      <div id="mySideFnavDates" class="navDates"></div>
     </div>
     <div class="box h">
       <br>
@@ -58,7 +66,7 @@
       <button id="matchButton" v-on:click="unmatch()"> UNMATCH </button>
       
 	
- </div>
+    </div>
     <div class="box c">
       <div class= "boxHeader">
 	<div class="boxHeadertext"> Time </div>

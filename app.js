@@ -85,7 +85,7 @@ io.on('connection', function(socket) {
     socket.emit('getUsers', {username: data.name,phone: data.phone, gender: data.gender, seeking: data.seeking, userIndex: data.userIndex});
     socket.emit('getImage', {userImagePath: data.userImagePath});
     socket.emit('getBubbles', {userBubbles: data.userBubbles});
-    socket.emit('hello', { gender: data.gender, name: data.name, picpath: data.userImagePath});
+    socket.emit('hello', { gender: data.gender, name: data.name, picpath: data.userImagePath, userBubbles: data.userBubbles});
     /*-----------------------------------------------------------------*/
     
     /* Updates image whenever a new one is selected. */

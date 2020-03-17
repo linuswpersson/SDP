@@ -38,11 +38,11 @@ p {
 }
 
 .boxHeader{
-  margin: 0 auto;
-  width: 100%;
-  height: 40px;
-  background: #CE6679;
-  position: relative;
+    margin: 0 auto;
+    width: 100%;
+    height: 40px;
+    background: #CE6679;
+    position: relative;
 }
 
 .boxHeadertext{
@@ -83,7 +83,7 @@ p {
 
 }
 
-  /*IGNORE ANYTHING CONTAINING OMEGA, It is the grid inside box b. */
+/*IGNORE ANYTHING CONTAINING OMEGA, It is the grid inside box b. */
 .OMEGA {
     display: grid;
     grid-template-columns: 33% 33% 33%;
@@ -120,7 +120,7 @@ p {
 
 #breakline {
     grid-column: 0;
-   
+    
 }
 
 .maleButton {
@@ -151,27 +151,27 @@ p {
 }
 
 .clocktext{
-	margin: 10px;
-	text-align: center;
-	font-size: 25px;
+    margin: 10px;
+    text-align: center;
+    font-size: 25px;
 }
 
 #clock{
-	text-align: center;
-	font-size: 42px;
-	color: lightgrey;
+    text-align: center;
+    font-size: 42px;
+    color: lightgrey;
 }
 
 .d {
     grid-column: 1;
     grid-row: 3;
     background-color: #525252;
-	
+    
     text-align: center;
 }
 
 .starteventtext{
-	font-size: 25px;
+    font-size: 25px;
 }
 
 .e {
@@ -182,8 +182,8 @@ p {
 }
 
 .scheduletext{
-	text-align: center;	
-	font-size: 25px;
+    text-align: center;	
+    font-size: 25px;
 }
 
 footer{
@@ -213,129 +213,107 @@ footer{
 }
 
 #startevent {
-  background-color:#CE6679; 
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: block;
-  font-size: 16px;
-  border-radius: 6px;
-  margin: 0 auto;
+    background-color:#CE6679; 
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    border-radius: 6px;
+    margin: 0 auto;
 }
 
 #matchButton {
     width: 80%;
-  background-color:#CE6679; 
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: block;
-  font-size: 16px;
-  border-radius: 6px;
-  margin: 0 auto;
+    background-color:#CE6679; 
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    border-radius: 6px;
+    margin: 0 auto;
 }
 
- /* Nav for male */
+/* shared nav classes */
+
 .sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #4d2c3b;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    background-color: #4d2c3b;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
 }
 
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: white;
-  display: block;
-  transition: 0.3s;
+.maleNav {
+    left: 0;
 }
 
-.sidenav a:hover {
-  color: #f1f1f1;
+.femNav {
+    right: 0;
 }
+
+.navName {
+    font-size: 50px;
+    color: white;
+}
+
+.navImg {
+    width: 350px;
+    height: 250px;
+}
+
+.navDates h6 {
+    font-size: 20px;
+    color: white;
+}
+
+.navDates p {
+    font-size: 15px;
+    color: white;
+}
+
+.navBubbles {
+    height: auto;
+    width: 90%;
+    align-content: flex-start;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20%;
+    background-color: lightgrey;
+    grid-column-gap: 4%;
+    grid-row-gap: 4%;
+}
+
+.navBubbles div {
+    height: 100%;
+    width: 100%;
+}
+
+
+/* sideNav closebuttons */
 
 .sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: white;
+    text-decoration: none;
 }
 
-
-
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 50px;}
-  
-  .sidenav div {
-      font-size: 50px;
-      color: white;
-  }
-  .sidenav h6 {
-      font-size: 20px;
-      color: white;
-  }
-
-
-/* Nav for female */
-
-.sidenavF {
-  right: 0;
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  background-color: #4d2c3b;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
-
-.sidenavF a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: white;
-  text-align:right;
-  display: block;
-  transition: 0.3s;
-  
-}
-
-.sidenavF a:hover {
-  color: #f1f1f1;
-}
-
-.sidenavF .closebtnF {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-  .sidenavF {padding-top: 15px;}
-  .sidenavF a {
-      font-size: 50px;
-  }
-  .sidenavF div {
-      font-size: 50px;
-      color: white;
-  }
-  .sidenavF h6 {
-      font-size: 20px;
-      color: white;
-  }
-  .sidenavF a {font-size: 18px;}
+.sidenav .closebtnF {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: white;
+    text-decoration: none;
 }

@@ -412,7 +412,7 @@ const vm = new Vue({
     //to get matches array before page loads
     beforeMount(){
 	this.getMatches()
-	
+	socket.emit('sendTablePlacement', this.matches);
     },
 })
 

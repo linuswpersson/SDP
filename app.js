@@ -130,6 +130,11 @@ io.on('connection', function(socket) {
 	data.saveHostInfo(datar);
     });
 
+    
+    socket.on('sendTablePlacement', function(matches){
+	data.matches = matches;
+	console.log(data.matches);
+    });
     /*------------------------------------------------------------------*/
 
 

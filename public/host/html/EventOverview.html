@@ -1,16 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+  
+  <head>
+    <link rel="stylesheet" type="text/css" href="../css/EventOverview.css">
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="/vue/vue.js" defer></script>
+    <script src="../js/EventOverviewVue.js" defer> </script>
+    <script src="../js/EventOverview.js" defer></script>
+    <title>Event overview</title>
+  </head>
+  <body onload="startTime()">
+    <div class="wrapper" id="app">
+      
+      
+      <div id="tablePlacement" class="tablePlacementModal">
+	<div class="tablePlacementModal-content">
+	  <div id="closeModal" v-on:click="closeTablePlacement()">&times</div>
+	  <div id="tableMap">
+	    <div v-for="(_,index) in Array(10)" :id="'table' + index" :class="'table ' + index" v-on:dragover="allowDrop($event)" v-on:drop="dropHandler($event)">table{{index + 1}}
 
-<head>
-  <link rel="stylesheet" type="text/css" href="../css/EventOverview.css">
-  <script src="/socket.io/socket.io.js" defer></script>
-	<script src="/vue/vue.js" defer></script>
-	<script src="../js/EventOverviewVue.js" defer> </script>
-	<script src="../js/EventOverview.js" defer></script>
-	<title>Event overview</title>
-</head>
-<body onload="startTime()">
-  <div class="wrapper" id="app">      
+	      <div class="matchItem" v-for="(match, matchIndex) in matches" v-if="match.tableNum == index" v-on:dragstart="dragstartHandler($event)" draggable="true" :id="'match '+matchIndex">
+		<span id="maleName">{{match.maleName}}</span> <span id="femaleName">{{match.femaleName}}</span>
+	      </div>
+	      
+	    </div>
+	  </div>
+	  <div id="matchList">
+	  
+	  </div>
+	  <button id="confirmPlacementButton" class="matchButton" v-on:click="confirmTablePlacement()">
+	    Confirm
+	  </button>
+	</div>
+      </div>
+    
     <div class="box a">
       <div class="boxHeader">
 	<div class="boxHeadertext">Demo Event</div>
@@ -54,8 +77,8 @@
       <br>
       <br>
       <br>
-      <button id="matchButton" v-on:click="rematch()"> REMATCH </button> <br>
-      <button id="matchButton" v-on:click="unmatch()"> UNMATCH </button>
+      <button class="matchButton" v-on:click="rematch()"> REMATCH </button> <br>
+      <button class="matchButton" v-on:click="unmatch()"> UNMATCH </button>
       
 	
  </div>
@@ -64,6 +87,8 @@
 	<div class="boxHeadertext"> Time </div>
       </div>
       <div id="clock"></div>
+      <br>
+      <button id="tablesButton" class="matchButton" v-on:click="tablePlacementButton()"> TABLE PLACEMENT</button>
     </div>
     <div class="box d">
       <div class="starteventtext">

@@ -1,8 +1,15 @@
+const socket = io();
+
 const vm = new Vue({
-    el: '#buttons',
+    el: '#content',
     data: {
 	joinEvent: 'join_event.html',
 	nextEvent: 'meeting_table.html',
+	eventName: '',
+	eventStartTime: '',
+	times: '',
+	dateSpan: '',
+	
     },
     methods: {
 	joinEventClick: function() {
@@ -12,5 +19,15 @@ const vm = new Vue({
 		document.location.href = this.nextEvent;
 	},
 
-	},
+    },
+    created: function() {
+	socket.on('getEventInfo', function(evInfo) {
+	    this.eventName = evInfo.eventName;
+	    this.eventStartTime = evInfo.eventStartTime;
+	    this.times = evInfo.times;
+	    this.dateSpan = evInfo.dateSpan;
+	    console.log(this.eventName + this.eventStartTime + this.times + this.dateSpan);
+	}.bind(this));
+    },
+    
 })

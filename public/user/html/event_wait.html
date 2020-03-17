@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="/user/css/event_wait.css">
-<script src="https://vuejs.org/js/vue.js" defer></script>
-<script src="/user/js/event_wait.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="/user/css/event_wait.css">
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="https://vuejs.org/js/vue.js" defer></script>
+  <script src="/user/js/event_wait.js" defer></script>
 
 </head>
 
 <body>
-<div class="content">
-<div class="header">
-<div class="headertext">
-Event x
-</div>
-</div>
-
-<br>
-<div class="bodytext">
-Waiting for host to start the meeting...
-<br><br>
-</div>
-<hr>
-<footer> <p> Meeting 1</p><p> 15:15 - 15:35 </p></footer>
-<hr>
-<footer> <p> Meeting 2</p><p> 15:45 - 16:05 </p></footer>
-<hr>
-<footer> <p> Meeting 3</p><p> 16:15 - 16:35 </p></footer>
-<hr>
-
-<section id="buttons">
-<button class="leavebutton" v-on:click="joinEventClick()">Leave Event</button>
-<button class="nextbutton" v-on:click="nextEventClick()">Next</button>
- </section>
- 
-</div>
+  <div id="content">
+    <div class="header">
+      <div class="headertext">
+	{{eventName}}
+      </div>
+    </div>
+    
+    <br>
+    <div class="bodytext">
+      Waiting for host to start the meeting...
+      <br><br>
+    </div>
+    
+    <hr>
+    <footer v-for="(time,i) in times"> <p> Meeting 1</p><p> {{time}} - {{dateSpan[i]}} </p></footer>
+    <!--
+    <footer> <p> Meeting 1</p><p> 15:15 - 15:35 </p></footer>
+    <hr>
+    <footer> <p> Meeting 2</p><p> 15:45 - 16:05 </p></footer>
+    <hr>
+    <footer> <p> Meeting 3</p><p> 16:15 - 16:35 </p></footer>
+    -->
+    <hr>
+    
+    <section id="buttons">
+      <button class="leavebutton" v-on:click="joinEventClick()">Leave Event</button>
+      <button class="nextbutton" v-on:click="nextEventClick()">Next</button>
+    </section>
+    
+  </div>
 </body>
 
 </html>

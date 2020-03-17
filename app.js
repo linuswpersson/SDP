@@ -56,6 +56,8 @@ function Data() {
     this.eventDate = '';
     this.eventEmail = '';
     this.eventLocation = '';
+    this.times = [];
+    this.dateSpan = [];
     
     
 }
@@ -108,6 +110,10 @@ io.on('connection', function(socket) {
     socket.emit('hello', { gender: data.gender, name: data.name, picpath: data.userImagePath, userBubbles: data.userBubbles, eventName: data.eventName, eventTimeTo: data.eventTimeTo, eventTimeFrom: data.eventTimeFrom, eventMessage: data.eventMessage, eventDate: data.eventDate, eventEmail: data.eventEmail, eventLocation: data.eventLocation});
 
     /*-----------------------------------------------------------------*/
+    // sending event info to user
+    socket.emit('getEventInfo', {eventName: data.eventName, eventStartTime: data.eventTimeFrom, times: data.times, dateSpan: data.dateSpan});
+
+    /*-----------------------------------------------------------------*/
     
     /* Updates image whenever a new one is selected. */
     socket.on('loadImage', function(load){
@@ -134,6 +140,12 @@ io.on('connection', function(socket) {
     socket.on('sendTablePlacement', function(matches){
 	data.matches = matches;
 	console.log(data.matches);
+    });
+
+    socket.on('sendDateTimes', function(times){
+	data.times = times.times;
+	data.dateSpan = times.dateSpan;
+	
     });
     /*------------------------------------------------------------------*/
 

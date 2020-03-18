@@ -181,7 +181,7 @@ const vm = new Vue({
 	    }
 	},
 
-	},
+	
 	openMaleNav: function(male) {
 	    document.getElementById("mySidenav").style.width = "33vw";
 	    this.currMale = male;
@@ -242,16 +242,18 @@ const vm = new Vue({
 	    socket.emit('signal');
 	    let p = document.getElementById("phase");
 	    let oldtimes = document.getElementById("times");
-	    if (this.phase < 3){
+	    if (this.phase < 3) {
 		let i = 0;
 		/* simulate ratings from 0 to 5*/ 
 		for (i ; i < 10; i++) {
-		    this.maleArray[i].previousDate[this.phase-1] = this.femaleArray[i].name;
-		    this.femaleArray[i].previousDate[this.phase-1] = this.maleArray[i].name;
+		    //ändrade här så att ett objekt med namn och bild läggs in i previous date
+		    //som jag ska använda för att skicka till user
+		    this.maleArray[i].previousDate[this.phase-1] = {name: this.femaleArray[i].name, imgPath: this.femaleArray[i].picpath};
+		    this.femaleArray[i].previousDate[this.phase-1] = {name: this.maleArray[i].name, imgPath: this.maleArray[i].picpath};
 		    this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		    this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		}
-				    
+		
 		if (this.isMale){
 		    this.maleArray[0].rating[this.phase-1] = this.rating[this.phase-1];
 		}		    	    
@@ -272,9 +274,10 @@ const vm = new Vue({
 	    else {
 		let i = 0;
 		for (i ; i < 10; i++) {
-		  
-		    this.maleArray[i].previousDate[this.phase-1] = this.femaleArray[i].name;
-		    this.femaleArray[i].previousDate[this.phase-1] = this.maleArray[i].name;
+		    //ändrade här så att ett objekt med namn och bild läggs in i previous date
+		    //som jag ska använda för att skicka till user
+		    this.maleArray[i].previousDate[this.phase-1] = {name: this.femaleArray[i].name, imgPath: this.femaleArray[i].picpath};
+		    this.femaleArray[i].previousDate[this.phase-1] = {name: this.maleArray[i].name, imgPath: this.maleArray[i].picpath};
 		    this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		    this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		}
@@ -284,7 +287,7 @@ const vm = new Vue({
 		else {
 		    this.femaleArray[this.phase-1].rating[this.phase-1] = this.rating[this.phase-1];
 		}
-	
+		
 		let newphase = document.createElement("Div");
 		let updatephase = document.createTextNode("Event Completed");
 		newphase.appendChild(updatephase);
@@ -311,6 +314,15 @@ const vm = new Vue({
 	    this.femaleArray[0].matchId = 0;	    
 	    this.closeFemaleNav(10);
 	    this.closeMaleNav(0);
+
+	    let prevMatches = [];
+	    if(this.isMale) {
+		prevMatches = this.maleArray[0].previousDate; 
+	    } else {
+		prevMatches = this.femaleArray[this.phase].previousDate;
+	    }
+	    console.log(prevMatches);
+	    socket.emit('sendUserMatches', prevMatches);
 	},
 	popup: function(both) {
 	    this.maleClick(both);
@@ -354,7 +366,7 @@ const vm = new Vue({
 	    }
 	},
 
- 	////
+	////
 	//// TABLEPLACEMENT CODE
 	//// 
 	tablePlacementButton: function() {
@@ -405,17 +417,15 @@ const vm = new Vue({
 	confirmTablePlacement: function() {
 	    console.log(this.matches);
 	    socket.emit('sendTablePlacement', this.matches);
-	}
+	},
 	////
 	//// TABLEPLACEMENT CODE END
 	//// 
-
     },
     
     //to get matches array before page loads
     beforeMount(){
-	this.getMatches()
+	this.getMatches();
 	socket.emit('sendTablePlacement', this.matches);
     },
 })
-

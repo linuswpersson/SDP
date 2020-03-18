@@ -1,11 +1,11 @@
+const socket = io();
+
 const vm = new Vue({
     el: '#pageWrapper',
 
     data: {
-	contactPage: 'contact_page.html'
-	date1: {name: '', imgPath: ''},
-	date2: {name: '', imgPath: ''},
-	date3: {name: '', imgPath: ''},
+	contactPage: 'contact_page.html',
+	userPreviousMatches: [{name: 'no data from server1', imgPath: ''}, {name: 'no data from server2', imgPath: ''}, {name: 'no data from server3', imgPath: ''}],
     },
 
     methods: {
@@ -14,9 +14,12 @@ const vm = new Vue({
 	},
     },
     created: function(){
-	socket.on('getUserMatches', function(data) {
-	    
-	});
+	socket.on('getUserMatches', function(prevMatches) {
+	    console.log(this.userPreviousMatches);
+	    this.userPreviousMatches = prevMatches.matches;
+	    console.log(prevMatches);
+	    console.log(this.userPreviousMatches);
+	}.bind(this));
     },
     
 })

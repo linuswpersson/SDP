@@ -17,6 +17,8 @@ const vm = new Vue({
 	dateSpan: [],
 	currMale : -1,
 	currFemale : -1,
+	rating: [],
+	isMale: true,
 	
 	maleArray : [
 	    {name : 'Johan', matchId : 10, id : 0, image: 20, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
@@ -61,8 +63,11 @@ const vm = new Vue({
 		    this.femaleArray[0].picpath = data.picpath;
 		    this.femaleArray[0].bubbleArray.splice(data.userBubbles.length);
 		    this.femaleArray[0].bubbleArray = data.userBubbles;
+		    this.isMale = false;
+
 		}
 	    }
+	    this.rating = data.rating;
 	    this.eventName = data.eventName;
 	    this.eventTimeFrom = data.eventTimeFrom;
 	    this.eventTimeTo = data.eventTimeTo;
@@ -266,6 +271,14 @@ const vm = new Vue({
 		    this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		    this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		}
+				    
+		if (this.isMale){
+		    this.maleArray[0].rating[this.phase-1] = this.rating[this.phase-1];
+		}		    	    
+		else {
+		    this.femaleArray[this.phase-1].rating[this.phase-1] = this.rating[this.phase-1];
+		}
+		
 		this.phase += 1;
 		let newphase = document.createElement("Div");
 		let updatephase = document.createTextNode("Date " + this.phase);
@@ -285,6 +298,13 @@ const vm = new Vue({
 		    this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		    this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		}
+		if (this.isMale){
+		    this.maleArray[0].rating[this.phase-1] = this.rating[this.phase-1];
+		}		    	    
+		else {
+		    this.femaleArray[this.phase-1].rating[this.phase-1] = this.rating[this.phase-1];
+		}
+	
 		let newphase = document.createElement("Div");
 		let updatephase = document.createTextNode("Event Completed");
 		newphase.appendChild(updatephase);
@@ -295,6 +315,9 @@ const vm = new Vue({
 		oldtimes.replaceChild(times, oldtimes.childNodes[0]);
 	    }
 	    
+	    console.log(this.rating[0]);
+	    console.log(this.rating[1]);
+	    console.log(this.rating[2]);
 	    let newfirstIndex = this.femaleArray[9];
 	    /* Moves the female buttons */
 	    this.femaleArray.unshift(newfirstIndex);
@@ -412,7 +435,7 @@ const vm = new Vue({
     //to get matches array before page loads
     beforeMount(){
 	this.getMatches()
-	
+	socket.emit('sendTablePlacement', this.matches);
     },
 })
 

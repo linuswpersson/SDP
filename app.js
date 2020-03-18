@@ -41,7 +41,8 @@ function Data() {
     this.seeking = '';
     this.phone = '';
     this.name = '';
-    this.rating = 0;
+    this.ratingIndex = 0;
+    this.rating = [null, null, null];
     this.ratingMessage = '';
     this.users = [''];
     this.userIndex = 0;
@@ -72,8 +73,9 @@ Data.prototype.saveImage = function(image){
 /* Add rating to queue */
 /* Hopefully there is a better looking way of saving these. */
 Data.prototype.saveRating = function(rating, message) {
-    this.rating = rating;
+    this.rating[this.ratingIndex] = rating;
     this.ratingMessage = message;
+    this.ratingIndex += 1;
 }
 
 Data.prototype.getUserArray = function(){
@@ -107,7 +109,7 @@ io.on('connection', function(socket) {
     socket.emit('getUsers', {username: data.name,phone: data.phone, gender: data.gender, seeking: data.seeking, userIndex: data.userIndex});
     socket.emit('getImage', {userImagePath: data.userImagePath});
     socket.emit('getBubbles', {userBubbles: data.userBubbles});
-    socket.emit('hello', { gender: data.gender, name: data.name, picpath: data.userImagePath, userBubbles: data.userBubbles, eventName: data.eventName, eventTimeTo: data.eventTimeTo, eventTimeFrom: data.eventTimeFrom, eventMessage: data.eventMessage, eventDate: data.eventDate, eventEmail: data.eventEmail, eventLocation: data.eventLocation});
+    socket.emit('hello', { gender: data.gender, name: data.name, picpath: data.userImagePath, userBubbles: data.userBubbles, eventName: data.eventName, eventTimeTo: data.eventTimeTo, eventTimeFrom: data.eventTimeFrom, eventMessage: data.eventMessage, eventDate: data.eventDate, eventEmail: data.eventEmail, eventLocation: data.eventLocation, rating: data.rating});
 
     /*-----------------------------------------------------------------*/
     // sending event info to user
@@ -149,7 +151,7 @@ io.on('connection', function(socket) {
     });
 
     socket.on('signal', function(){
-	io.sockets.emit('signalFrom');
+      io.sockets.emit('signalFrom');
     });
     /*------------------------------------------------------------------*/
 

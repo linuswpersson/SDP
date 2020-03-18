@@ -1,42 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<link rel="stylesheet" type="text/css" href="/user/css/meeting_table.css">
-<script src="https://vuejs.org/js/vue.js" defer></script>
-<script src="/user/js/meeting_table.js" defer></script>
 
+<head>
+	<link rel="stylesheet" type="text/css" href="/user/css/table_placement.css">
+	<script src="https://vuejs.org/js/vue.js"></script>
+	<script src="/user/js/table_placement.js" defer></script>
+	<meta charset="UTF-8">
+	<title>Table Placement</title>
 </head>
 
 <body>
-<div class="content">
-<div class="header">
-<div class="headertext">
-MATCHED!
-</div>
-</div>
-<br>
-
-<div class="bodytext">
-You are meeting...
-<br><br>
-</div>
-
-<div class="meetingtext">
-<img src="/user/img/pp_test/stock4.jpeg" alt="Per-Åke" width="250" height="220">
-<p> Per-Åke</p>
-<p> Table 4</p>
-</div>
-
-<section id="buttons">
-<button class="iamherebutton" v-on:click="joinSeatClick()">I AM HERE!</button>
-
-<div class="info">
-<button class="infobutton" v-on:click="infoHelpClick()">!</button>
-<div id="helptext">
-Table Placement
-</div>
-</section>
-
+	<section id="content">
+		<header>
+			<h2>Table Placement</h2>
+		</header>
    <div class="wrapper" id="app">
       
       
@@ -57,10 +34,15 @@ Table Placement
 	</div>
       </div>
 
- 
-
-</div>
- 
-</div>
+		<section id="buttons_section">
+			<p>
+				<button class="linkButton" id="backButton" v-on:click="backClick()">back</button>
+			</p>
+			<p>
+				<button class="linkButton" id="nextButton" type="submit" v-on:click="nextClick()">next</button>
+			</p>
+		</section>
+	</section>
 </body>
+
 </html>

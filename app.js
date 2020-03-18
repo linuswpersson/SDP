@@ -50,6 +50,8 @@ function Data() {
     this.userBubbles = [];
     this.femaleIndex= 10;
 
+    this.userPreviousMatches = [{name: 'test data from server1', imgPath: ''}, {name: 'test data from server2', imgPath: ''}, {name: 'test data from server3', imgPath: ''}];
+
     this.eventName = '';
     this.eventTimeTo = '';
     this.eventTimeFrom = '';
@@ -115,6 +117,9 @@ io.on('connection', function(socket) {
     // sending event info to user
     socket.emit('getEventInfo', {eventName: data.eventName, eventStartTime: data.eventTimeFrom, times: data.times, dateSpan: data.dateSpan});
 
+    //sending previous matches to user
+    socket.emit('getUserMatches', {matches: data.userPreviousMatches});
+
     /*-----------------------------------------------------------------*/
     
     /* Updates image whenever a new one is selected. */
@@ -148,6 +153,10 @@ io.on('connection', function(socket) {
 	data.times = times.times;
 	data.dateSpan = times.dateSpan;
 	
+    });
+
+    socket.on('sendUserMatches', function(prevMatches){
+	data.userPreviousMatches = prevMatches;
     });
 
     socket.on('signal', function(){

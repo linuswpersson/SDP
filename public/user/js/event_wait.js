@@ -23,6 +23,7 @@ const vm = new Vue({
     },
     created: function() {
 	socket.on('signalFrom', function(){
+	    console.log("recieved signal to start date");
 	    document.location.href = 'meeting_table.html';
 	});
 	socket.on('getEventInfo', function(evInfo) {

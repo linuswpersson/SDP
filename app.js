@@ -149,7 +149,7 @@ io.on('connection', function(socket) {
     });
 
     socket.on('signal', function(){
-	socket.emit('signalFrom');
+	io.sockets.emit('signalFrom');
     });
     /*------------------------------------------------------------------*/
 

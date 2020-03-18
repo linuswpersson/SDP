@@ -308,7 +308,6 @@ const vm = new Vue({
 	    this.femaleArray[0].matchId = 0;	    
 	    this.closeFemaleNav(10);
 	    this.closeMaleNav(0);
-	    socket.emit('signal');
 	},
 	popup: function(both) {
 	    this.maleClick(both);

@@ -22,6 +22,7 @@ const vm = new Vue({
     },
     created: function() {
 	socket.on('signalFrom', function(){
+	    console.log("mess recived!");
 	    document.location.href = 'meeting_table.html';
 	});
 	socket.on('getEventInfo', function(evInfo) {

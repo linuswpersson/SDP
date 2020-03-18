@@ -180,27 +180,7 @@ const vm = new Vue({
 		return false;
 	    }
 	},
-	femaleDateHandler: function(female, date) {
-	    if(this.femaleArray[female-10].rating[date-1] != null) {
-		var dateElement = document.getElementById("mySideFnavDates");
-		let dateHeader = document.createElement("H6");
-		let dateText = document.createTextNode("DATE " + date + ":");
-		dateHeader.appendChild(dateText);
-		
-		let dateWith = document.createElement("p");
-		let dateWithWho = document.createTextNode("Date with : " + this.femaleArray[female-10].previousDate[date-1]);
-		dateWith.appendChild(dateWithWho);
-		let ratingElement = document.createElement("p");
-		let fetchedRating = document.createTextNode("rating : "+this.femaleArray[female-10].rating[date-1]);
-		ratingElement.appendChild(fetchedRating);
-		dateElement.appendChild(dateHeader);
-		dateElement.appendChild(dateWith);
-		dateElement.appendChild(ratingElement);
-		return true;
-	    }
-	    else {
-		return false;
-	    }
+
 	},
 	openMaleNav: function(male) {
 	    document.getElementById("mySidenav").style.width = "33vw";

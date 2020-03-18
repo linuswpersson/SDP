@@ -23,14 +23,7 @@
     </div>
     
     <hr>
-    <footer v-for="(time,i) in times"> <p> Meeting 1</p><p> {{time}} - {{dateSpan[i]}} </p></footer>
-    <!--
-    <footer> <p> Meeting 1</p><p> 15:15 - 15:35 </p></footer>
-    <hr>
-    <footer> <p> Meeting 2</p><p> 15:45 - 16:05 </p></footer>
-    <hr>
-    <footer> <p> Meeting 3</p><p> 16:15 - 16:35 </p></footer>
-    -->
+    <footer v-for="(time,i) in times"> <p> Date {{i+1}}</p><p> {{time}} - {{dateSpan[i]}} </p></footer>
     <hr>
     
     <section id="buttons">

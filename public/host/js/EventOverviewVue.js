@@ -345,6 +345,7 @@ const vm = new Vue({
 	    }
 	    console.log(prevMatches);
 	    socket.emit('sendUserMatches', prevMatches);
+	    
 	},
 	popup: function(both) {
 	    this.maleClick(both);

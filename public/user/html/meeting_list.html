@@ -23,57 +23,14 @@
 	  <div class="imgWrapper" >
 	    <img class="profileImg" :src="prevMatch.imgPath">
 	  </div>
-	  
 	  <span>{{prevMatch.name}}</span>
-	  
 	  <div class="shareCheckbox">
-	    <input type="checkbox" :id="'checkbox_' + index">
+	    <input type="checkbox" :id="'checkbox_' + index" :value="prevMatch.name" v-model="checkedDate">
 	    <label :for="'checkbox_' + index"><span>Share?</span></label>
 	  </div>
 	  
 	</div>
 	
-	<!--
-	    <div class="match" id="match1">
-	      
-	      <div class="imgWrapper" >
-		<img class="profileImg" src="/user/img/pp_test/stock1.jpeg">
-	      </div>
-	      
-	      <span>Per-Åke</span>
-	      
-	      <div class="shareCheckbox">
-		<input type="checkbox" id="checkbox_1">
-		<label for="checkbox_1"><span>Share?</span></label>
-	      </div>
-	      
-	    </div>
-	    
-	    <div class="match" id="match2">
-	      <div class="imgWrapper" >
-		<img class="profileImg" src="/user/img/pp_test/stock2.jpg">
-	      </div>
-	      <span>Erik</span>
-
-	      <div class="shareCheckbox">
-		<input type="checkbox" id="checkbox_2">
-		<label for="checkbox_2"><span>Share?</span></label>
-	      </div>
-	      
-	    </div>
-	    <div class="match" id="match3">
-	      <div class="imgWrapper" >
-		<img class="profileImg" src="/user/img/pp_test/stock3.jpg">
-	      </div>
-	      <span>Marcus</span>
-
-	      <div class="shareCheckbox">
-		<input type="checkbox" id="checkbox_3">
-		<label for="checkbox_3"><span>Share?</span></label>
-	      </div>
-	      
-	    </div>
-	    -->
       </div>
       <div id="okButton">
 	<button class="linkButton" id="nextButton" type="submit" v-on:click="nextClick()">✔</button>

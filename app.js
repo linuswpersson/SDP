@@ -126,6 +126,12 @@ io.on('connection', function(socket) {
     //sending contact info of matches to user
     socket.emit('sendMatchContactInfo', {contact: data.userShareContactInfoResponse});
     /*-----------------------------------------------------------------*/
+
+    /*--------------------------------*/
+    //Table placement on user view
+    socket.emit('recieveTablePlacement',{matches: data.matches, name: data.name, info: data.userPreviousMatches});
+
+    /*--------------------------------*/
     
     /* Updates image whenever a new one is selected. */
     socket.on('loadImage', function(load){

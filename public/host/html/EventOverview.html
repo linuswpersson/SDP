@@ -113,7 +113,7 @@
 	<p id="times">
 	  <!-- time schedule--> {{times[0]}} </p>
       </div>
-      <button id="startevent"  v-on:click="startEvent()"> START EVENT</button>
+      <button id="startevent"  v-on:click="startEvent(); confirmTablePlacement();"> START EVENT</button>
     </div>
     <div class="box e">
        <div class="boxHeader">

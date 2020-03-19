@@ -6,11 +6,16 @@ const vm = new Vue({
     data: {
 	contactPage: 'contact_page.html',
 	userPreviousMatches: [{name: 'no data from server1', imgPath: ''}, {name: 'no data from server2', imgPath: ''}, {name: 'no data from server3', imgPath: ''}],
+	checkedDate: [],
+	
     },
 
     methods: {
 	nextClick: function() {
-	     document.location.href = this.contactPage;
+	    //printing which checkbox been checked
+	    console.log(this.checkedDate);
+	    socket.emit('userShareContactInfo', this.checkedDate);
+	    document.location.href = this.contactPage;
 	},
     },
     created: function(){

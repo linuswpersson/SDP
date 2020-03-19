@@ -52,6 +52,9 @@ function Data() {
 
     this.userPreviousMatches = [{name: 'test data from server1', imgPath: ''}, {name: 'test data from server2', imgPath: ''}, {name: 'test data from server3', imgPath: ''}];
 
+    this.userShareContactInfo = [];
+    this.userShareContactInfoResponse = [];
+    
     this.eventName = '';
     this.eventTimeTo = '';
     this.eventTimeFrom = '';
@@ -120,6 +123,8 @@ io.on('connection', function(socket) {
     //sending previous matches to user
     socket.emit('getUserMatches', {matches: data.userPreviousMatches});
 
+    //sending contact info of matches to user
+    socket.emit('sendMatchContactInfo', {contact: data.userShareContactInfoResponse});
     /*-----------------------------------------------------------------*/
     
     /* Updates image whenever a new one is selected. */
@@ -157,6 +162,30 @@ io.on('connection', function(socket) {
 
     socket.on('sendUserMatches', function(prevMatches){
 	data.userPreviousMatches = prevMatches;
+    });
+
+    socket.on('userShareContactInfo', function(checkedDate){
+	//this can be changed so that we use actual contactinfo
+	//now we just randomly choose if the other person wants to share contact info
+	//and use some data from the userPreviousMatches array
+	data.userShareContactInfo = checkedDate;
+	data.userShareContactInfoResponse = [];
+	for (var element of checkedDate) {
+	    if(Math.floor(Math.random() * 2) == 1) {
+		for(var match of data.userPreviousMatches) {
+		    if(match.name == element) {
+			// just generating random contact info
+			let matchContactInfo = {name: '', imgPath: '', phone: '', email: ''};
+			let phoneNumbers = ['07071234567', '07129876544', '07555555555'];
+			matchContactInfo.name = match.name;
+			matchContactInfo.imgPath = match.imgPath;
+			matchContactInfo.phone = phoneNumbers[Math.floor(Math.random() * phoneNumbers.length)];
+			matchContactInfo.email = match.name + '@email.com';
+			data.userShareContactInfoResponse.push(matchContactInfo);
+		    }
+		}
+	    }
+	}
     });
 
     socket.on('signal', function(){

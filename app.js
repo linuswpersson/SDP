@@ -121,7 +121,7 @@ io.on('connection', function(socket) {
     socket.emit('getUserMatches', {matches: data.userPreviousMatches});
 
     /*-----------------------------------------------------------------*/
-    
+
     /* Updates image whenever a new one is selected. */
     socket.on('loadImage', function(load){
 	socket.emit('getImage', {userImagePath: data.userImagePath})
@@ -161,6 +161,10 @@ io.on('connection', function(socket) {
 
     socket.on('signal', function(){
       io.sockets.emit('signalFrom');
+    });
+
+    socket.on('userJoined', function(){
+	io.sockets.emit('userHasJoined', {gender: data.gender, name: data.name, picpath: data.userImagePath, userBubbles: data.userBubbles});
     });
     /*------------------------------------------------------------------*/
 

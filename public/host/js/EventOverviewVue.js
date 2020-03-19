@@ -19,6 +19,11 @@ const vm = new Vue({
 	currFemale : -1,
 	rating: [],
 	isMale: true,
+	function(){
+	    return
+	    { message: "lys"
+	    }
+	},
 	
 	maleArray : [
 	    {name : 'Johan', matchId : 10, id : 0, image: 20, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
@@ -50,6 +55,13 @@ const vm = new Vue({
 	matches : Array(10),
     },
     created: function(){
+	    
+	socket.on('userHasJoined', function(data){
+	    /* Försök att uppdatera skiten när någon klickar på join event-knappen  */
+	    /* Problemet är att allt lokalt försvinner när vi uppdaterar, alltså är vi tvugna att möjligtvis emitta precis allt som randomgenererats + lägga tillbaka dem igen */
+	    /* Har studerat webhooks och skit men det fungerar som vanligt inte */
+	});
+		
 	socket.on('hello', function(data) {
 	    if (data.name != ''){
 		if (data.gender[0] == ('M')){
@@ -79,7 +91,9 @@ const vm = new Vue({
 	    
 	}.bind(this));
     },
+    	
     methods: {
+
 	calculateDateTimes: function(){
 	    /* i here stands for the number of dates */
 	    /* Default is 3 dates */

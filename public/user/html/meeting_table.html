@@ -31,15 +31,14 @@ MATCHED!
 
 <section id="buttons">
 <button class="mySeat" v-on:click="showResult()">You are meeting...</button>
-<button class="mySeat" v-on:click="">Where is my seat?</button>
+<button class="mySeat" v-on:click="joinSeatClick()">End date!</button>
 </section>
 <!-- tillagt -->
- <h1 class="centered">My Seat</h1>
+ <h1 class="centered">My Seat - Date {{ date}}</h1>
   <div
     v-scroll="handleScroll"
     class="box"
   >
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A atque amet harum aut ab veritatis earum porro praesentium ut corporis. Quasi provident dolorem officia iure fugiat, eius mollitia sequi quisquam.</p>
 
  <div id="tableMap">
 	    <div v-for="(_,index) in Array(10)" :id="'table' + index" :class="'table ' + index" v-on:dragover="allowDrop($event)" v-on:drop="dropHandler($event)">table{{index + 1}}

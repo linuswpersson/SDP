@@ -16,7 +16,7 @@ Vue.directive('scroll', {
 const vm = new Vue({
     el: '#content',
     data: {
-
+	date: 0,   	
 	matches:[],
 	mydate:'',
 	mydatePic:'',
@@ -57,6 +57,7 @@ const vm = new Vue({
 /*				this.mydate= this.myDateInfo[i].name;*/
 			}
 		};
+		this.date++;
 		console.log(this.matches);
 		console.log(this.myDateInfo);
 	},
@@ -68,6 +69,11 @@ const vm = new Vue({
         )
       }
       return window.scrollY > 100
-    }
+    },
+    	joinSeatClick: function(){
+
+	    document.location.href = this.joinSeat;
+		
+    },
 }
 })

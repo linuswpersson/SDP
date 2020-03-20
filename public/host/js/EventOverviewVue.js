@@ -20,7 +20,7 @@ const vm = new Vue({
 	rating: [],
 	isMale: true,
 	userName: '',
-		
+	
 	maleArray : [
 	    {name : 'Johan', matchId : 10, id : 0, image: 20, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
 	    {name : 'Erik', matchId : 11, id : 1, image: 21, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
@@ -94,6 +94,7 @@ const vm = new Vue({
 	    this.eventLocation = data.eventLocation;
 	    this.userName = data.name;
 	    this.calculateDateTimes();
+	    
 	    load();
 	}.bind(this));
 
@@ -285,10 +286,12 @@ const vm = new Vue({
 	    
 	},
 	startEvent: function() {
+	    
 	    socket.emit('signal', {phase: this.phase}); 
 	},
 	nextStage: function() {
-	   
+	    
+	    
 	    let p = document.getElementById("phase");
 	    let oldtimes = document.getElementById("times");
 
@@ -377,12 +380,11 @@ const vm = new Vue({
 		}
 		
 		prevMatches = this.femaleArray[indexOfUser].previousDate;
-		console.log(this.userName);
-		console.log(this.femaleArray[0]);
-		console.log(this.femaleArray[indexOfUser]);
 	    }
 	    console.log(prevMatches);
-	    socket.emit('sendUserMatches', {prevMatches: prevMatches});
+	    socket.emit('sendUserMatches', prevMatches);
+
+
 	    
 	},
 	popup: function(both) {

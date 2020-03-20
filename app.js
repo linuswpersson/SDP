@@ -51,10 +51,12 @@ function Data() {
     this.femaleIndex= 10;
 
     this.userPreviousMatches = [{name: 'test data from server1', imgPath: ''}, {name: 'test data from server2', imgPath: ''}, {name: 'test data from server3', imgPath: ''}];
+    this.phase = 1;
+
 
     this.userShareContactInfo = [];
     this.userShareContactInfoResponse = [];
-    
+
     this.eventName = '';
     this.eventTimeTo = '';
     this.eventTimeFrom = '';
@@ -106,11 +108,16 @@ Data.prototype.saveHostInfo = function(data) {
     this.eventLocation = data.eventLocation;
 }
 
+Data.prototype.savePhase = function(data){
+    this.phase = data.phase;
+}
+
 const data = new Data();
 
 
 io.on('connection', function(socket) {
     /* These are the things loaded upon load */
+    socket.emit('updatePhase', {phase: data.phase});
     socket.emit('getUsers', {username: data.name,phone: data.phone, gender: data.gender, seeking: data.seeking, userIndex: data.userIndex});
     socket.emit('getImage', {userImagePath: data.userImagePath});
     socket.emit('getBubbles', {userBubbles: data.userBubbles});
@@ -170,6 +177,10 @@ io.on('connection', function(socket) {
 	data.userPreviousMatches = prevMatches;
     });
 
+    socket.on('signal', function(currDate){
+	data.savePhase(currDate);
+	io.sockets.emit('signalFrom');
+
     socket.on('userShareContactInfo', function(checkedDate){
 	//this can be changed so that we use actual contactinfo
 	//now we just randomly choose if the other person wants to share contact info
@@ -194,14 +205,11 @@ io.on('connection', function(socket) {
 	}
     });
 
-    socket.on('signal', function(){
-      io.sockets.emit('signalFrom');
     });
 
     socket.on('userJoined', function(){
 	io.sockets.emit('userHasJoined', {gender: data.gender, name: data.name, picpath: data.userImagePath, userBubbles: data.userBubbles});
     });
-
         
     socket.on('saveRating', function (rating,message, fn) {
 	data.saveRating(rating, message);

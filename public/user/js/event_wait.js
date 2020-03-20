@@ -22,9 +22,15 @@ const vm = new Vue({
 
     },
     created: function() {
-	socket.on('signalFrom', function(){
-	    console.log("recieved signal to start date");
-	    document.location.href = 'meeting_table.html';
+	socket.on('signalFrom', function(date){
+	    if(date.phase == 4)
+	    {
+		document.location.href = 'meeting_list.html';
+	    }
+	    else {
+		console.log("recieved signal to start date");
+		document.location.href = 'meeting_table.html';
+	    }
 	});
 	socket.on('getEventInfo', function(evInfo) {
 	    this.eventName = evInfo.eventName;

@@ -168,37 +168,44 @@ io.on('connection', function(socket) {
     });
 
     socket.on('sendUserMatches', function(prevMatches){
-	data.userPreviousMatches = prevMatches;
+	data.userPreviousMatches = prevMatches.prevMatches;
+	console.log(data.userPreviousMatches);
     });
 
     socket.on('signal', function(currDate){
 	data.savePhase(currDate);
-	io.sockets.emit('signalFrom');
+
+	io.sockets.emit('signalFrom', {phase: currDate});
     });
-	socket.on('userShareContactInfo', function(checkedDate){
+
+    socket.on('userShareContactInfo', function(checkedDate){
+
 	//this can be changed so that we use actual contactinfo
 	//now we just randomly choose if the other person wants to share contact info
 	//and use some data from the userPreviousMatches array
-	data.userShareContactInfo = checkedDate;
+	data.userShareContactInfo = checkedDate.checkedDate;
 	data.userShareContactInfoResponse = [];
-	for (var element of checkedDate) {
+	for (var element of checkedDate.checkedDate) {
 	    if(Math.floor(Math.random() * 2) == 1) {
 		for(var match of data.userPreviousMatches) {
 		    if(match.name == element) {
 			// just generating random contact info
 			let matchContactInfo = {name: '', imgPath: '', phone: '', email: ''};
-			let phoneNumbers = ['07071234567', '07129876544', '07555555555'];
+			let phoneNumbers = ['07071234567', '07129876544', '07555555555', '0735647923'];
 			matchContactInfo.name = match.name;
 			matchContactInfo.imgPath = match.imgPath;
 			matchContactInfo.phone = phoneNumbers[Math.floor(Math.random() * phoneNumbers.length)];
 			matchContactInfo.email = match.name + '@email.com';
 			data.userShareContactInfoResponse.push(matchContactInfo);
+			
 		    }
 		}
 	    }
 	}
-	});
-    
+
+    });
+
+
     socket.on('userJoined', function(){
 	io.sockets.emit('userHasJoined', {gender: data.gender, name: data.name, picpath: data.userImagePath, userBubbles: data.userBubbles});
     });

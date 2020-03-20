@@ -102,23 +102,19 @@
       </div>
       <div id="clock"></div>
       <br>
-
+      <button id="tablesButton" class="matchButton" v-on:click="tablePlacementButton()"> TABLE PLACEMENT</button>
     </div>
     <div class="box d">
       <div class="starteventtext">
 	<div class= "boxHeader">
 	<div class="boxHeadertext"> Next Phase: </div>
       </div>
+	
 	<p id="times">
 	  <!-- time schedule--> {{times[0]}} </p>
       </div>
-      <div v-if="!done">
-      <button id="startevent" v-on:click="startEvent()"> START MEETING</button>
+      <button id="startevent"  v-on:click="startEvent()"> START MEETING</button>
       <button id="startevent"  v-on:click="nextStage()"> NEXT STAGE</button>
-      </div>
-      <div v-if="done">
-	<button id="startevent" v-on:click="doneClick()"> DONE </button>
-	</div>
     </div>
     <div class="box e">
        <div class="boxHeader">
@@ -155,12 +151,11 @@
     <div class="box g">
       <div class="boxHeader">
 	<div class="boxHeadertext">
-	   Table placement	  
+	   Participants:	  
 	</div>
       </div>
 	<div id="participants">
 	  <br>
-	  <button id="tablesButton" class="matchButton" v-on:click="tablePlacementButton()"> TABLE PLACEMENT</button>
     </div>
       </div>
       

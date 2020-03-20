@@ -325,7 +325,9 @@ const vm = new Vue({
 	    console.log(this.rating[1]);
 	    console.log(this.rating[2]);
 	    let newfirstIndex = this.femaleArray[9];
+	    
 	    this.getMatches();
+	    this.confirmTablePlacement();
 	    /* Moves the female buttons */
 	    this.femaleArray.unshift(newfirstIndex);
 	    this.femaleArray[0] = this.femaleArray[10];
@@ -346,7 +348,6 @@ const vm = new Vue({
 		prevMatches = this.femaleArray[this.phase].previousDate;
 	    }
 	    console.log(prevMatches);
-	    this.confirmTablePlacement();
 	    socket.emit('sendUserMatches', prevMatches);
 	},
 	popup: function(both) {

@@ -23,7 +23,7 @@ const vm = new Vue({
 	myName:'',
 	table:'',
 	myDateInfo:[],
-	joinSeat: 'dating_progress.html',
+	joinSeat: 'rating.html',
 	eventWait: 'event_wait.html',
 
 	myDateNum: 1,

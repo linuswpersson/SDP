@@ -20,6 +20,28 @@ const vm = new Vue({
 	rating: [],
 	isMale: true,
 	userName: '',
+
+	bubbleArray : [
+	    {name : 'Music', selected : false},
+	    {name : 'Art', selected : false},
+	    {name : 'Sport', selected : false},
+	    {name : 'Food', selected : false},
+	    {name : 'Fashion', selected : false},
+	    {name : 'Outdoors', selected : false},
+	    {name : 'Travel', selected : false},
+	    {name : 'Party', selected : false},
+	    {name : 'Tv', selected : false},
+	    {name : 'Excercise', selected : false},
+	    {name : 'Lifestyle', selected : false},
+	    {name : 'Video-games', selected : false},
+	    {name : 'Movies', selected : false},
+	    {name : 'Animales', selected : false},
+	    {name : 'Drawing', selected : false},
+	    {name : 'Coding', selected : false},
+	    {name : 'Writing', selected : false},
+	    {name : 'Reading', selected : false},
+	    {name : 'Plants', selected : false},
+	],
 	
 	maleArray : [
 	    {name : 'Johan', matchId : 10, id : 0, image: 20, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
@@ -52,6 +74,15 @@ const vm = new Vue({
     },
     created: function(){
 
+	for (let i  = 0; i < this.maleArray.length; i++){
+	    for (let j = 0; j < 3; j++){
+		this.maleArray[i].bubbleArray.push(this.bubbleArray[Math.floor(Math.random() * this.bubbleArray.length)]);
+	    }
+		for (let j = 0; j < 3; j++){
+		this.femaleArray[i].bubbleArray.push(this.bubbleArray[Math.floor(Math.random() * this.bubbleArray.length)]);
+	    }
+	}
+    
 	socket.on('userHasJoined', function(data){
 	    location.reload();
 	});

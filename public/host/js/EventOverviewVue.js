@@ -19,12 +19,8 @@ const vm = new Vue({
 	currFemale : -1,
 	rating: [],
 	isMale: true,
-	function(){
-	    return
-	    { 
-	    }
-	},
-	
+	userName: '',
+		
 	maleArray : [
 	    {name : 'Johan', matchId : 10, id : 0, image: 20, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
 	    {name : 'Erik', matchId : 11, id : 1, image: 21, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
@@ -96,6 +92,7 @@ const vm = new Vue({
 	    this.eventDate = data.eventDate;
 	    this.eventEmail = data.eventEmail;
 	    this.eventLocation = data.eventLocation;
+	    this.userName = data.name;
 	    this.calculateDateTimes();
 	    load();
 	}.bind(this));
@@ -372,10 +369,20 @@ const vm = new Vue({
 	    if(this.isMale) {
 		prevMatches = this.maleArray[0].previousDate; 
 	    } else {
-		prevMatches = this.femaleArray[this.phase].previousDate;
+		let indexOfUser = 0;
+		for (let i = 0; i < this.femaleArray.length; i++) {
+		    if (this.femaleArray[i].name == this.userName) {
+			indexOfUser = i;
+		    }
+		}
+		
+		prevMatches = this.femaleArray[indexOfUser].previousDate;
+		console.log(this.userName);
+		console.log(this.femaleArray[0]);
+		console.log(this.femaleArray[indexOfUser]);
 	    }
 	    console.log(prevMatches);
-	    socket.emit('sendUserMatches', prevMatches);
+	    socket.emit('sendUserMatches', {prevMatches: prevMatches});
 	    
 	},
 	popup: function(both) {

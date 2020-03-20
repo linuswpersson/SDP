@@ -66,6 +66,8 @@ function Data() {
     this.eventLocation = '';
     this.times = [];
     this.dateSpan = [];
+
+    this.bilder= '';
     
     
 }
@@ -134,6 +136,19 @@ io.on('connection', function(socket) {
     socket.emit('sendMatchContactInfo', {contact: data.userShareContactInfoResponse});
     /*-----------------------------------------------------------------*/
 
+    /*--------------------------------*/
+    //Table placement on user view
+    socket.emit('recieveTablePlacement',{matches: data.matches, name: data.name});
+
+    socket.on('sendCurrentMatches', function(bilder) {
+	data.bilder = bilder;
+	console.log(data.bilder);
+    });
+
+    socket.emit('sendPic', {info: data.bilder});
+
+    /*--------------------------------*/
+
     /* Updates image whenever a new one is selected. */
     socket.on('loadImage', function(load){
 	socket.emit('getImage', {userImagePath: data.userImagePath})
@@ -201,8 +216,8 @@ io.on('connection', function(socket) {
 		    }
 		}
 	    }
-	}
 
+    }
     });
 
 
@@ -237,7 +252,6 @@ io.on('connection', function(socket) {
     });
 
 });
-
 /* eslint-disable-next-line no-unused-vars */
 const server = http.listen(app.get('port'), function() {
   console.log('Server listening on port ' + app.get('port'));

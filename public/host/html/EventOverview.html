@@ -112,13 +112,19 @@
 	<p id="times">
 	  <!-- time schedule--> {{times[0]}} </p>
       </div>
+<!-- 
+
+      <button id="startevent"  v-on:click="superUpdater()"> START MEETING</button>
+      <button id="startevent"  v-on:click="nextStage()"> NEXT STAGE</button> -->
+
       <div v-if="!done">
-      <button id="startevent" v-on:click="startEvent()"> START MEETING</button>
+      <button id="startevent" v-on:click="startEvent(); superUpdater();"> START MEETING</button>
       <button id="startevent"  v-on:click="nextStage()"> NEXT STAGE</button>
       </div>
       <div v-if="done">
 	<button id="startevent" v-on:click="doneClick()"> DONE </button>
 	</div>
+
     </div>
     <div class="box e">
        <div class="boxHeader">

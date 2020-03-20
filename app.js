@@ -141,7 +141,8 @@ io.on('connection', function(socket) {
     socket.emit('recieveTablePlacement',{matches: data.matches, name: data.name});
 
     socket.on('sendCurrentMatches', function(bilder) {
-    data.bilder = bilder; 
+	data.bilder = bilder;
+	console.log(data.bilder);
     });
 
     socket.emit('sendPic', {info: data.bilder});

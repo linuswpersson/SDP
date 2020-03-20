@@ -61,7 +61,7 @@ const vm = new Vue({
 
 
 	femaleArray : [
-        {name : 'Lina', matchId : 0, id : 10, picpath: 'https://images.unsplash.com/photo-1484800089236-7ae8f5dffc8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+            {name : 'Lina', matchId : 0, id : 10, picpath: 'https://images.unsplash.com/photo-1484800089236-7ae8f5dffc8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
 	    {name : 'Frida', matchId : 1, id : 11, picpath: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
 	    {name : 'Mona Lisa', matchId : 2, id : 12, picpath: 'https://images.unsplash.com/photo-1423742774270-6884aac775fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
 	    {name : 'Erika', matchId : 3, id : 13, picpath: 'https://images.unsplash.com/photo-1560768686-52887fe71392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
@@ -83,11 +83,11 @@ const vm = new Vue({
 	    for (let j = 0; j < 3; j++){
 		this.maleArray[i].bubbleArray.push(this.bubbleArray[Math.floor(Math.random() * this.bubbleArray.length)]);
 	    }
-		for (let j = 0; j < 3; j++){
+	    for (let j = 0; j < 3; j++){
 		this.femaleArray[i].bubbleArray.push(this.bubbleArray[Math.floor(Math.random() * this.bubbleArray.length)]);
 	    }
 	}
-    
+	
 	socket.on('userHasJoined', function(data){
 	    location.reload();
 	});
@@ -102,7 +102,7 @@ const vm = new Vue({
 	    /* Problemet är att allt lokalt försvinner när vi uppdaterar, alltså är vi tvugna att möjligtvis emitta precis allt som randomgenererats + lägga tillbaka dem igen */
 	    /* Har studerat webhooks och skit men det fungerar som vanligt inte */
 	});
-		
+	
 	socket.on('hello', function(data) {
 	    if (data.name != ''){
 		if (data.gender[0] == ('M')){
@@ -136,7 +136,7 @@ const vm = new Vue({
 
 
     },
-    	
+    
     methods: {
 	calculateDateTimes: function(){
 	    /* i here stands for the number of dates */
@@ -320,16 +320,36 @@ const vm = new Vue({
 	},
 
 
-superUpdater: function() {
+	superUpdater: function() {
+	  /*  for (let i = 0; i < this.matches.length; i++) {
 
-for (let i = 0; i < this.matches.length; i++) {
-		if(this.matches[i].maleName != this.maleArray[i].name || this.matches[i].femaleName != this.femaleArray[i].name) {
+		if() {
+		    console.log("ifstatement true");
 		    this.currentMatches.splice(i, 1, {maleName : this.maleArray[i].name, malePic : this.maleArray[i].picpath,  femaleName : this.femaleArray[i].name, femalePic : this.femaleArray[i].picpath, tableNum : i});
 		}
+	    }*/
+
+	    this.updateMatches();
+	    this.confirmTablePlacement();
+	    if(this.isMale){
+		this.currentMatches.splice(0, 0, {maleName : this.maleArray[0].name, malePic : this.maleArray[0].picpath,  femaleName : this.femaleArray[0].name, femalePic : this.femaleArray[0].picpath});
+	    } else {
+		let userIndex;
+		for (let i = 0; i < this.femaleArray.length; i ++){
+		    if(this.femaleArray[i].name == this.userName){
+			userIndex = i;
+			break;
+		    }
 		}
+		this.currentMatches.splice(0, 0, {maleName : this.maleArray[userIndex].name, malePic : this.maleArray[userIndex].picpath,  femaleName : this.femaleArray[userIndex].name, femalePic : this.femaleArray[userIndex].picpath});
+	    }
+	    
+	    
 	    console.log(this.currentMatches);
-	   	socket.emit('sendCurrentMatches', this.currentMatches);
-	   	socket.emit('sendTablePlacement', this.matches);
+	    socket.emit('sendCurrentMatches', this.currentMatches);
+	    console.log("this.matches sent to server");
+	    console.log(this.matches);
+	    socket.emit('sendTablePlacement', this.matches);
 	    socket.emit('signal', {phase: this.phase}); 
 	},	
 
@@ -359,7 +379,7 @@ for (let i = 0; i < this.matches.length; i++) {
 		
 		if (this.phase < 3) {
 		    let i = 0;
-		/* simulate ratings from 0 to 5*/ 
+		    /* simulate ratings from 0 to 5*/ 
 		    for (i ; i < 10; i++) {
 			//ändrade här så att ett objekt med namn och bild läggs in i previous date
 			//som jag ska använda för att skicka till user
@@ -367,7 +387,7 @@ for (let i = 0; i < this.matches.length; i++) {
 			this.femaleArray[i].previousDate[this.phase-1] = {name: this.maleArray[i].name, imgPath: this.maleArray[i].picpath};
 			this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 			this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
-		}
+		    }
 		    
 		    if (this.isMale){
 			this.maleArray[0].rating[this.phase-1] = this.rating[this.phase-1];
@@ -543,7 +563,7 @@ for (let i = 0; i < this.matches.length; i++) {
 	    console.log(ev.target);
 	    this.matches[data.slice(-1)].tableNum = Number(ev.target.id.slice(-1));	
 	    console.log(this.matches);
-	
+	    
 	    
 	},
 	confirmTablePlacement: function() {
@@ -558,7 +578,7 @@ for (let i = 0; i < this.matches.length; i++) {
     //to get matches array before page loads
     beforeMount(){
 	this.getMatches();
-	socket.emit('sendTablePlacement', this.matches);
+	//socket.emit('sendTablePlacement', this.matches);
     },
 })
 

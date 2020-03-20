@@ -23,7 +23,7 @@ const vm = new Vue({
     },
     created: function() {
 	socket.on('signalFrom', function(date){
-	    if(date.phase == 4)
+	    if(date.phase == 5)
 	    {
 		document.location.href = 'meeting_list.html';
 	    }

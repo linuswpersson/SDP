@@ -287,9 +287,11 @@ const vm = new Vue({
 	startTheEvent: function() {
 	    
 	},
-	
 	startEvent: function() {
-	    socket.emit('signal');
+	    socket.emit('signal'); 
+	},
+	nextStage: function() {
+	   
 	    let p = document.getElementById("phase");
 	    let oldtimes = document.getElementById("times");
 	    

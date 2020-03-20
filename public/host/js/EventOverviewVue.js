@@ -285,10 +285,19 @@ const vm = new Vue({
 		this.currMale = -1;
 	    }
 	},
-	startTheEvent: function() {
-	    
-	},
+
 	startEvent: function() {
+		let prevMatches = [];
+	    if(this.isMale) {
+		prevMatches = this.maleArray[0].previousDate; 
+	    } else {
+		prevMatches = this.femaleArray[this.phase].previousDate;
+	    }
+	    console.log(prevMatches);
+
+	    this.updateMatches();
+	    socket.emit('sendTablePlacement', this.matches);
+	    socket.emit('sendUserMatches', prevMatches);
 	    socket.emit('signal'); 
 	},
 	nextStage: function() {
@@ -373,7 +382,7 @@ const vm = new Vue({
 	    console.log(this.rating[2]);
 	    let newfirstIndex = this.femaleArray[9];
 	    
-	    this.getMatches();
+	    this.updateMatches();
 	    this.confirmTablePlacement();
 	    /* Moves the female buttons */
 	    this.femaleArray.unshift(newfirstIndex);
@@ -388,14 +397,6 @@ const vm = new Vue({
 	    this.closeFemaleNav(10);
 	    this.closeMaleNav(0);
 
-	    let prevMatches = [];
-	    if(this.isMale) {
-		prevMatches = this.maleArray[0].previousDate; 
-	    } else {
-		prevMatches = this.femaleArray[this.phase].previousDate;
-	    }
-	    console.log(prevMatches);
-	    socket.emit('sendUserMatches', prevMatches);
 	},
 	popup: function(both) {
 	    this.maleClick(both);

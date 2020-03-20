@@ -22,6 +22,7 @@ const vm = new Vue({
 	mydatePic:'',
 	myName:'',
 	table:'',
+	myDateInfo:[],
 	joinSeat: 'dating_progress.html',
     },
     created: function() {
@@ -30,14 +31,17 @@ const vm = new Vue({
      * defined in app.js). The message's data payload is the entire updated
      * order object. Here we define what the client should do with it.
      * Spoiler: We replace the current local order object with the new one. */
+    socket.on('getUserMatches', function(data) {
+    this.myDateInfo.splice(data.matches.length);
+    this.myDateInfo = data.matches;
+	}.bind(this));
+
     socket.on('recieveTablePlacement', function(data) {
     this.myName = data.name;	
     this.matches.splice(data.matches.length);
     this.matches = data.matches;
-    this.myDateInfo = data.info;
-
     }.bind(this));
-  },
+	},
     methods: {
 	showResult: function(){
 		for(let i = 0; i<this.matches.length; i++){
@@ -45,8 +49,10 @@ const vm = new Vue({
 			if(this.matches[i].maleName == this.myName){
 				this.table = this.matches[i].tableNum+1;
 				console.log(this.table);
-				this.mydate= this.matches[i].femaleName;
-				this.myDatePic = this.myDateInfo[i].imgPath;
+				console.log(this.matches);
+				console.log(this.myDateInfo);
+				this.mydate = this.matches[i].femaleName;
+				this.myDatePic = this.myDateInfo[this.myDateInfo.length-1].imgPath;
 				/*this.mydate= this.myDateInfo[i].name;*/
 				console.log(this.mydate);
 /*				this.mydatePic= this.matches[i].femaleName;*/

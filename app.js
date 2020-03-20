@@ -129,7 +129,7 @@ io.on('connection', function(socket) {
 
     /*--------------------------------*/
     //Table placement on user view
-    socket.emit('recieveTablePlacement',{matches: data.matches, name: data.name, info: data.userPreviousMatches});
+    socket.emit('recieveTablePlacement',{matches: data.matches, name: data.name});
 
     /*--------------------------------*/
 

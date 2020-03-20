@@ -291,7 +291,9 @@ const vm = new Vue({
 	    socket.emit('signal'); 
 	},
 	nextStage: function() {
-	   
+	    
+	    console.log(this.femaleArray);
+	    
 	    let p = document.getElementById("phase");
 	    let oldtimes = document.getElementById("times");
 	    
@@ -371,7 +373,14 @@ const vm = new Vue({
 	    if(this.isMale) {
 		prevMatches = this.maleArray[0].previousDate; 
 	    } else {
-		prevMatches = this.femaleArray[this.phase].previousDate;
+		let indexOfUser = 0;
+		for (let i = 0; i < this.femaleArray.length; i++) {
+		    if (this.femaleArray[i].id == 10) {
+			indexOfUser = i;
+		    }
+		}
+		
+		prevMatches = this.femaleArray[indexOfUser].previousDate;
 	    }
 	    console.log(prevMatches);
 	    socket.emit('sendUserMatches', prevMatches);

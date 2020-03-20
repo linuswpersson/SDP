@@ -174,7 +174,7 @@ io.on('connection', function(socket) {
 
     socket.on('signal', function(currDate){
 	data.savePhase(currDate);
-	io.sockets.emit('signalFrom');
+	io.sockets.emit('signalFrom', {phase: currDate});
     });
 
     socket.on('userShareContactInfo', function(checkedDate){

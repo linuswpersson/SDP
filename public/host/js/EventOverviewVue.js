@@ -330,7 +330,6 @@ const vm = new Vue({
 	    this.phase += 1;
 	    socket.emit('signal', {phase: this.phase});
 	    this.started = true;
-	    this.nextStage();
 	},
 	nextStage: function() {
 	    if (!this.started){

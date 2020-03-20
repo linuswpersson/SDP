@@ -46,33 +46,36 @@ const vm = new Vue({
 	],
 	
 	maleArray : [
-	    {name : 'Johan', matchId : 10, id : 0, image: 20, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Erik', matchId : 11, id : 1, image: 21, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Hjalmar', matchId : 12, id : 2, image: 22, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Lars', matchId : 13, id : 3, image: 23, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Åke', matchId : 14, id : 4, image: 24, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Tor', matchId : 15, id : 5, image: 25, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Valdermar', matchId : 16, id : 6, image: 26, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Jan', matchId : 17, id : 7, image: 27, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Olle', matchId : 18, id : 8, image: 28, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Rolf', matchId : 19, id : 9, image: 29, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+
+	    {name : 'Johan', matchId : 10, id : 0, image: 20, picpath: 'https://images.unsplash.com/photo-1492447273231-0f8fecec1e3a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Erik', matchId : 11, id : 1, image: 21, picpath: 'https://images.unsplash.com/photo-1484186304838-0bf1a8cff81c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Hjalmar', matchId : 12, id : 2, image: 22, picpath: 'https://images.unsplash.com/photo-1508216404415-a35220fab80e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Lars', matchId : 13, id : 3, image: 23, picpath: 'https://images.unsplash.com/photo-1579038773867-044c48829161?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Åke', matchId : 14, id : 4, image: 24, picpath: 'https://images.unsplash.com/photo-1479685894911-37e888d38f0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Tor', matchId : 15, id : 5, image: 25, picpath: 'https://images.unsplash.com/photo-1546434946-3e8a5564945d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Valdermar', matchId : 16, id : 6, image: 26, picpath: 'https://images.unsplash.com/photo-1573156770063-01139113dbdd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Jan', matchId : 17, id : 7, image: 27, picpath: 'https://images.unsplash.com/photo-1507864676385-e69c0ca53dbd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Olle', matchId : 18, id : 8, image: 28, picpath: 'https://images.unsplash.com/photo-1544048242-e9b516820f97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Rolf', matchId : 19, id : 9, image: 29, picpath: 'https://images.unsplash.com/photo-1552504462-0c6b5fef0925?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
 	],
 
 
 	femaleArray : [
-            {name : 'Lina', matchId : 0, id : 10, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Frida', matchId : 1, id : 11, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Mona Lisa', matchId : 2, id : 12, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Erika', matchId : 3, id : 13, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Linn', matchId : 4, id : 14, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Simone', matchId : 5, id : 15, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Julia', matchId : 6, id : 16, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Bennilina', matchId : 7, id : 17, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Johanna', matchId : 8, id : 18, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Stina', matchId : 9, id : 19, picpath: '../img/plus.png', rating: [null, null, null], bubbleArray: [], previousDate: []},
+            {name : 'Lina', matchId : 0, id : 10, picpath: 'https://images.unsplash.com/photo-1484800089236-7ae8f5dffc8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Frida', matchId : 1, id : 11, picpath: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Mona Lisa', matchId : 2, id : 12, picpath: 'https://images.unsplash.com/photo-1423742774270-6884aac775fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Erika', matchId : 3, id : 13, picpath: 'https://images.unsplash.com/photo-1560768686-52887fe71392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Linn', matchId : 4, id : 14, picpath: 'https://images.unsplash.com/photo-1521118224700-e216379d1ae2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Simone', matchId : 5, id : 15, picpath: 'https://images.unsplash.com/photo-1520989125854-939a8bdfa81e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Julia', matchId : 6, id : 16, picpath: 'https://images.unsplash.com/photo-1563306406-e66174fa3787?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Bennilina', matchId : 7, id : 17, picpath: 'https://images.unsplash.com/photo-1567850179641-1d2f8bec55cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Johanna', matchId : 8, id : 18, picpath: 'https://images.unsplash.com/photo-1524638431109-93d95c968f03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Stina', matchId : 9, id : 19, picpath: 'https://images.unsplash.com/photo-1505685679686-2490cab6217d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
 	],
 	
 	matches : Array(10),
+
+	currentMatches: Array(1),
     },
     created: function(){
 
@@ -80,11 +83,11 @@ const vm = new Vue({
 	    for (let j = 0; j < 3; j++){
 		this.maleArray[i].bubbleArray.push(this.bubbleArray[Math.floor(Math.random() * this.bubbleArray.length)]);
 	    }
-		for (let j = 0; j < 3; j++){
+	    for (let j = 0; j < 3; j++){
 		this.femaleArray[i].bubbleArray.push(this.bubbleArray[Math.floor(Math.random() * this.bubbleArray.length)]);
 	    }
 	}
-    
+	
 	socket.on('userHasJoined', function(data){
 	    location.reload();
 	});
@@ -99,7 +102,7 @@ const vm = new Vue({
 	    /* Problemet är att allt lokalt försvinner när vi uppdaterar, alltså är vi tvugna att möjligtvis emitta precis allt som randomgenererats + lägga tillbaka dem igen */
 	    /* Har studerat webhooks och skit men det fungerar som vanligt inte */
 	});
-		
+	
 	socket.on('hello', function(data) {
 	    if (data.name != ''){
 		if (data.gender[0] == ('M')){
@@ -133,7 +136,7 @@ const vm = new Vue({
 
 
     },
-    	
+    
     methods: {
 	calculateDateTimes: function(){
 	    /* i here stands for the number of dates */
@@ -315,9 +318,41 @@ const vm = new Vue({
 		this.currMale = -1;
 	    }
 	},
-	startTheEvent: function() {
+
+
+	superUpdater: function() {
+	  /*  for (let i = 0; i < this.matches.length; i++) {
+
+		if() {
+		    console.log("ifstatement true");
+		    this.currentMatches.splice(i, 1, {maleName : this.maleArray[i].name, malePic : this.maleArray[i].picpath,  femaleName : this.femaleArray[i].name, femalePic : this.femaleArray[i].picpath, tableNum : i});
+		}
+	    }*/
+
+	    this.updateMatches();
+	    this.confirmTablePlacement();
+	    if(this.isMale){
+		this.currentMatches.splice(0, 0, {maleName : this.maleArray[0].name, malePic : this.maleArray[0].picpath,  femaleName : this.femaleArray[0].name, femalePic : this.femaleArray[0].picpath});
+	    } else {
+		let userIndex;
+		for (let i = 0; i < this.femaleArray.length; i ++){
+		    if(this.femaleArray[i].name == this.userName){
+			userIndex = i;
+			break;
+		    }
+		}
+		this.currentMatches.splice(0, 0, {maleName : this.maleArray[userIndex].name, malePic : this.maleArray[userIndex].picpath,  femaleName : this.femaleArray[userIndex].name, femalePic : this.femaleArray[userIndex].picpath});
+	    }
 	    
-	},
+	    
+	    console.log(this.currentMatches);
+	    socket.emit('sendCurrentMatches', this.currentMatches);
+	    console.log("this.matches sent to server");
+	    console.log(this.matches);
+	    socket.emit('sendTablePlacement', this.matches);
+	    socket.emit('signal', {phase: this.phase}); 
+	},	
+
 	startEvent: function() {
 	    if (this.started == true){
 		alert("Move on to the next event before starting a new one!");
@@ -331,6 +366,7 @@ const vm = new Vue({
 	    socket.emit('signal', {phase: this.phase});
 	    this.started = true;
 	},
+
 	nextStage: function() {
 	    if (!this.started){
 		alert("You need to start the meeting before you move on to the next one!");
@@ -343,7 +379,7 @@ const vm = new Vue({
 		
 		if (this.phase < 3) {
 		    let i = 0;
-		/* simulate ratings from 0 to 5*/ 
+		    /* simulate ratings from 0 to 5*/ 
 		    for (i ; i < 10; i++) {
 			//ändrade här så att ett objekt med namn och bild läggs in i previous date
 			//som jag ska använda för att skicka till user
@@ -351,7 +387,7 @@ const vm = new Vue({
 			this.femaleArray[i].previousDate[this.phase-1] = {name: this.maleArray[i].name, imgPath: this.maleArray[i].picpath};
 			this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 			this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
-		}
+		    }
 		    
 		    if (this.isMale){
 			this.maleArray[0].rating[this.phase-1] = this.rating[this.phase-1];
@@ -413,8 +449,6 @@ const vm = new Vue({
 		this.closeFemaleNav(10);
 		this.closeMaleNav(0);
 		
-		
-		
 		let prevMatches = [];
 		if(this.isMale) {
 		    prevMatches = this.maleArray[0].previousDate; 
@@ -437,7 +471,6 @@ const vm = new Vue({
 	    }
 	    if (this.phase == 4) {
 		this.done = true;
-		this.phase += 1;
 	    } 
 
 	    
@@ -528,9 +561,9 @@ const vm = new Vue({
 	    var data = ev.dataTransfer.getData("text");
 	    console.log(ev.target.id);
 	    console.log(ev.target);
-	    this.matches[data.slice(-1)].tableNum = ev.target.id.slice(-1);	
+	    this.matches[data.slice(-1)].tableNum = Number(ev.target.id.slice(-1));	
 	    console.log(this.matches);
-	
+	    
 	    
 	},
 	confirmTablePlacement: function() {
@@ -545,7 +578,7 @@ const vm = new Vue({
     //to get matches array before page loads
     beforeMount(){
 	this.getMatches();
-	socket.emit('sendTablePlacement', this.matches);
+	//socket.emit('sendTablePlacement', this.matches);
     },
 })
 

@@ -5,41 +5,57 @@ const socket = io();
 const vm = new Vue({
     el: '#apps',
     data: {
-	    meetingList: 'meeting_list.html',
-	    ratingMessage: '',
+	meetingList: 'meeting_list.html',
+	ratingMessage: '',
 	rating: '',
+	phase: [null],
 	
-	},
+    },
+    created: function(){
+
+	socket.on('updatePhase', function(data){
+	    this.phase = data.phase;
+//	    load();
+	    console.log(data.phase);
+	}.bind(this));
+    },
     methods: {
-	    userHomeClick: function() {
+	userHomeClick: function() {
+	    if(this.phase > 2){
 		this.saveRating(this.rating, this.ratingMessage);
 		document.location.href = this.meetingList;
-	    },
-	    //Sends the data to app.js, where it is stored.
-	    saveRating: function(rating, message) {
-		socket.emit('saveRating', rating, message, function(data) {
-		});
-	    },
-	    //Print is simply to confirm that everything has been stored in app.js.
-	    //One could easily import them with socket.on
-	    print: function() {
-		socket.emit('printALL', function(print) {
-		    console.log(print);
-		})
 	    }
+	    else {
+		console.log(this.phase);
+		this.saveRating(this.rating, this.ratingMessage);
+		document.location.href = 'event_wait.html';
+	    }
+	},
+	//Sends the data to app.js, where it is stored.
+	saveRating: function(rating, message) {
+	    
+	    socket.emit('saveRating', rating, message, function(data) {
+	    });
+	},
+	//Print is simply to confirm that everything has been stored in app.js.
+	//One could easily import them with socket.on
+	print: function() {
+	    socket.emit('printALL', function(print) {
+		console.log(print);
+	    })
 	}
+    }
 });
 
 //initial setup
 document.addEventListener('DOMContentLoaded', function() {
-	let stars = document.querySelectorAll('.star');
-	stars.forEach(function(star) {
-		star.addEventListener('click', setRating);
-	});
-
-	let rating = parseInt(document.querySelector('.stars').getAttribute('data-rating'));
-	let target = stars[rating - 1];
-	target.dispatchEvent(new MouseEvent('click'));
+    let stars = document.querySelectorAll('.star');
+    stars.forEach(function(star) {
+	star.addEventListener('click', setRating);
+    });   
+    let rating = parseInt(document.querySelector('.stars').getAttribute('data-rating'));
+    let target = stars[rating - 1];
+    target.dispatchEvent(new MouseEvent('click'));
 });
 
 function setRating(ev) {
@@ -65,3 +81,8 @@ function setRating(ev) {
 }
 
 
+function load(data) {
+    vm.$set(vm.phase, 0, data.phase);
+    vm.$forceUpdate();
+    console.log(data.phase);
+}

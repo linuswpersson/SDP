@@ -174,8 +174,8 @@ io.on('connection', function(socket) {
     socket.on('signal', function(currDate){
 	data.savePhase(currDate);
 	io.sockets.emit('signalFrom');
-
-    socket.on('userShareContactInfo', function(checkedDate){
+    });
+	socket.on('userShareContactInfo', function(checkedDate){
 	//this can be changed so that we use actual contactinfo
 	//now we just randomly choose if the other person wants to share contact info
 	//and use some data from the userPreviousMatches array
@@ -197,10 +197,8 @@ io.on('connection', function(socket) {
 		}
 	    }
 	}
-    });
-
-    });
-
+	});
+    
     socket.on('userJoined', function(){
 	io.sockets.emit('userHasJoined', {gender: data.gender, name: data.name, picpath: data.userImagePath, userBubbles: data.userBubbles});
     });

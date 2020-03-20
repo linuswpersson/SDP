@@ -284,9 +284,6 @@ const vm = new Vue({
 		this.currMale = -1;
 	    }
 	},
-	startTheEvent: function() {
-	    
-	},
 	startEvent: function() {
 	    socket.emit('signal', {phase: this.phase}); 
 	},

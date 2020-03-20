@@ -66,6 +66,8 @@ function Data() {
     this.eventLocation = '';
     this.times = [];
     this.dateSpan = [];
+
+    this.bilder= '';
     
     
 }
@@ -138,6 +140,12 @@ io.on('connection', function(socket) {
     //Table placement on user view
     socket.emit('recieveTablePlacement',{matches: data.matches, name: data.name});
 
+    socket.on('sendCurrentMatches', function(bilder) {
+    data.bilder = bilder; 
+    });
+
+    socket.emit('sendPic', {info: data.bilder});
+
     /*--------------------------------*/
 
     /* Updates image whenever a new one is selected. */
@@ -180,6 +188,8 @@ io.on('connection', function(socket) {
     socket.on('signal', function(currDate){
 	data.savePhase(currDate);
 	io.sockets.emit('signalFrom');
+    });
+
 
     socket.on('userShareContactInfo', function(checkedDate){
 	//this can be changed so that we use actual contactinfo
@@ -202,10 +212,9 @@ io.on('connection', function(socket) {
 		    }
 		}
 	    }
-	}
+    }
     });
 
-    });
 
     socket.on('userJoined', function(){
 	io.sockets.emit('userHasJoined', {gender: data.gender, name: data.name, picpath: data.userImagePath, userBubbles: data.userBubbles});
@@ -238,7 +247,6 @@ io.on('connection', function(socket) {
     });
 
 });
-
 /* eslint-disable-next-line no-unused-vars */
 const server = http.listen(app.get('port'), function() {
   console.log('Server listening on port ' + app.get('port'));

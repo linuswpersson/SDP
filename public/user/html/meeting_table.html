@@ -24,17 +24,17 @@ MATCHED!
 <div class="meetingtext">
 <!-- <img src="/user/img/pp_test/stock4.jpeg" alt="Per-Åke" width="250" height="220"> -->
 <img v-bind:src="myDatePic" height="300" width="300"></img>
-<p> Name: {{ mydate }}</p>
+<p> Name: {{ myDate }}</p>
 <p> Table: {{table}}</p>
 
 </div>
 
 <section id="buttons">
-<button class="mySeat" v-on:click="showResult()">You are meeting...</button>
+<button class="mySeat" v-on:click="backClick()">Next Date!</button>
 <button class="mySeat" v-on:click="joinSeatClick()">End date!</button>
 </section>
 <!-- tillagt -->
- <h1 class="centered">My Seat - Date {{date}}</h1>
+ <h1 class="centered">My Seat </h1>
   <div
     v-scroll="handleScroll"
     class="box"

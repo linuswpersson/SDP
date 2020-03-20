@@ -54,6 +54,8 @@ const vm = new Vue({
 	],
 	
 	matches : Array(10),
+
+	currentMatches: Array(1),
     },
     created: function(){
 
@@ -286,13 +288,29 @@ const vm = new Vue({
 	    }
 	},
 
-	startEvent: function() {
+superUpdater: function() {
+
+for (let i = 0; i < this.matches.length; i++) {
+		if(this.matches[i].maleName != this.maleArray[i].name || this.matches[i].femaleName != this.femaleArray[i].name) {
+		    this.currentMatches.splice(i, 1, {maleName : this.maleArray[i].name, malePic : this.maleArray[i].picpath,  femaleName : this.femaleArray[i].name, femalePic : this.femaleArray[i].picpath, tableNum : i});
+		}
+		}
+	    console.log(this.currentMatches);
+	   	socket.emit('sendCurrentMatches', this.currentMatches);
+	   	socket.emit('sendTablePlacement', this.matches);
+	    socket.emit('signal', {phase: this.phase}); 
+	},	
+
+startEvent: function() {
+
+	    socket.emit('sendTablePlacement', this.matches);
 	    socket.emit('signal', {phase: this.phase}); 
 	},
 	nextStage: function() {
 	   
 	    let p = document.getElementById("phase");
 	    let oldtimes = document.getElementById("times");
+
 	    if (this.phase < 3) {
 		let i = 0;
 		/* simulate ratings from 0 to 5*/ 
@@ -352,6 +370,8 @@ const vm = new Vue({
 	  
 	    let newfirstIndex = this.femaleArray[9];
 	    /* Moves the female buttons */
+
+
 	    this.femaleArray.unshift(newfirstIndex);
 	    this.femaleArray[0] = this.femaleArray[10];
 	    this.femaleArray.splice(10);
@@ -364,31 +384,14 @@ const vm = new Vue({
 	    this.closeFemaleNav(10);
 	    this.closeMaleNav(0);
 	  
-	    
-
-	    console.log(this.rating[0]);
-	    console.log(this.rating[1]);
-	    console.log(this.rating[2]);
-	    let newfirstIndex = this.femaleArray[9];
-	   
-	    /* Moves the female buttons */
-	    this.femaleArray.unshift(newfirstIndex);
-	    this.femaleArray[0] = this.femaleArray[10];
-	    this.femaleArray.splice(10);
-	    for (var i = 0; i < this.femaleArray.length; i++){
-		this.femaleArray[i].matchId += 1;
-		this.femaleArray[i].id += 1;
+	    let prevMatches = [];
+	    if(this.isMale) {
+		prevMatches = this.maleArray[0].previousDate; 
+	    } else {
+		prevMatches = this.femaleArray[this.phase].previousDate;
 	    }
-	    this.femaleArray[0].id = 10;
-	    this.femaleArray[0].matchId = 0;	    
-	    this.closeFemaleNav(10);
-	    this.closeMaleNav(0);
-
-		this.updateMatches();
-	    this.confirmTablePlacement();
+	    console.log(prevMatches);
 	    socket.emit('sendUserMatches', prevMatches);
-	    socket.emit('sendTablePlacement', this.matches);
-	    socket.emit('signal'); 
 
 	},
 	popup: function(both) {

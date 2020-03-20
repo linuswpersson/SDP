@@ -16,7 +16,7 @@ Vue.directive('scroll', {
 const vm = new Vue({
     el: '#content',
     data: {
-	date: 0,   	
+	date: 1,   	
 	matches:[],
 	mydate:'',
 	mydatePic:'',
@@ -24,6 +24,9 @@ const vm = new Vue({
 	table:'',
 	myDateInfo:[],
 	joinSeat: 'dating_progress.html',
+	eventWait: 'event_wait.html',
+
+	myDateNum: 1,
     },
     created: function() {
     /* Whenever an addOrder is emitted by a client (every open map.html is
@@ -31,30 +34,39 @@ const vm = new Vue({
      * defined in app.js). The message's data payload is the entire updated
      * order object. Here we define what the client should do with it.
      * Spoiler: We replace the current local order object with the new one. */
-    socket.on('getUserMatches', function(data) {
+
+/*    socket.on('getUserMatches', function(data) {
     this.myDateInfo.splice(data.matches.length);
     this.myDateInfo = data.matches;
+	}.bind(this));*/
+
+    socket.on('sendPic', function(data) {
+    this.myDateInfo = data.info;
+    this.table = this.myDateInfo[0].tableNum +1;
+    this.myDate = this.myDateInfo[0].femaleName;
+    this.myDatePic = this.myDateInfo[0].femalePic;
+    console.log(this.myDateInfo[0].femaleName);
 	}.bind(this));
 
     socket.on('recieveTablePlacement', function(data) {
     this.myName = data.name;	
     this.matches.splice(data.matches.length);
     this.matches = data.matches;
+    this.myDateInfo = data.info;
     }.bind(this));
 	},
+
     methods: {
 	showResult: function(){
 		for(let i = 0; i<this.matches.length; i++){
-			console.log(this.myName);
 			if(this.matches[i].maleName == this.myName){
 				this.table = this.matches[i].tableNum+1;
-				console.log(this.table);
 				console.log(this.matches);
 				console.log(this.myDateInfo);
 				this.mydate = this.matches[i].femaleName;
-				this.myDatePic = this.myDateInfo[this.myDateInfo.length-1].imgPath;
+				this.myDatePic = this.myDateInfo[i].imgPath;
+				console.log(this.myDatePic);
 				/*this.mydate= this.myDateInfo[i].name;*/
-				console.log(this.mydate);
 /*				this.mydatePic= this.matches[i].femaleName;*/
 			}
 			else if(this.matches[i].femaleName == this.myName){
@@ -63,7 +75,6 @@ const vm = new Vue({
 /*				this.mydate= this.myDateInfo[i].name;*/
 			}
 		};
-		this.date++;
 		console.log(this.matches);
 		console.log(this.myDateInfo);
 	},
@@ -81,5 +92,8 @@ const vm = new Vue({
 	    document.location.href = this.joinSeat;
 		
     },
+    	backClick: function() {
+	    document.location.href = this.eventWait;
+	},
 }
 })

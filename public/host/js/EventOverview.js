@@ -7,7 +7,8 @@ let repetitiveMale = false;
 let repetitiveFemale = false;
 let button = document.getElementById("0");
 let Fbutton = document.getElementById("11");
-
+let done = false;
+let started = false;
 
 function startTime() {
   var today = new Date();

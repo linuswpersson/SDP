@@ -21,7 +21,7 @@ const vm = new Vue({
     },
     methods: {
 	userHomeClick: function() {
-	    if(this.phase > 2){
+	    if(this.phase > 4){
 		this.saveRating(this.rating, this.ratingMessage);
 		document.location.href = this.meetingList;
 	    }

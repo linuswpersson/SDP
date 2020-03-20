@@ -21,7 +21,7 @@ const vm = new Vue({
 	isMale: true,
 	function(){
 	    return
-	    { message: "lys"
+	    { 
 	    }
 	},
 	
@@ -55,8 +55,17 @@ const vm = new Vue({
 	matches : Array(10),
     },
     created: function(){
-	    
+
 	socket.on('userHasJoined', function(data){
+	    location.reload();
+	});
+	
+	socket.on('updateHostRating', function(data){
+	    this.rating = data.rating;
+	    console.log(data.rating);
+	    console.log(this.rating);
+	    loadRating(data);
+
 	    /* Försök att uppdatera skiten när någon klickar på join event-knappen  */
 	    /* Problemet är att allt lokalt försvinner när vi uppdaterar, alltså är vi tvugna att möjligtvis emitta precis allt som randomgenererats + lägga tillbaka dem igen */
 	    /* Har studerat webhooks och skit men det fungerar som vanligt inte */
@@ -88,12 +97,13 @@ const vm = new Vue({
 	    this.eventEmail = data.eventEmail;
 	    this.eventLocation = data.eventLocation;
 	    this.calculateDateTimes();
-	    
+	    load();
 	}.bind(this));
+
+
     },
     	
     methods: {
-
 	calculateDateTimes: function(){
 	    /* i here stands for the number of dates */
 	    /* Default is 3 dates */
@@ -274,6 +284,10 @@ const vm = new Vue({
 		this.currMale = -1;
 	    }
 	},
+	startTheEvent: function() {
+	    
+	},
+	
 	startEvent: function() {
 	    socket.emit('signal');
 	    let p = document.getElementById("phase");
@@ -337,6 +351,7 @@ const vm = new Vue({
 	    console.log(this.rating[0]);
 	    console.log(this.rating[1]);
 	    console.log(this.rating[2]);
+	    console.log(this.rating);
 	    let newfirstIndex = this.femaleArray[9];
 	    /* Moves the female buttons */
 	    this.femaleArray.unshift(newfirstIndex);
@@ -465,3 +480,13 @@ const vm = new Vue({
 	socket.emit('sendTablePlacement', this.matches);
     },
 })
+
+function load(){
+    vm.$forceUpdate();	  
+}
+function loadRating(data){
+    vm.$set(vm.rating, 0, data.rating[0]);
+    vm.$set(vm.rating, 1, data.rating[1]);
+    vm.$set(vm.rating, 2, data.rating[2]);
+    vm.$forceUpdate();
+}

@@ -288,7 +288,7 @@ const vm = new Vue({
 	    
 	},
 	startEvent: function() {
-	    socket.emit('signal'); 
+	    socket.emit('signal', {phase: this.phase}); 
 	},
 	nextStage: function() {
 	   

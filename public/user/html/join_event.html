@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="/user/css/join_event.css">
-<script src="https://vuejs.org/js/vue.js" defer></script>
-<script src="/user/js/join_event.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="/user/css/join_event.css">
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="https://vuejs.org/js/vue.js" defer></script>
+  <script src="/user/js/join_event.js" defer></script>
   <meta charset="UTF-8">
 
 </head>
@@ -22,16 +23,17 @@ Enter the event code:
 <br><br>
 </div>
 
+<div id="app">
 <div class="form">
     <label for="eventCode"></label>
-    <input type="text" id="eventcode" name="ec" required="required" placeholder="Event Code (all digits)" />
+    <input type="text" id="eventcode" name="ec" v-model="code" required="required" placeholder="Event Code (all digits)" />
 </div>
 
 <section id="buttons">
 <button class="joinbutton" v-on:click="joinEventClick()">Join Event</button>
 <button class="backbutton" v-on:click="userHomeClick()">←</button>
  </section>
-
+</div>
 <br>
 <div class="tooltip">
 How do I get an event code? 

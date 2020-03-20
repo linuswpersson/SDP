@@ -132,7 +132,7 @@ io.on('connection', function(socket) {
     socket.emit('recieveTablePlacement',{matches: data.matches, name: data.name, info: data.userPreviousMatches});
 
     /*--------------------------------*/
-    
+
     /* Updates image whenever a new one is selected. */
     socket.on('loadImage', function(load){
 	socket.emit('getImage', {userImagePath: data.userImagePath})
@@ -197,6 +197,18 @@ io.on('connection', function(socket) {
     socket.on('signal', function(){
       io.sockets.emit('signalFrom');
     });
+
+    socket.on('userJoined', function(){
+	io.sockets.emit('userHasJoined', {gender: data.gender, name: data.name, picpath: data.userImagePath, userBubbles: data.userBubbles});
+    });
+
+        
+    socket.on('saveRating', function (rating,message, fn) {
+	data.saveRating(rating, message);
+	io.sockets.emit('updateHostRating', {rating: data.rating});
+
+    });
+
     /*------------------------------------------------------------------*/
 
 
@@ -211,12 +223,7 @@ io.on('connection', function(socket) {
     socket.on('printImage', function(print){
 	print(data.userImagePath);
     })
-    
-    socket.on('saveRating', function (rating,message, fn) {
-	data.saveRating(rating, message);
-	fn(rating);
 
-    });
     /* A print function ensuring that things have been stored properly */
     socket.on('printALL', function(print){
 	print(data.ratingMessage + ' rating ' + data.rating);	

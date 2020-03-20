@@ -19,6 +19,11 @@ const vm = new Vue({
 	currFemale : -1,
 	rating: [],
 	isMale: true,
+	function(){
+	    return
+	    { 
+	    }
+	},
 	
 	maleArray : [
 
@@ -51,6 +56,22 @@ const vm = new Vue({
 	matches : Array(10),
     },
     created: function(){
+
+	socket.on('userHasJoined', function(data){
+	    location.reload();
+	});
+	
+	socket.on('updateHostRating', function(data){
+	    this.rating = data.rating;
+	    console.log(data.rating);
+	    console.log(this.rating);
+	    loadRating(data);
+
+	    /* Försök att uppdatera skiten när någon klickar på join event-knappen  */
+	    /* Problemet är att allt lokalt försvinner när vi uppdaterar, alltså är vi tvugna att möjligtvis emitta precis allt som randomgenererats + lägga tillbaka dem igen */
+	    /* Har studerat webhooks och skit men det fungerar som vanligt inte */
+	});
+		
 	socket.on('hello', function(data) {
 	    if (data.name != ''){
 		if (data.gender[0] == ('M')){
@@ -77,9 +98,12 @@ const vm = new Vue({
 	    this.eventEmail = data.eventEmail;
 	    this.eventLocation = data.eventLocation;
 	    this.calculateDateTimes();
-	    
+	    load();
 	}.bind(this));
+
+
     },
+    	
     methods: {
 	calculateDateTimes: function(){
 	    /* i here stands for the number of dates */
@@ -261,10 +285,33 @@ const vm = new Vue({
 		this.currMale = -1;
 	    }
 	},
+	startTheEvent: function() {
+	    
+	},
 	startEvent: function() {
-	    socket.emit('signal');
+	    socket.emit('signal'); 
+	},
+	nextStage: function() {
+	   
 	    let p = document.getElementById("phase");
 	    let oldtimes = document.getElementById("times");
+	    
+	    if(this.phase>1){ /* Doesn't move females on first click */
+	    let newfirstIndex = this.femaleArray[9];
+	    /* Moves the female buttons */
+	    this.femaleArray.unshift(newfirstIndex);
+	    this.femaleArray[0] = this.femaleArray[10];
+	    this.femaleArray.splice(10);
+	    for (var i = 0; i < this.femaleArray.length; i++){
+		this.femaleArray[i].matchId += 1;
+		this.femaleArray[i].id += 1;
+	    }
+	    this.femaleArray[0].id = 10;
+	    this.femaleArray[0].matchId = 0;	    
+	    this.closeFemaleNav(10);
+	    this.closeMaleNav(0);
+	    }
+	    
 	    if (this.phase < 3) {
 		let i = 0;
 		/* simulate ratings from 0 to 5*/ 
@@ -320,7 +367,7 @@ const vm = new Vue({
 		times.appendChild(newTimes);
 		oldtimes.replaceChild(times, oldtimes.childNodes[0]);
 	    }
-	    
+
 	    console.log(this.rating[0]);
 	    console.log(this.rating[1]);
 	    console.log(this.rating[2]);
@@ -455,3 +502,13 @@ const vm = new Vue({
 	socket.emit('sendTablePlacement', this.matches);
     },
 })
+
+function load(){
+    vm.$forceUpdate();	  
+}
+function loadRating(data){
+    vm.$set(vm.rating, 0, data.rating[0]);
+    vm.$set(vm.rating, 1, data.rating[1]);
+    vm.$set(vm.rating, 2, data.rating[2]);
+    vm.$forceUpdate();
+}

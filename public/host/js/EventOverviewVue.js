@@ -287,6 +287,10 @@ const vm = new Vue({
 	    
 	},
 	startEvent: function() {
+	    if (this.started == true){
+		alert("Move on to the next event before starting a new one!");
+		return;
+	    }
 	    socket.emit('signal', {phase: this.phase});
 	    this.started = true;
 	},
@@ -299,6 +303,7 @@ const vm = new Vue({
 	nextStage: function() {
 	    if (!this.started){
 		alert("You need to start the meeting before you move on to the next one!");
+		return;
 	    }
 	    else {
 		this.started = false;
@@ -359,6 +364,7 @@ const vm = new Vue({
 		    let newTimes = document.createTextNode("Event completed");
 		    times.appendChild(newTimes);
 		    oldtimes.replaceChild(times, oldtimes.childNodes[0]);
+		    this.phase += 1;
 		}
 	    	
 		
@@ -398,7 +404,7 @@ const vm = new Vue({
 		socket.emit('sendUserMatches', {prevMatches: prevMatches});
 
 	    }
-	    if (this.phase == 3) {
+	    if (this.phase == 4) {
 		this.done = true;
 		this.phase += 1;
 	    } 

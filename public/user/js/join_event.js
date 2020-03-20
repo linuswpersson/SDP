@@ -23,9 +23,15 @@ form.addEventListener('submit', (e) => {
 })
 */
 
+'use strict';
+const socket = io();
+
+
 const vm = new Vue({
-    el: '#buttons',
+    el: '#app',
+    
     data: {
+	code: '',
 	userHome: 'user_home.html',
 	joinEvent: 'event_wait.html',
     },
@@ -34,10 +40,17 @@ const vm = new Vue({
 	    document.location.href = this.userHome;
 	},
 	joinEventClick: function(){
-
-	    document.location.href = this.joinEvent;
+	    if (this.code == "XYC831"){
+		socket.emit('userJoined');
+		document.location.href = this.joinEvent;
+	    }
+	    else {
+		console.log(this.code);
+		alert("that's the wrong numba!");
+	    }
 		
-    },
+	},
+	
 
 	},
 })

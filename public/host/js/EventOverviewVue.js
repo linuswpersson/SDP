@@ -19,6 +19,8 @@ const vm = new Vue({
 	currFemale : -1,
 	rating: [],
 	isMale: true,
+	userName: '',
+	
 	function(){
 	    return
 	    { 
@@ -97,6 +99,7 @@ const vm = new Vue({
 	    this.eventEmail = data.eventEmail;
 	    this.eventLocation = data.eventLocation;
 	    this.calculateDateTimes();
+	    this.userName = data.name;
 	    load();
 	}.bind(this));
 
@@ -288,11 +291,11 @@ const vm = new Vue({
 	    
 	},
 	startEvent: function() {
+	    
 	    socket.emit('signal', {phase: this.phase}); 
 	},
 	nextStage: function() {
 	    
-	    console.log(this.femaleArray);
 	    
 	    let p = document.getElementById("phase");
 	    let oldtimes = document.getElementById("times");
@@ -376,7 +379,7 @@ const vm = new Vue({
 	    } else {
 		let indexOfUser = 0;
 		for (let i = 0; i < this.femaleArray.length; i++) {
-		    if (this.femaleArray[i].id == 10) {
+		    if (this.femaleArray[i].name == this.userName) {
 			indexOfUser = i;
 		    }
 		}
@@ -385,6 +388,7 @@ const vm = new Vue({
 	    }
 	    console.log(prevMatches);
 	    socket.emit('sendUserMatches', prevMatches);
+
 	    
 	},
 	popup: function(both) {

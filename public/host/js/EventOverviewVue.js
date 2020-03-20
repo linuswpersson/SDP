@@ -294,23 +294,7 @@ const vm = new Vue({
 	   
 	    let p = document.getElementById("phase");
 	    let oldtimes = document.getElementById("times");
-	    
-	    if(this.phase>1){ /* Doesn't move females on first click */
-	    let newfirstIndex = this.femaleArray[9];
-	    /* Moves the female buttons */
-	    this.femaleArray.unshift(newfirstIndex);
-	    this.femaleArray[0] = this.femaleArray[10];
-	    this.femaleArray.splice(10);
-	    for (var i = 0; i < this.femaleArray.length; i++){
-		this.femaleArray[i].matchId += 1;
-		this.femaleArray[i].id += 1;
-	    }
-	    this.femaleArray[0].id = 10;
-	    this.femaleArray[0].matchId = 0;	    
-	    this.closeFemaleNav(10);
-	    this.closeMaleNav(0);
-	    }
-	    
+
 	    if (this.phase < 3) {
 		let i = 0;
 		/* simulate ratings from 0 to 5*/ 
@@ -366,6 +350,23 @@ const vm = new Vue({
 		times.appendChild(newTimes);
 		oldtimes.replaceChild(times, oldtimes.childNodes[0]);
 	    }
+	    	    
+	  
+	    let newfirstIndex = this.femaleArray[9];
+	    /* Moves the female buttons */
+	    this.femaleArray.unshift(newfirstIndex);
+	    this.femaleArray[0] = this.femaleArray[10];
+	    this.femaleArray.splice(10);
+	    for (var i = 0; i < this.femaleArray.length; i++){
+		this.femaleArray[i].matchId += 1;
+		this.femaleArray[i].id += 1;
+	    }
+	    this.femaleArray[0].id = 10;
+	    this.femaleArray[0].matchId = 0;	    
+	    this.closeFemaleNav(10);
+	    this.closeMaleNav(0);
+	  
+	    
 
 	    let prevMatches = [];
 	    if(this.isMale) {

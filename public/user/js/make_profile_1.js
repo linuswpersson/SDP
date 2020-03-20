@@ -1,7 +1,6 @@
 'use strict';
 const socket = io();
 
-
 const vm = new Vue({
     el: '#input_section',
     data: {
@@ -45,25 +44,17 @@ const vm = new Vue({
 	    this.testInfo();
 	}, /* Confirming that this shit is actually stored */	
 	testInfo: function(){
-	    console.log('Index number, could be used to show amount.');
-	    console.log(this.userIndex);
 	    socket.emit('printUser', function(print){
 		console.log('global storage with pointer on last submit');
-		    console.log(print);
 	    });
-	    console.log('local storage only showing the first submit');
-	
-		console.log(this.fullname);
-
 
 	},
 	nextClick: function() {
-	    this.sendInfo();
-	    document.location.href = this.next;
-	},
-
-	backClick: function() {
-	    document.location.href = this.back;
+	    if(this.fullname != '' && this.phone != '' && this.seeking != '' && this.gender != '' && this.phone.length >= 10) {
+		this.sendInfo();
+		document.location.href = this.next;
+	    }
+	    
 	},
     },
 })

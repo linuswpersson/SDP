@@ -50,8 +50,3 @@ text-align: center;
 .leavebutton:hover {
   background-color: pink;
 }
-
-.nextbutton{
-	float: right;
-}
-

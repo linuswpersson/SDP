@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <link rel="stylesheet" type="text/css" href="../css/EventOverview.css">
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="/vue/vue.js" defer></script>
+    <script src="../js/EventOverviewVue.js" defer> </script>
+    <script src="../js/EventOverview.js" defer></script>
+    <title>Event overview</title>
+  </head>
+  <body onload="startTime()">
+    <div class="wrapper" id="app">
+      
+      
+      <div id="tablePlacement" class="tablePlacementModal">
+	<div class="tablePlacementModal-content">
+	  <div id="closeModal" v-on:click="closeTablePlacement()">&times</div>
+	  <div id="tableMap">
+	    <div v-for="(_,index) in Array(10)" :id="'table' + index" :class="'table ' + index" v-on:dragover="allowDrop($event)" v-on:drop="dropHandler($event)">table{{index + 1}}
+
+	      <div class="matchItem" v-for="(match, matchIndex) in matches" v-if="match.tableNum == index" v-on:dragstart="dragstartHandler($event)" draggable="true" :id="'match '+matchIndex">
+		<span id="maleName">{{match.maleName}}</span> <span id="femaleName">{{match.femaleName}}</span>
+	      </div>
+	      
+	    </div>
+	  </div>
+	  <div id="matchList">
+	  
+	  </div>
+	  <button id="confirmPlacementButton" class="matchButton" v-on:click="confirmTablePlacement()">
+	    Confirm
+	  </button>
+	</div>
+      </div>
+    
+    <div class="box a">
+      <div class="boxHeader">
+	<div class="boxHeadertext">Demo Event</div>
+      </div>
+      <div id="eventTime" class="boxText">
+	<div>{{eventTimeFrom}} - {{eventTimeTo}}</div>
+      </div>
+      <div id="eventAddress" class="boxText">
+	{{eventName}}
+      </div>
+      <div id="eventCode" class="boxText">
+	Code: XYC831
+      </div>
+    </div>
+    <div class="box b">
+      <div class="OMEGA">
+	<div class="box innerGrid">
+	  <div class="box manUser" v-for="user in maleArray">
+	    <button class="maleButton" v-on:click="maleClick(user.id)" :id="user.id"> {{user.name}} </button>
+	  </div>
+        </div>
+	<div class="box innerGrid">
+	  <div class="box heart" v-for="male in maleArray"> 
+	    <input class="heartButton" type="image" src="../img/redheart.png" v-on:click="popup(male.id)" :id="male.image">	 
+	  </div>
+	</div>
+	<div class="box innerGrid">
+	  <div class="box femaleUser" v-for="user in femaleArray">
+	    <button class="femaleButton" v-on:click="femaleClick(user.id)" :id="user.id"> {{user.name}} </button>
+	  </div>
+	</div>
+      </div>
+    </div>
+    <div id="mySidenav" class="sidenav maleNav">
+      <a href="javascript:void(0)" class="closebtn" v-on:click="closeMaleNav()">&times;</a>
+      <div id="mySidenavName" class="navName"></div>
+      <img id="mySidenavImg" class="navImg"></img>
+      <div class="boxHeader">
+	<div class="boxHeadertext">Bubbles</div>
+      </div>
+      <div id="mySidenavBubbles" class="navBubbles"></div>
+      <div id="mySidenavDates" class="navDates"></div>
+    </div>
+    <div id="mySideFnav" class="sidenav femNav">
+      <a href="javascript:void(0)" class="closebtnF" v-on:click="closeFemaleNav()">&times;</a>
+      <div id="mySideFnavName" class="navName"></div>
+      <img id="mySideFnavImg" class="navImg"></img>
+      <div class="boxHeader">
+	<div class="boxHeadertext">Bubbles</div>
+      </div>
+      <div id="mySideFnavBubbles" class="navBubbles"></div>
+      <div id="mySideFnavDates" class="navDates"></div>
+    </div>
+    <div class="box h">
+      <br>
+      <br>
+      <br>
+      <button class="matchButton" v-on:click="rematch()"> REMATCH </button> <br>
+      <button class="matchButton" v-on:click="unmatch()"> UNMATCH </button>
+      
+	
+    </div>
+    <div class="box c">
+      <div class= "boxHeader">
+	<div class="boxHeadertext"> Time </div>
+      </div>
+      <div id="clock"></div>
+      <br>
+      <button id="tablesButton" class="matchButton" v-on:click="tablePlacementButton()"> TABLE PLACEMENT</button>
+    </div>
+    <div class="box d">
+      <div class="starteventtext">
+	<div class= "boxHeader">
+	<div class="boxHeadertext"> Next Phase: </div>
+      </div>
+	
+	<p id="times">
+	  <!-- time schedule--> {{times[0]}} </p>
+      </div>
+      <button id="startevent"  v-on:click="startEvent()"> START MEETING</button>
+      <button id="startevent"  v-on:click="nextStage()"> NEXT STAGE</button>
+    </div>
+    <div class="box e">
+       <div class="boxHeader">
+	<div class="boxHeadertext">
+	   Schedule	  
+	</div>
+      </div>
+      
+      <footer>
+	<p> Date 1</p>
+	<p> {{times[0]}} - {{dateSpan[0]}} </p>
+      </footer>
+      <hr>
+      <footer>
+	<p> Date 2</p>
+	<p> {{times[1]}} - {{dateSpan[1]}} </p>
+      </footer>
+      <hr>
+      <footer>
+	<p> Date 3</p>
+	<p> {{times[2]}} - {{dateSpan[2]}} </p>
+      </footer>
+      <hr>
+    </div>
+    <div class="box f">   
+      <div class="boxHeader">
+	<div class="boxHeadertext"> Current phase</div>
+	<br>
+	<div class="boxTextBig" id="phase"> Date 1 </div>
+      </div>
+      
+
+    </div>
+    <div class="box g">
+      <div class="boxHeader">
+	<div class="boxHeadertext">
+	   Participants:	  
+	</div>
+      </div>
+	<div id="participants">
+	  <br>
+    </div>
+      </div>
+      
+</body>
+</html>

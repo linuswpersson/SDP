@@ -125,7 +125,7 @@ const vm = new Vue({
 	    this.eventLocation = data.eventLocation;
 	    this.userName = data.name;
 	    this.calculateDateTimes();
-	    this.userName = data.name;
+	    
 	    load();
 	}.bind(this));
 

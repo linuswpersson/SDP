@@ -118,7 +118,7 @@
       <button id="startevent"  v-on:click="nextStage()"> NEXT STAGE</button> -->
 
       <div v-if="!done">
-      <button id="startevent" v-on:click="startEvent()"> START MEETING</button>
+      <button id="startevent" v-on:click="startEvent(); superUpdater();"> START MEETING</button>
       <button id="startevent"  v-on:click="nextStage()"> NEXT STAGE</button>
       </div>
       <div v-if="done">

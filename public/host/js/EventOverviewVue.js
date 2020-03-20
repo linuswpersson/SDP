@@ -320,7 +320,7 @@ const vm = new Vue({
 	},
 
 
-/*superUpdater: function() {
+superUpdater: function() {
 
 for (let i = 0; i < this.matches.length; i++) {
 		if(this.matches[i].maleName != this.maleArray[i].name || this.matches[i].femaleName != this.femaleArray[i].name) {
@@ -331,7 +331,7 @@ for (let i = 0; i < this.matches.length; i++) {
 	   	socket.emit('sendCurrentMatches', this.currentMatches);
 	   	socket.emit('sendTablePlacement', this.matches);
 	    socket.emit('signal', {phase: this.phase}); 
-	},	*/
+	},	
 
 	startEvent: function() {
 	    if (this.started == true){
@@ -451,7 +451,6 @@ for (let i = 0; i < this.matches.length; i++) {
 	    }
 	    if (this.phase == 4) {
 		this.done = true;
-		this.phase += 1;
 	    } 
 
 	    
@@ -542,7 +541,7 @@ for (let i = 0; i < this.matches.length; i++) {
 	    var data = ev.dataTransfer.getData("text");
 	    console.log(ev.target.id);
 	    console.log(ev.target);
-	    this.matches[data.slice(-1)].tableNum = ev.target.id.slice(-1);	
+	    this.matches[data.slice(-1)].tableNum = Number(ev.target.id.slice(-1));	
 	    console.log(this.matches);
 	
 	    

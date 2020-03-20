@@ -30,8 +30,8 @@ MATCHED!
 </div>
 
 <section id="buttons">
-<button class="mySeat" v-on:click="backClick()">Next Date!</button>
 <button class="mySeat" v-on:click="joinSeatClick()">End date!</button>
+<button class="mySeat" v-on:click="showResult()">seat!</button>
 </section>
 <!-- tillagt -->
  <h1 class="centered">My Seat </h1>
@@ -41,10 +41,7 @@ MATCHED!
   >
 
  <div id="tableMap">
-	    <div v-for="(_,index) in Array(10)" :id="'table' + index" :class="'table ' + index" v-on:dragover="allowDrop($event)" v-on:drop="dropHandler($event)">table{{index + 1}}
-
-	      <div class="matchItem" v-for="(match, matchIndex) in matches" v-if="match.tableNum == index" v-on:dragstart="dragstartHandler($event)" draggable="true" :id="'match '+matchIndex">
-		<span id="maleName">{{match.maleName}}</span> <span id="femaleName">{{match.femaleName}}</span>
+	    <div v-for="(_,index) in Array(10)" :id="'table' + index" :class="'table ' + index">table{{index + 1}}
 	      </div>
 	      
 	    </div>

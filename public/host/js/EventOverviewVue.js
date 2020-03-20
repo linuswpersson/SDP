@@ -5,6 +5,8 @@ const socket = io();
 const vm = new Vue({
     el: '#app',
     data: {
+	started: false,
+	done: false,
 	eventName: '',
 	eventTimeTo: '',
 	eventTimeFrom: '',
@@ -317,104 +319,126 @@ const vm = new Vue({
 	    
 	},
 	startEvent: function() {
-	    
-	    socket.emit('signal', {phase: this.phase}); 
+	    if (this.started == true){
+		alert("Move on to the next event before starting a new one!");
+		return;
+	    }
+	    socket.emit('signal', {phase: this.phase});
+	    this.started = true;
+	},
+	doneClick: function(){
+	    this.phase += 1;
+	    socket.emit('signal', {phase: this.phase});
+	    this.started = true;
 	},
 	nextStage: function() {
-	    
-	    
-	    let p = document.getElementById("phase");
-	    let oldtimes = document.getElementById("times");
-
-	    if (this.phase < 3) {
-		let i = 0;
-		/* simulate ratings from 0 to 5*/ 
-		for (i ; i < 10; i++) {
-		    //ändrade här så att ett objekt med namn och bild läggs in i previous date
-		    //som jag ska använda för att skicka till user
-		    this.maleArray[i].previousDate[this.phase-1] = {name: this.femaleArray[i].name, imgPath: this.femaleArray[i].picpath};
-		    this.femaleArray[i].previousDate[this.phase-1] = {name: this.maleArray[i].name, imgPath: this.maleArray[i].picpath};
-		    this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
-		    this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
-		}
-		
-		if (this.isMale){
-		    this.maleArray[0].rating[this.phase-1] = this.rating[this.phase-1];
-		}		    	    
-		else {
-		    this.femaleArray[this.phase-1].rating[this.phase-1] = this.rating[this.phase-1];
-		}
-		
-		this.phase += 1;
-		let newphase = document.createElement("Div");
-		let updatephase = document.createTextNode("Date " + this.phase);
-		newphase.appendChild(updatephase);
-		p.replaceChild(newphase, p.childNodes[0]);	
-		let times = document.createElement("P");
-		let newTimes = document.createTextNode(this.times[this.phase-1]);
-		times.appendChild(newTimes);
-		oldtimes.replaceChild(times, oldtimes.childNodes[0]);
+	    if (!this.started){
+		alert("You need to start the meeting before you move on to the next one!");
+		return;
 	    }
 	    else {
-		let i = 0;
-		for (i ; i < 10; i++) {
-		    //ändrade här så att ett objekt med namn och bild läggs in i previous date
-		    //som jag ska använda för att skicka till user
-		    this.maleArray[i].previousDate[this.phase-1] = {name: this.femaleArray[i].name, imgPath: this.femaleArray[i].picpath};
-		    this.femaleArray[i].previousDate[this.phase-1] = {name: this.maleArray[i].name, imgPath: this.maleArray[i].picpath};
-		    this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
-		    this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
-		}
-		if (this.isMale){
-		    this.maleArray[0].rating[this.phase-1] = this.rating[this.phase-1];
-		}		    	    
-		else {
-		    this.femaleArray[this.phase-1].rating[this.phase-1] = this.rating[this.phase-1];
-		}
+		this.started = false;
+		let p = document.getElementById("phase");
+		let oldtimes = document.getElementById("times");
 		
-		let newphase = document.createElement("Div");
-		let updatephase = document.createTextNode("Event Completed");
-		newphase.appendChild(updatephase);
-		p.replaceChild(newphase, p.childNodes[0]);
-		let times = document.createElement("P");
-		let newTimes = document.createTextNode("Event completed");
-		times.appendChild(newTimes);
-		oldtimes.replaceChild(times, oldtimes.childNodes[0]);
-	    }
-	    	    
-	  
-	    let newfirstIndex = this.femaleArray[9];
-	    /* Moves the female buttons */
-	    this.femaleArray.unshift(newfirstIndex);
-	    this.femaleArray[0] = this.femaleArray[10];
-	    this.femaleArray.splice(10);
-	    for (var i = 0; i < this.femaleArray.length; i++){
-		this.femaleArray[i].matchId += 1;
-		this.femaleArray[i].id += 1;
-	    }
-	    this.femaleArray[0].id = 10;
-	    this.femaleArray[0].matchId = 0;	    
-	    this.closeFemaleNav(10);
-	    this.closeMaleNav(0);
-	  
-	    
-
-	    let prevMatches = [];
-	    if(this.isMale) {
-		prevMatches = this.maleArray[0].previousDate; 
-	    } else {
-		let indexOfUser = 0;
-		for (let i = 0; i < this.femaleArray.length; i++) {
-		    if (this.femaleArray[i].name == this.userName) {
-			indexOfUser = i;
+		if (this.phase < 3) {
+		    let i = 0;
+		/* simulate ratings from 0 to 5*/ 
+		    for (i ; i < 10; i++) {
+			//ändrade här så att ett objekt med namn och bild läggs in i previous date
+			//som jag ska använda för att skicka till user
+			this.maleArray[i].previousDate[this.phase-1] = {name: this.femaleArray[i].name, imgPath: this.femaleArray[i].picpath};
+			this.femaleArray[i].previousDate[this.phase-1] = {name: this.maleArray[i].name, imgPath: this.maleArray[i].picpath};
+			this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
+			this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
+		}
+		    
+		    if (this.isMale){
+			this.maleArray[0].rating[this.phase-1] = this.rating[this.phase-1];
+		    }		    	    
+		    else {
+			this.femaleArray[this.phase-1].rating[this.phase-1] = this.rating[this.phase-1];
 		    }
+		    
+		    this.phase += 1;
+		    let newphase = document.createElement("Div");
+		    let updatephase = document.createTextNode("Date " + this.phase);
+		    newphase.appendChild(updatephase);
+		    p.replaceChild(newphase, p.childNodes[0]);	
+		    let times = document.createElement("P");
+		    let newTimes = document.createTextNode(this.times[this.phase-1]);
+		    times.appendChild(newTimes);
+		    oldtimes.replaceChild(times, oldtimes.childNodes[0]);
 		}
+		else {
+		    let i = 0;
+		    for (i ; i < 10; i++) {
+			//ändrade här så att ett objekt med namn och bild läggs in i previous date
+			//som jag ska använda för att skicka till user
+			this.maleArray[i].previousDate[this.phase-1] = {name: this.femaleArray[i].name, imgPath: this.femaleArray[i].picpath};
+			this.femaleArray[i].previousDate[this.phase-1] = {name: this.maleArray[i].name, imgPath: this.maleArray[i].picpath};
+			this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
+			this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
+		    }
+		    if (this.isMale){
+			this.maleArray[0].rating[this.phase-1] = this.rating[this.phase-1];
+		    }		    	    
+		    else {
+			this.femaleArray[this.phase-1].rating[this.phase-1] = this.rating[this.phase-1];
+		    }
+		    
+		    let newphase = document.createElement("Div");
+		    let updatephase = document.createTextNode("Event Completed");
+		    newphase.appendChild(updatephase);
+		    p.replaceChild(newphase, p.childNodes[0]);
+		    let times = document.createElement("P");
+		    let newTimes = document.createTextNode("Event completed");
+		    times.appendChild(newTimes);
+		    oldtimes.replaceChild(times, oldtimes.childNodes[0]);
+		    this.phase += 1;
+		}
+	    	
 		
-		prevMatches = this.femaleArray[indexOfUser].previousDate;
-	    }
-	    console.log(prevMatches);
-	    socket.emit('sendUserMatches', prevMatches);
+		let newfirstIndex = this.femaleArray[9];
+		/* Moves the female buttons */
+		this.femaleArray.unshift(newfirstIndex);
+		this.femaleArray[0] = this.femaleArray[10];
+		this.femaleArray.splice(10);
+		for (var i = 0; i < this.femaleArray.length; i++){
+		    this.femaleArray[i].matchId += 1;
+		    this.femaleArray[i].id += 1;
+		}
+		this.femaleArray[0].id = 10;
+		this.femaleArray[0].matchId = 0;	    
+		this.closeFemaleNav(10);
+		this.closeMaleNav(0);
+		
+		
+		
+		let prevMatches = [];
+		if(this.isMale) {
+		    prevMatches = this.maleArray[0].previousDate; 
+		} else {
+		    let indexOfUser = 0;
+		    for (let i = 0; i < this.femaleArray.length; i++) {
+			if (this.femaleArray[i].name == this.userName) {
+			    indexOfUser = i;
+			}
+		    }
+		    
+		    prevMatches = this.femaleArray[indexOfUser].previousDate;
+		    console.log(this.userName);
+		    console.log(this.femaleArray[0]);
+		    console.log(this.femaleArray[indexOfUser]);
+		}
+		console.log(prevMatches);
+		socket.emit('sendUserMatches', {prevMatches: prevMatches});
 
+	    }
+	    if (this.phase == 4) {
+		this.done = true;
+		this.phase += 1;
+	    } 
 
 	    
 	},
@@ -504,8 +528,9 @@ const vm = new Vue({
 	    var data = ev.dataTransfer.getData("text");
 	    console.log(ev.target.id);
 	    console.log(ev.target);
-	    this.matches[data.slice(-1)].tableNum = ev.target.id.slice(-1);
+	    this.matches[data.slice(-1)].tableNum = ev.target.id.slice(-1);	
 	    console.log(this.matches);
+	
 	    
 	},
 	confirmTablePlacement: function() {

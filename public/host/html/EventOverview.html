@@ -109,12 +109,16 @@
 	<div class= "boxHeader">
 	<div class="boxHeadertext"> Next Phase: </div>
       </div>
-	
 	<p id="times">
 	  <!-- time schedule--> {{times[0]}} </p>
       </div>
-      <button id="startevent"  v-on:click="startEvent()"> START MEETING</button>
+      <div v-if="!done">
+      <button id="startevent" v-on:click="startEvent()"> START MEETING</button>
       <button id="startevent"  v-on:click="nextStage()"> NEXT STAGE</button>
+      </div>
+      <div v-if="done">
+	<button id="startevent" v-on:click="doneClick()"> DONE </button>
+	</div>
     </div>
     <div class="box e">
        <div class="boxHeader">

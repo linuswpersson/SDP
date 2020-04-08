@@ -20,8 +20,8 @@ const vm = new Vue({
 	currMale : -1,
 	currFemale : -1,
 	rating: [],
-	isMale: true,
-	userName: '',
+	isMale: [],
+	userName: [],
 
 	bubbleArray : [
 	    {name : 'Music', selected : false},
@@ -75,7 +75,7 @@ const vm = new Vue({
 	
 	matches : Array(10),
 
-	currentMatches: Array(1),
+	currentMatches: Array(20),
     },
     created: function(){
 
@@ -115,7 +115,8 @@ const vm = new Vue({
 			this.maleArray[m].picpath = data.picpath[i];
 			this.maleArray[m].bubbleArray.splice(data.userBubbles.length);
 			this.maleArray[m].bubbleArray = data.userBubbles;
-			this.userName = data.users[i].name;
+			this.userName.push(data.users[i].name);
+			this.isMale.push(true);
 			m += 1;
 		    }
 		    else {
@@ -123,8 +124,8 @@ const vm = new Vue({
 			this.femaleArray[f].picpath = data.picpath[i];
 			this.femaleArray[f].bubbleArray.splice(data.userBubbles.length);
 			this.femaleArray[f].bubbleArray = data.userBubbles;
-			this.isMale = false;
-			this.userName = data.users[i].name;
+			this.isMale.push(false);
+			this.userName.push(data.users[i].name);
 			f += 1;
 		    }
 		}
@@ -338,17 +339,21 @@ const vm = new Vue({
 
 	    this.updateMatches();
 	    this.confirmTablePlacement();
-	    if(this.isMale){
-		this.currentMatches.splice(0, 0, {maleName : this.maleArray[0].name, malePic : this.maleArray[0].picpath,  femaleName : this.femaleArray[0].name, femalePic : this.femaleArray[0].picpath});
+	    let m = 0;
+	    for (let i = 0; i < userName.length; i++){
+	    if(this.isMale[i]){
+		this.currentMatches[i].splice(0, 0, {maleName : this.maleArray[m].name, malePic : this.maleArray[m].picpath,  femaleName : this.femaleArray[m].name, femalePic : this.femaleArray[m].picpath});
+		m += 1;
 	    } else {
 		let userIndex;
-		for (let i = 0; i < this.femaleArray.length; i ++){
-		    if(this.femaleArray[i].name == this.userName){
-			userIndex = i;
+		for (let k = 0; k < this.femaleArray.length; k ++){
+		    if(this.femaleArray[k].name == this.userName[i]){
+			userIndex = k;
 			break;
 		    }
 		}
-		this.currentMatches.splice(0, 0, {maleName : this.maleArray[userIndex].name, malePic : this.maleArray[userIndex].picpath,  femaleName : this.femaleArray[userIndex].name, femalePic : this.femaleArray[userIndex].picpath});
+		this.currentMatches[i].splice(0, 0, {maleName : this.maleArray[userIndex].name, malePic : this.maleArray[userIndex].picpath,  femaleName : this.femaleArray[userIndex].name, femalePic : this.femaleArray[userIndex].picpath});
+	    }
 	    }
 	    
 	    

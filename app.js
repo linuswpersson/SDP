@@ -51,7 +51,7 @@ function Data() {
     this.userBubbles = [];
     this.femaleIndex= 10;
 
-    this.userPreviousMatches = [{name: 'test data from server1', imgPath: ''}, {name: 'test data from server2', imgPath: ''}, {name: 'test data from server3', imgPath: ''}];
+    this.userPreviousMatches = [];
     this.phase = 1;
 
 
@@ -144,8 +144,8 @@ io.on('connection', function(socket) {
     socket.emit('recieveTablePlacement',{matches: data.matches, name: data.name});
 
     socket.on('sendCurrentMatches', function(bilder) {
+	data.bilder = [];
 	data.bilder = bilder;
-	console.log(data.bilder);
     });
 
     socket.emit('sendPic', {info: data.bilder});
@@ -179,7 +179,6 @@ io.on('connection', function(socket) {
     
     socket.on('sendTablePlacement', function(matches){
 	data.matches = matches;
-	console.log(data.matches);
     });
 
     socket.on('sendDateTimes', function(times){
@@ -190,7 +189,6 @@ io.on('connection', function(socket) {
 
     socket.on('sendUserMatches', function(prevMatches){
 	data.userPreviousMatches = prevMatches.prevMatches;
-	console.log(data.userPreviousMatches);
     });
 
     socket.on('signal', function(currDate){
@@ -205,10 +203,12 @@ io.on('connection', function(socket) {
 	//now we just randomly choose if the other person wants to share contact info
 	//and use some data from the userPreviousMatches array
 	data.userShareContactInfo = checkedDate.checkedDate;
+	console.log(data.userPreviousMatches);
+	console.log(data.userShareContactInfo);
 	data.userShareContactInfoResponse = [];
 	for (var element of checkedDate.checkedDate) {
 	    if(Math.floor(Math.random() * 2) == 1) {
-		for(var match of data.userPreviousMatches) {
+		for(var match of data.userPreviousMatches[checkedDate.Id]) {
 		    if(match.name == element) {
 			// just generating random contact info
 			let matchContactInfo = {name: '', imgPath: '', phone: '', email: ''};

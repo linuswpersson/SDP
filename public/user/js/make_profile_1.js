@@ -20,8 +20,8 @@ const vm = new Vue({
 	socket.on('getUsers', function(data) {
 	    if (data.users.length - 1 == data.userIndex) {
 		this.userIndex = data.userIndex;
-		localStorage.setItem("UniqueId",data.userIndex);
 		this.fullname = data.users[this.userIndex].name;
+		sessionStorage.setItem("UniqueId", data.userIndex);
 		this.phone = data.users[this.userIndex].phone;
 		this.gender = data.users[this.userIndex].gender;
 		this.seeking = data.users[this.userIndex].seeking;

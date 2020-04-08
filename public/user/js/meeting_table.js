@@ -16,10 +16,11 @@ Vue.directive('scroll', {
 const vm = new Vue({
     el: '#content',
     data: {
+	privID: 0,
 	date: 1,   	
 	matches:[],
-	mydate:'',
-	mydatePic:'',
+	myDate:'',
+	myDatePic:'',
 	myName:'',
 	table:'',
 	myDateInfo:[],
@@ -58,26 +59,13 @@ const vm = new Vue({
 	}.bind(this));
 	
 	socket.on('sendPic', function(data) {
-	    this.myDateInfo = data.info;
-	    if(this.myDateInfo[0].maleName == this.myName){ 
-		//this.table = this.myDateInfo[0].tableNum +1;
-		this.myDate = this.myDateInfo[0].femaleName;
-		this.myDatePic = this.myDateInfo[0].femalePic;
-		console.log(this.myDateInfo[0].femaleName);
-	    }
-	    else{
-		let index;
-		for(let i = 0; i<this.myDateInfo.length; i++){
-		    if(this.myDateInfo[i].femaleName == this.myName){
-			index = i;
-			break;	
-		    }	
-		}
-		//this.table = this.myDateInfo[index].tableNum +1;
-		this.myDate = this.myDateInfo[index].maleName;
-		this.myDatePic = this.myDateInfo[index].malePic;
-		console.log(this.myDateInfo[index].maleName);	
-	    }	
+	    this.privID = sessionStorage.getItem("UniqueId");
+	    console.log(this.privID);
+	    console.log(data.info[0].femaleName);
+	    this.myDateInfo = data.info[this.privID];
+	    this.myDate = this.myDateInfo.femaleName;
+	    this.myDatePic = this.myDateInfo.femalePic;
+	    console.log(this.myDateInfo.femaleName);	
 	}.bind(this));
 
     },

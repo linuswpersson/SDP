@@ -107,24 +107,27 @@ const vm = new Vue({
 	    if (data.name != ''){
 		console.log(data.users[0].name);
 		console.log(data.userIndex);
-		for(let i = 0; i < data.userIndex; i++)
-		if (data.users[i].gender[0] == ('M')){
-		    this.maleArray[i].name = data.users[i].name;
-		    this.maleArray[i].picpath = data.picpath[i];
-		    this.maleArray[i].bubbleArray.splice(data.userBubbles.length);
-		    this.maleArray[i].bubbleArray = data.userBubbles;
-		    this.userName = data.users[i].name;
+		let m = 0;
+		let f = 0;
+		for(let i = 0; i < data.userIndex; i++) {
+		    if (data.users[i].gender[0] == ('M')){
+			this.maleArray[m].name = data.users[i].name;
+			this.maleArray[m].picpath = data.picpath[i];
+			this.maleArray[m].bubbleArray.splice(data.userBubbles.length);
+			this.maleArray[m].bubbleArray = data.userBubbles;
+			this.userName = data.users[i].name;
+			m += 1;
+		    }
+		    else {
+			this.femaleArray[f].name = data.users[i].name;
+			this.femaleArray[f].picpath = data.picpath[i];
+			this.femaleArray[f].bubbleArray.splice(data.userBubbles.length);
+			this.femaleArray[f].bubbleArray = data.userBubbles;
+			this.isMale = false;
+			this.userName = data.users[i].name;
+			f += 1;
+		    }
 		}
-		else {
-		    this.femaleArray[i].name = data.users[i].name;
-		    this.femaleArray[i].picpath = data.picpath[i];
-		    this.femaleArray[i].bubbleArray.splice(data.userBubbles.length);
-		    this.femaleArray[i].bubbleArray = data.userBubbles;
-		    this.isMale = false;
-		    this.userName = data.users[i].name;
-
-		}
-	    }
 	    this.rating = data.rating;
 	    this.eventName = data.eventName;
 	    this.eventTimeFrom = data.eventTimeFrom;
@@ -133,13 +136,12 @@ const vm = new Vue({
 	    this.eventDate = data.eventDate;
 	    this.eventEmail = data.eventEmail;
 	    this.eventLocation = data.eventLocation;
-
 	    this.calculateDateTimes();
-	    
+	    }
 	    load();
-	}.bind(this));
+	    }.bind(this));
 
-
+		  
     },
     
     methods: {

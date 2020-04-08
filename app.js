@@ -31,7 +31,7 @@ app.get('/rating', function(req, res) {
   res.sendFile(path.join(__dirname, 'public/user/html/rating.html'));
 });
 
-/* TODO: Save user data so (ex) data.user[0] pulls out all relevant info for that specific user. */
+/* TODO: Save user data so (ex) data.users[0] pulls out all relevant info for that specific user. */
 /* For now I will code it with only 1 user in consideration. */
 function Data() {
     this.profiles = [];
@@ -46,7 +46,8 @@ function Data() {
     this.ratingMessage = '';
     this.users = [''];
     this.userIndex = 0;
-    this.userImagePath = '../img/plus.png';
+    this.userImagePath = '..img/plus.png';
+    this.userImageArray = [];
     this.userBubbles = [];
     this.femaleIndex= 10;
 
@@ -78,6 +79,7 @@ Data.prototype.saveBubbles = function(bubble){
 
 Data.prototype.saveImage = function(image){
     this.userImagePath = image.path;
+    
 }
 /* Add rating to queue */
 /* Hopefully there is a better looking way of saving these. */
@@ -96,7 +98,8 @@ Data.prototype.saveUserArray = function(array){
     this.gender = array.gender;
     this.seeking = array.seeking;
     this.phone = array.phone;
-    this.users[this.userIndex] = array;
+    let newUser = {gender: this.gender, name: this.name, seeking: this.seeking, phone: this.phone};
+    this.users[this.userIndex] = newUser;
 
 }
 
@@ -120,10 +123,10 @@ const data = new Data();
 io.on('connection', function(socket) {
     /* These are the things loaded upon load */
     socket.emit('updatePhase', {phase: data.phase});
-    socket.emit('getUsers', {username: data.name,phone: data.phone, gender: data.gender, seeking: data.seeking, userIndex: data.userIndex});
-    socket.emit('getImage', {userImagePath: data.userImagePath});
-    socket.emit('getBubbles', {userBubbles: data.userBubbles});
-    socket.emit('hello', { gender: data.gender, name: data.name, picpath: data.userImagePath, userBubbles: data.userBubbles, eventName: data.eventName, eventTimeTo: data.eventTimeTo, eventTimeFrom: data.eventTimeFrom, eventMessage: data.eventMessage, eventDate: data.eventDate, eventEmail: data.eventEmail, eventLocation: data.eventLocation, rating: data.rating});
+    socket.emit('getUsers', {users: data.users, userIndex: data.userIndex});
+    socket.emit('getImage', {userImagePath: data.userImagePath, index: data.userIndex});
+    socket.emit('getBubbles', {userBubbles: data.userBubbles, userIndex: data.userIndex});
+    socket.emit('hello', {userIndex: data.userIndex, users: data.users, picpath: data.userImageArray, userBubbles: data.userBubbles, eventName: data.eventName, eventTimeTo: data.eventTimeTo, eventTimeFrom: data.eventTimeFrom, eventMessage: data.eventMessage, eventDate: data.eventDate, eventEmail: data.eventEmail, eventLocation: data.eventLocation, rating: data.rating});
 
     /*-----------------------------------------------------------------*/
     // sending event info to user
@@ -165,6 +168,9 @@ io.on('connection', function(socket) {
 
     socket.on('updateBubbles', function(bubble){
 	data.userBubbles = bubble.bubbleArray;
+	data.userIndex = data.userIndex + 1;
+	data.userImageArray.push(data.userImagePath);
+	data.userImagePath = '../img/plus.png';
     });
 
     socket.on('hostInfo', function(datar){

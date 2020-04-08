@@ -105,18 +105,23 @@ const vm = new Vue({
 	
 	socket.on('hello', function(data) {
 	    if (data.name != ''){
-		if (data.gender[0] == ('M')){
-		    this.maleArray[0].name = data.name;
-		    this.maleArray[0].picpath = data.picpath;
-		    this.maleArray[0].bubbleArray.splice(data.userBubbles.length);
-		    this.maleArray[0].bubbleArray = data.userBubbles;
+		console.log(data.users[0].name);
+		console.log(data.userIndex);
+		for(let i = 0; i < data.userIndex; i++)
+		if (data.users[i].gender[0] == ('M')){
+		    this.maleArray[i].name = data.users[i].name;
+		    this.maleArray[i].picpath = data.picpath[i];
+		    this.maleArray[i].bubbleArray.splice(data.userBubbles.length);
+		    this.maleArray[i].bubbleArray = data.userBubbles;
+		    this.userName = data.users[i].name;
 		}
 		else {
-		    this.femaleArray[0].name = data.name;
-		    this.femaleArray[0].picpath = data.picpath;
-		    this.femaleArray[0].bubbleArray.splice(data.userBubbles.length);
-		    this.femaleArray[0].bubbleArray = data.userBubbles;
+		    this.femaleArray[i].name = data.users[i].name;
+		    this.femaleArray[i].picpath = data.picpath[i];
+		    this.femaleArray[i].bubbleArray.splice(data.userBubbles.length);
+		    this.femaleArray[i].bubbleArray = data.userBubbles;
 		    this.isMale = false;
+		    this.userName = data.users[i].name;
 
 		}
 	    }
@@ -128,7 +133,7 @@ const vm = new Vue({
 	    this.eventDate = data.eventDate;
 	    this.eventEmail = data.eventEmail;
 	    this.eventLocation = data.eventLocation;
-	    this.userName = data.name;
+
 	    this.calculateDateTimes();
 	    
 	    load();

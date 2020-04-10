@@ -55,7 +55,7 @@ function Data() {
     this.phase = 1;
 
 
-    this.userShareContactInfo = [];
+    this.userShareContactInfo = Array(20);
     this.userShareContactInfoResponse = [];
 
     this.eventName = '';
@@ -136,7 +136,7 @@ io.on('connection', function(socket) {
     socket.emit('getUserMatches', {matches: data.userPreviousMatches});
 
     //sending contact info of matches to user
-    socket.emit('sendMatchContactInfo', {contact: data.userShareContactInfoResponse});
+    socket.emit('sendMatchContactInfo', {contact: data.userShareContactInfo});
     /*-----------------------------------------------------------------*/
 
     /*--------------------------------*/
@@ -202,7 +202,6 @@ io.on('connection', function(socket) {
 	//this can be changed so that we use actual contactinfo
 	//now we just randomly choose if the other person wants to share contact info
 	//and use some data from the userPreviousMatches array
-	data.userShareContactInfo = checkedDate.checkedDate;
 	console.log(data.userPreviousMatches);
 	console.log(data.userShareContactInfo);
 	data.userShareContactInfoResponse = [];
@@ -222,6 +221,7 @@ io.on('connection', function(socket) {
 		    }
 		}
 	    }
+	    data.userShareContactInfo[checkedDate.Id] = data.userShareContactInfoResponse;
 
     }
     });

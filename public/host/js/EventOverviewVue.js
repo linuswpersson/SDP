@@ -334,7 +334,7 @@ const vm = new Vue({
 	    let m = 0;
 	    for (let i = 0; i < this.userName.length; i++){
 	    if(this.isMale[i]){
-		this.currentMatches.push({maleName : this.maleArray[m].name, malePic : this.maleArray[m].picpath,  femaleName : this.femaleArray[m].name, femalePic : this.femaleArray[m].picpath});
+		this.currentMatches.push({maleName : this.maleArray[m].name, malePic : this.maleArray[m].picpath,  femaleName : this.femaleArray[m].name, femalePic : this.femaleArray[m].picpath, users: this.userName});
 		m += 1;
 	    } else {
 		let userIndex;
@@ -344,8 +344,7 @@ const vm = new Vue({
 			break;
 		    }
 		}
-		console.log(this.currentMatches[0].femaleName);
-		this.currentMatches.push({maleName : this.maleArray[userIndex].name, malePic : this.maleArray[userIndex].picpath,  femaleName : this.femaleArray[userIndex].name, femalePic : this.femaleArray[userIndex].picpath});
+		this.currentMatches.push({maleName : this.maleArray[userIndex].name, malePic : this.maleArray[userIndex].picpath,  femaleName : this.femaleArray[userIndex].name, femalePic : this.femaleArray[userIndex].picpath, users: this.userName});
 	    }
 	    }
 	    
@@ -458,22 +457,17 @@ const vm = new Vue({
 		let prevMatches = [];
 		let m = 0;
 		for (let i = 0; i < this.userName.length; i++){
-		if(this.isMale[0]) {
-		    prevMatches[i] = this.maleArray[m].previousDate;
-		    m += 1;
-		} else {
-		    let indexOfUser = 0;
-		    for (let k = 0; k < this.femaleArray.length; k++) {
-			if (this.femaleArray[k].name == this.userName) {
-			    indexOfUser = k;
-			}
+		    if(this.isMale[i]) {
+			prevMatches[i] = this.maleArray[m].previousDate;
+			m += 1;
+		    } else {
+			for (let k = 0; k < this.femaleArray.length; k++) {
+			    if (this.femaleArray[k].name == this.userName[i]) {
+				prevMatches[i] = this.femaleArray[k].previousDate;
+				break;
+			    }
+			}		
 		    }
-		    
-		    prevMatches[i] = this.femaleArray[indexOfUser].previousDate;
-		    console.log(this.userName);
-		    console.log(this.femaleArray[0]);
-		    console.log(this.femaleArray[indexOfUser]);
-		}
 		}
 		console.log(prevMatches);
 		socket.emit('sendUserMatches', {prevMatches: prevMatches});
@@ -537,7 +531,7 @@ const vm = new Vue({
 	},
 	getMatches: function() {
 	    for (let i = 0; i < this.matches.length; i++) {
-		this.matches.splice(i, 1, {maleName : this.maleArray[i].name, femaleName : this.femaleArray[i].name, tableNum : i});
+		this.matches.splice(i, 1, {maleName : this.maleArray[i].name, femaleName : this.femaleArray[i].name, tableNum : i, users: this.userName});
 	    }
 	    console.log(this.matches);
 	},
@@ -545,10 +539,10 @@ const vm = new Vue({
 	updateMatches: function (){
 	    for (let i = 0; i < this.matches.length; i++) {
 		if(this.matches[i].maleName != this.maleArray[i].name || this.matches[i].femaleName != this.femaleArray[i].name) {
-		    this.matches.splice(i, 1, {maleName : this.maleArray[i].name, femaleName : this.femaleArray[i].name, tableNum : i});
+		    this.matches.splice(i, 1, {maleName : this.maleArray[i].name, femaleName : this.femaleArray[i].name, tableNum : i, users: this.userName});
 		}
 		if(this.matches[i].tableNum == 'e') {
-		    this.matches.splice(i, 1, {maleName : this.maleArray[i].name, femaleName : this.femaleArray[i].name, tableNum : 0});
+		    this.matches.splice(i, 1, {maleName : this.maleArray[i].name, femaleName : this.femaleArray[i].name, tableNum : 0, users: this.userName});
 		}
 		
 	    }

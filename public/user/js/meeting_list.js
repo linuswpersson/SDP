@@ -21,10 +21,8 @@ const vm = new Vue({
     },
     created: function(){
 	socket.on('getUserMatches', function(prevMatches) {
-	    console.log(this.userPreviousMatches);
 	    this.privID = sessionStorage.getItem("UniqueId");
 	    this.userPreviousMatches = prevMatches.matches[this.privID];
-	    console.log(prevMatches);
 	    console.log(this.userPreviousMatches);
 	}.bind(this));
     },

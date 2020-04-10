@@ -9,6 +9,7 @@ const vm = new Vue({
 	ratingMessage: '',
 	rating: '',
 	phase: [null],
+	privID: '',
 	
     },
     created: function(){
@@ -33,8 +34,9 @@ const vm = new Vue({
 	},
 	//Sends the data to app.js, where it is stored.
 	saveRating: function(rating, message) {
-	    
-	    socket.emit('saveRating', rating, message, function(data) {
+	    this.privID = sessionStorage.getItem("UniqueId");
+	    console.log(rating);
+	    socket.emit('saveRating', rating, this.phase, this.privID, function(data) {
 	    });
 	},
 	//Print is simply to confirm that everything has been stored in app.js.

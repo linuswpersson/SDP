@@ -42,7 +42,7 @@ function Data() {
     this.phone = '';
     this.name = '';
     this.ratingIndex = 0;
-    this.rating = [null, null, null];
+    this.rating = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
     this.ratingMessage = '';
     this.users = [''];
     this.userIndex = 0;
@@ -67,10 +67,7 @@ function Data() {
     this.eventLocation = '';
     this.times = [];
     this.dateSpan = [];
-
-    this.bilder= '';
-    
-    
+    this.bilder= '';       
 }
 
 Data.prototype.saveBubbles = function(bubble){
@@ -83,10 +80,8 @@ Data.prototype.saveImage = function(image){
 }
 /* Add rating to queue */
 /* Hopefully there is a better looking way of saving these. */
-Data.prototype.saveRating = function(rating, message) {
-    this.rating[this.ratingIndex] = rating;
-    this.ratingMessage = message;
-    this.ratingIndex += 1;
+Data.prototype.saveRating = function(rating, message, privID) {
+    this.rating[privID].push(rating);
 }
 
 Data.prototype.getUserArray = function(){
@@ -231,8 +226,8 @@ io.on('connection', function(socket) {
 	io.sockets.emit('userHasJoined', {gender: data.gender, name: data.name, picpath: data.userImagePath, userBubbles: data.userBubbles});
     });
         
-    socket.on('saveRating', function (rating,message, fn) {
-	data.saveRating(rating, message);
+    socket.on('saveRating', function (rating,message, privID, fn) {
+	data.saveRating(rating, message, privID);
 	io.sockets.emit('updateHostRating', {rating: data.rating});
 
     });

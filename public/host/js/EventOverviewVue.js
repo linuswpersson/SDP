@@ -393,14 +393,22 @@ const vm = new Vue({
 			this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 			this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		    }
-		    
-		    if (this.isMale){
-			this.maleArray[0].rating[this.phase-1] = this.rating[this.phase-1];
-		    }		    	    
-		    else {
-			this.femaleArray[this.phase-1].rating[this.phase-1] = this.rating[this.phase-1];
+		    let manIndex = 0;
+		    let feIndex = 0;
+		    for (let i = 0; i < this.userName.length; i++){
+			if (this.isMale[i]){
+			    this.maleArray[manIndex].rating = this.rating[i];
+			    manIndex += 1;
+			}		    	    
+			else {
+			    let temp = feIndex + this.phase - 1;
+			    this.femaleArray[temp].rating = this.rating[i];
+
+			    feIndex += 1;
+			}
 		    }
-		    
+		    console.log(this.userName.length);
+		
 		    this.phase += 1;
 		    let newphase = document.createElement("Div");
 		    let updatephase = document.createTextNode("Date " + this.phase);
@@ -421,13 +429,20 @@ const vm = new Vue({
 			this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 			this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		    }
-		    if (this.isMale){
-			this.maleArray[0].rating[this.phase-1] = this.rating[this.phase-1];
-		    }		    	    
-		    else {
-			this.femaleArray[this.phase-1].rating[this.phase-1] = this.rating[this.phase-1];
+		    let manIndex = 0;
+		    let feIndex = 0;
+		    for (let i = 0; i < this.userName.length; i++){
+			if (this.isMale[i]){
+			    this.maleArray[manIndex].rating = this.rating[i];
+			    manIndex += 1;
+			}		    	    
+			else {
+			    let temp = feIndex + this.phase - 1;
+			    this.femaleArray[temp].rating = this.rating[i];
+			    feIndex += 1;
+			}
+			
 		    }
-		    
 		    let newphase = document.createElement("Div");
 		    let updatephase = document.createTextNode("Event Completed");
 		    newphase.appendChild(updatephase);

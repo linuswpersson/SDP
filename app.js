@@ -162,7 +162,7 @@ io.on('connection', function(socket) {
     });
 
     socket.on('updateBubbles', function(bubble){
-	data.userBubbles = bubble.bubbleArray;
+	data.userBubbles[data.userIndex] = bubble.bubbleArray;
 	data.userIndex = data.userIndex + 1;
 	data.userImageArray.push(data.userImagePath);
 	data.userImagePath = '../img/plus.png';

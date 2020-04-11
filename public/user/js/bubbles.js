@@ -31,21 +31,6 @@ const vm = new Vue({
 	    {name : 'Plants', selected : false},
 	],
     },
-    created: function(){
-	socket.on('getBubbles', function(data){
-	    this.chosenBubbleArray.splice(data.userBubbles.length);
-	    this.chosenBubbleArray = data.userBubbles;
-	    for(var i = 0; i < this.chosenBubbleArray.length; i++) {
-		var currBubble = this.chosenBubbleArray[i].name;
-		for(var v = 0; v < this.bubbleArray.length; v++) {
-		    if(currBubble.toString().localeCompare(this.bubbleArray[v].name.toString()) == 0) {
-			this.bubbleArray[v].selected = true;
-			break;
-		    }
-		}
-	    }	    
-	}.bind(this));
-    },
     methods: {
 	
 	backClick: function() {

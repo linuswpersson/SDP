@@ -113,8 +113,8 @@ const vm = new Vue({
 		    if (data.users[i].gender[0] == ('M')){
 			this.maleArray[m].name = data.users[i].name;
 			this.maleArray[m].picpath = data.picpath[i];
-			this.maleArray[m].bubbleArray.splice(data.userBubbles.length);
-			this.maleArray[m].bubbleArray = data.userBubbles;
+			this.maleArray[m].bubbleArray.splice(data.userBubbles[i].length);
+			this.maleArray[m].bubbleArray = data.userBubbles[i];
 			this.userName.push(data.users[i].name);
 			this.isMale.push(true);
 			m += 1;
@@ -122,8 +122,8 @@ const vm = new Vue({
 		    else {
 			this.femaleArray[f].name = data.users[i].name;
 			this.femaleArray[f].picpath = data.picpath[i];
-			this.femaleArray[f].bubbleArray.splice(data.userBubbles.length);
-			this.femaleArray[f].bubbleArray = data.userBubbles;
+			this.femaleArray[f].bubbleArray.splice(data.userBubbles[i].length);
+			this.femaleArray[f].bubbleArray = data.userBubbles[i];
 			this.isMale.push(false);
 			this.userName.push(data.users[i].name);
 			f += 1;

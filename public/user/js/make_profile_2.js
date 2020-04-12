@@ -21,9 +21,8 @@ const vm = new Vue({
     /* Loads the image upon load */
 	created: function(){
 	    socket.on('getImage', function(data){
-		    this.picpath = data.userImagePath;
-		
-	    }.bind(this));	
+		this.picpath = data.userImagePath;
+	    }.bind(this));
 	},
     methods: {
 	openModular: function() {

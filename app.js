@@ -46,7 +46,7 @@ function Data() {
     this.ratingMessage = '';
     this.users = [''];
     this.userIndex = 0;
-    this.userImagePath = '..img/plus.png';
+    this.userImagePath = '../img/plus.png';
     this.userImageArray = [];
     this.userBubbles = [];
     this.femaleIndex= 10;

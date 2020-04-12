@@ -125,7 +125,7 @@ io.on('connection', function(socket) {
 
     /*-----------------------------------------------------------------*/
     // sending event info to user
-    socket.emit('getEventInfo', {eventName: data.eventName, eventStartTime: data.eventTimeFrom, times: data.times, dateSpan: data.dateSpan});
+    socket.emit('getEventInfo', {eventName: data.eventName, eventStartTime: data.eventTimeFrom, times: data.times, dateSpan: data.dateSpan, phase: data.phase});
 
     //sending previous matches to user
     socket.emit('getUserMatches', {matches: data.userPreviousMatches});
@@ -184,12 +184,13 @@ io.on('connection', function(socket) {
 
     socket.on('sendUserMatches', function(prevMatches){
 	data.userPreviousMatches = prevMatches.prevMatches;
+	data.phase = prevMatches.phase;
     });
 
     socket.on('signal', function(currDate){
 	data.savePhase(currDate);
 
-	io.sockets.emit('signalFrom', {phase: currDate});
+	io.sockets.emit('signalFrom', {phase: data.phase});
     });
 
     socket.on('userShareContactInfo', function(checkedDate){

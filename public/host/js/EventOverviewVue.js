@@ -485,7 +485,7 @@ const vm = new Vue({
 		    }
 		}
 		console.log(prevMatches);
-		socket.emit('sendUserMatches', {prevMatches: prevMatches});
+		socket.emit('sendUserMatches', {prevMatches: prevMatches, phase: this.phase});
 
 	    }
 	    if (this.phase == 4) {

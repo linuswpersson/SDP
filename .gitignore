@@ -3,8 +3,6 @@
 
 #Node_Stuff
 node_modules/
-package-lock.json
-package.json
 LICENSE
 
 #emacs

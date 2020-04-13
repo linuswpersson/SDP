@@ -30,7 +30,7 @@ const vm = new Vue ({
 	
     },
     created: function(){
-	socket.on('sendMatchContactInfo', function(contactInfo) 
+	socket.on('sendMatchContactInfo', function(contactInfo) { 
 	    this.privID = sessionStorage.getItem("UniqueId");
 	    this.matchContactInfoResponse = contactInfo.contact[this.privID];
 	    console.log(this.matchContactInfoResponse);

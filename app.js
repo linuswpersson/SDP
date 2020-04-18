@@ -70,6 +70,29 @@ function Data() {
     this.bilder= '';
     this.sentInfoInt = 0;
 
+    this.dummyArray = [
+	{name : 'Johan', picpath: 'https://images.unsplash.com/photo-1492447273231-0f8fecec1e3a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'},
+	{name : 'Erik', picpath: 'https://images.unsplash.com/photo-1484186304838-0bf1a8cff81c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80'},
+	{name : 'Hjalmar', picpath: 'https://images.unsplash.com/photo-1508216404415-a35220fab80e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80'},
+	{name : 'Lars', picpath: 'https://images.unsplash.com/photo-1579038773867-044c48829161?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80'},
+	{name : 'Åke', picpath: 'https://images.unsplash.com/photo-1479685894911-37e888d38f0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'},
+        {name : 'Tor', picpath: 'https://images.unsplash.com/photo-1546434946-3e8a5564945d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'},
+	{name : 'Valdermar', picpath: 'https://images.unsplash.com/photo-1573156770063-01139113dbdd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'},
+	{name : 'Jan', picpath: 'https://images.unsplash.com/photo-1507864676385-e69c0ca53dbd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'},
+	{name : 'Olle', picpath: 'https://images.unsplash.com/photo-1544048242-e9b516820f97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'},
+	{name : 'Rolf', picpath: 'https://images.unsplash.com/photo-1552504462-0c6b5fef0925?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'},
+        {name : 'Lina', picpath: 'https://images.unsplash.com/photo-1484800089236-7ae8f5dffc8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'},
+	{name : 'Frida', picpath: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'},
+	{name : 'Mona Lisa', picpath: 'https://images.unsplash.com/photo-1423742774270-6884aac775fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'},
+	{name : 'Erika', picpath: 'https://images.unsplash.com/photo-1560768686-52887fe71392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'},
+	{name : 'Linn', picpath: 'https://images.unsplash.com/photo-1521118224700-e216379d1ae2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'},
+	{name : 'Simone', picpath: 'https://images.unsplash.com/photo-1520989125854-939a8bdfa81e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'},
+	{name : 'Julia', picpath: 'https://images.unsplash.com/photo-1563306406-e66174fa3787?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'},
+	{name : 'Bennilina', picpath: 'https://images.unsplash.com/photo-1567850179641-1d2f8bec55cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'},
+	{name : 'Johanna', picpath: 'https://images.unsplash.com/photo-1524638431109-93d95c968f03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'},
+	{name : 'Stina', picpath: 'https://images.unsplash.com/photo-1505685679686-2490cab6217d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'}
+    ];
+
 }
 
 Data.prototype.saveBubbles = function(bubble){
@@ -114,7 +137,29 @@ Data.prototype.savePhase = function(data){
     this.phase = data.phase;
 }
 
-Data.prototype.dummyResponse = function(checkedDate) {
+Data.prototype.dummyResponse = function(Id, Dummy) {
+    if(Math.floor(Math.random() * 2) == 1) {
+
+	let dummyMatch = {gender: '', name: '', seeking: '', phone: ''};
+	
+	let phoneNumbers = ['07071234567', '07129876544', '07555555555', '0735647923'];
+	dummyMatch.name = Dummy;
+	dummyMatch.phone = phoneNumbers[Math.floor(Math.random() * phoneNumbers.length)];
+	dummyMatch.email = Dummy + '@email.com';
+
+	for(var i = 0; i < this.dummyArray.length; i++) {
+	    if(Dummy == this.dummyArray[i].name){
+		break;
+	    }
+	}
+	var toSave = {info: dummyMatch, image: this.dummyArray[i].picpath};
+	data.userShareContactInfoResponse[Id].push(toSave);	
+    }
+}
+
+
+
+/*
     
 	for (var element of checkedDate.names) {
 	    if(Math.floor(Math.random() * 2) == 1) {
@@ -136,6 +181,8 @@ Data.prototype.dummyResponse = function(checkedDate) {
     }
 
 }
+
+*/
 
 const data = new Data();
 
@@ -226,26 +273,25 @@ io.on('connection', function(socket) {
 
     socket.on('userShareContactInfo', function(checkedDate){
 	// {names: "G", "T", "H", ID: 0}
+	let bool;
 	let tempArr = [];
 	for (let i = 0; i < checkedDate.names.length; i++) {
+	    bool = true;
 	    for (let k = 0; k < data.users.length; k++) {
 		if (checkedDate.names[i] == data.users[k].name) {
+		    bool = false;
 		    tempArr.push(k);
 		}
+	    }
+	    if(bool){
+		data.dummyResponse(checkedDate.Id, checkedDate.names[i]);
 	    }
 	}
 	for (let i = 0; i < tempArr.length; i++){
 	    var toSave = {info: data.users[checkedDate.Id], image: data.userImageArray[checkedDate.Id]};
 	    data.userShareContactInfoResponse[tempArr[i]].push(toSave);
-	}
-
-	/*    for (let i = 0; i < data.users.length; i++) {
-	      if (data.userShareContactInfoResponse[i].length < 3) {
-	      
-	      }
-	      }
-	      
-	*/
+	} 
+	
 	data.sentInfoInt += 1;
 	console.log(data.sentInfoInt);
 	if (data.userIndex == data.sentInfoInt) {

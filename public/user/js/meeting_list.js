@@ -15,7 +15,7 @@ const vm = new Vue({
 	nextClick: function() {
 	    //printing which checkbox been checked
 	    console.log(this.checkedDate);
-	    socket.emit('userShareContactInfo', {name: this.checkedDate, Id: this.privID});
+	    socket.emit('userShareContactInfo', {names: this.checkedDate, Id: this.privID});
 	    document.location.href = this.contactPage;
 	},
     },

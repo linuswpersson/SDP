@@ -15,9 +15,9 @@ const vm = new Vue ({
 	showInfo: function (match) {
 	    let element = 'myModal';
 	    document.getElementById('myModal').style.display = "block";
-	    this.modalContent.name = match.name;
-	    this.modalContent.email = match.email;
-	    this.modalContent.phone = match.phone;
+	    this.modalContent.name = match.info.name;
+	    this.modalContent.email = match.info.email;
+	    this.modalContent.phone = match.info.phone;
 	    
 	},
 	closeModal: function() {

@@ -56,7 +56,7 @@ function Data() {
 
 
     this.userShareContactInfo = Array(20);
-    this.userShareContactInfoResponse = Array(20);
+    this.userShareContactInfoResponse = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
 
     this.eventName = '';
     this.eventTimeTo = '';
@@ -68,6 +68,7 @@ function Data() {
     this.times = [];
     this.dateSpan = [];
     this.bilder= '';
+    this.sentInfoInt = 0;
 
 }
 
@@ -113,6 +114,29 @@ Data.prototype.savePhase = function(data){
     this.phase = data.phase;
 }
 
+Data.prototype.dummyResponse = function(checkedDate) {
+    
+	for (var element of checkedDate.names) {
+	    if(Math.floor(Math.random() * 2) == 1) {
+		for(var match of data.userPreviousMatches[checkedDate.Id]) {
+		    if(match.name == element) {
+			// just generating random contact info
+			let matchContactInfo = {name: '', imgPath: '', phone: '', email: ''};
+			let phoneNumbers = ['07071234567', '07129876544', '07555555555', '0735647923'];
+			matchContactInfo.name = match.name;
+			matchContactInfo.imgPath = match.imgPath;
+			matchContactInfo.phone = phoneNumbers[Math.floor(Math.random() * phoneNumbers.length)];
+			matchContactInfo.email = match.name + '@email.com';
+			data.userShareContactInfoResponse.push(matchContactInfo);
+			
+		    }
+		}
+	    }
+	    data.userShareContactInfo[checkedDate.Id] = data.userShareContactInfoResponse;
+    }
+
+}
+
 const data = new Data();
 
 
@@ -132,7 +156,7 @@ io.on('connection', function(socket) {
     socket.emit('getUserMatches', {matches: data.userPreviousMatches});
 
     //sending contact info of matches to user
-    socket.emit('sendMatchContactInfo', {contact: data.userShareContactInfo});
+    socket.emit('sendMatchContactInfo', {contact: data.userShareContactInfoResponse});
     /*-----------------------------------------------------------------*/
 
     /*--------------------------------*/
@@ -188,6 +212,12 @@ io.on('connection', function(socket) {
 	data.phase = prevMatches.phase;
     });
 
+    socket.on('isDone', function() {
+	if (data.sentInfoInt == data.userIndex) {
+	    io.sockets.emit('responseDoneLast', {gender: data.gender});
+	}
+    });
+    
     socket.on('signal', function(currDate){
 	data.savePhase(currDate);
 
@@ -197,64 +227,33 @@ io.on('connection', function(socket) {
     socket.on('userShareContactInfo', function(checkedDate){
 	// {names: "G", "T", "H", ID: 0}
 	let tempArr = [];
-	for (let i = 0; i < length.checkedDate.names; i++) {
-	    for (let k = 0; k < length.data.users; k++) {
+	for (let i = 0; i < checkedDate.names.length; i++) {
+	    for (let k = 0; k < data.users.length; k++) {
 		if (checkedDate.names[i] == data.users[k].name) {
-		    tempObject.ID.append(k);
+		    tempArr.push(k);
 		}
 	    }
 	}
 	for (let i = 0; i < tempArr.length; i++){
-	    var toSave = {info: data.users[tempArr[i]], image: data.userImagePath[i]}
-	    data.userShareContactInfoResponse[k].append(toSave)
+	    var toSave = {info: data.users[checkedDate.Id], image: data.userImageArray[checkedDate.Id]};
+	    data.userShareContactInfoResponse[tempArr[i]].push(toSave);
 	}
 
-	sentInfoInt += 1;
-	if (data.users.length == sentInfoInt - 1) {
-	    io.sockets.emit('fuckit')
+	/*    for (let i = 0; i < data.users.length; i++) {
+	      if (data.userShareContactInfoResponse[i].length < 3) {
+	      
+	      }
+	      }
+	      
+	*/
+	data.sentInfoInt += 1;
+	console.log(data.sentInfoInt);
+	if (data.userIndex == data.sentInfoInt) {
+	    io.sockets.emit('responseDone', {gender: data.gender});
 	}
-    }
-    
-    socket.on('userShareContactInfos', function(checkedDate){
-
-	/* checkedDate = {checked: ["G, id: 0", "F, id: 3", "D, id :2"], sendfromID:  1, toID: 0}
-	   for k = 0; k < length.checkedDate; k++ 
-	   for i = 0; i < length data.users; i++
-	   if data.users[i].name == checkedDate[k]
-	   otherID = i;
-	   break;
-
-	   checkedDate = {checked: "Filip", "F", "D", sendfromID: 1, toID: 0
-	   toID[["Filip", "ASD"], [], ["Filip"], ["Filip"]]
-	   
-	   
-	
-	//this can be changed so that we use actual contactinfo
-	//now we just randomly choose if the other person wants to share contact info
-	//and use some data from the userPreviousMatches array
-	console.log(data.userPreviousMatches);
-	console.log(data.userShareContactInfo);
-	data.userShareContactInfoResponse = [];
-	for (var element of checkedDate.checkedDate) {
-	    if(Math.floor(Math.random() * 2) == 1) {
-		for(var match of data.userPreviousMatches[checkedDate.Id]) {
-		    if(match.name == element) {
-			// just generating random contact info
-			let matchContactInfo = {name: '', imgPath: '', phone: '', email: ''};
-			let phoneNumbers = ['07071234567', '07129876544', '07555555555', '0735647923'];
-			matchContactInfo.name = match.name;
-			matchContactInfo.imgPath = match.imgPath;
-			matchContactInfo.phone = phoneNumbers[Math.floor(Math.random() * phoneNumbers.length)];
-			matchContactInfo.email = match.name + '@email.com';
-			data.userShareContactInfoResponse.push(matchContactInfo);
-			
-		    }
-		}
-	    }
-	    data.userShareContactInfo[checkedDate.Id] = data.userShareContactInfoResponse;
-    }
-
     });
+	     
+
 
 
     socket.on('userJoined', function(){

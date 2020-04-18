@@ -56,7 +56,7 @@ function Data() {
 
 
     this.userShareContactInfo = Array(20);
-    this.userShareContactInfoResponse = [];
+    this.userShareContactInfoResponse = Array(20);
 
     this.eventName = '';
     this.eventTimeTo = '';
@@ -67,7 +67,8 @@ function Data() {
     this.eventLocation = '';
     this.times = [];
     this.dateSpan = [];
-    this.bilder= '';       
+    this.bilder= '';
+
 }
 
 Data.prototype.saveBubbles = function(bubble){
@@ -194,7 +195,40 @@ io.on('connection', function(socket) {
     });
 
     socket.on('userShareContactInfo', function(checkedDate){
+	// {names: "G", "T", "H", ID: 0}
+	let tempArr = [];
+	for (let i = 0; i < length.checkedDate.names; i++) {
+	    for (let k = 0; k < length.data.users; k++) {
+		if (checkedDate.names[i] == data.users[k].name) {
+		    tempObject.ID.append(k);
+		}
+	    }
+	}
+	for (let i = 0; i < tempArr.length; i++){
+	    var toSave = {info: data.users[tempArr[i]], image: data.userImagePath[i]}
+	    data.userShareContactInfoResponse[k].append(toSave)
+	}
 
+	sentInfoInt += 1;
+	if (data.users.length == sentInfoInt - 1) {
+	    io.sockets.emit('fuckit')
+	}
+    }
+    
+    socket.on('userShareContactInfos', function(checkedDate){
+
+	/* checkedDate = {checked: ["G, id: 0", "F, id: 3", "D, id :2"], sendfromID:  1, toID: 0}
+	   for k = 0; k < length.checkedDate; k++ 
+	   for i = 0; i < length data.users; i++
+	   if data.users[i].name == checkedDate[k]
+	   otherID = i;
+	   break;
+
+	   checkedDate = {checked: "Filip", "F", "D", sendfromID: 1, toID: 0
+	   toID[["Filip", "ASD"], [], ["Filip"], ["Filip"]]
+	   
+	   
+	
 	//this can be changed so that we use actual contactinfo
 	//now we just randomly choose if the other person wants to share contact info
 	//and use some data from the userPreviousMatches array
@@ -218,8 +252,8 @@ io.on('connection', function(socket) {
 		}
 	    }
 	    data.userShareContactInfo[checkedDate.Id] = data.userShareContactInfoResponse;
-
     }
+
     });
 
 

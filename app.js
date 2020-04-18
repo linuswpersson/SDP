@@ -84,6 +84,7 @@ Data.prototype.saveImage = function(image){
 /* Hopefully there is a better looking way of saving these. */
 Data.prototype.saveRating = function(rating, message, privID) {
     this.rating[privID].push(rating);
+    io.sockets.emit('updateHostRating', {rating: data.rating});
 }
 
 Data.prototype.getUserArray = function(){
@@ -235,20 +236,31 @@ io.on('connection', function(socket) {
 	    }
 	}
 	for (let i = 0; i < tempArr.length; i++){
-	    var toSave = {info: data.users[checkedDate.Id], image: data.userImageArray[checkedDate.Id]};
+	    var toSave = {info: data.users[checkedDate.Id], image: data.userImageArray[checkedDate.Id, ID: tempArr[i]]};
 	    data.userShareContactInfoResponse[tempArr[i]].push(toSave);
 	}
+
+	
 
 	/*    for (let i = 0; i < data.users.length; i++) {
 	      if (data.userShareContactInfoResponse[i].length < 3) {
 	      
 	      }
-	      }
+	  }
 	      
 	*/
 	data.sentInfoInt += 1;
 	console.log(data.sentInfoInt);
 	if (data.userIndex == data.sentInfoInt) {
+	    for (let i = 0; i < data.userIndex; i++) {
+		for (let k = 0; k < data.userShareContactInfoResponse[i].length; k++)
+		    if (data.userShareContactInfoResponse[i].info[k] == data.userShareContactInfoResponse[data.userShareContactInfoResponse[i].ID].info[k]){
+			break;
+		    }
+		    else if (i == data.userShareContactInfoResponse.length && data.userShareContactInfoResponse[i].info[k] != data.userShareContactInfoResponse[data.userShareContactInfoResponse[i].ID].info[k]){
+			data.userShareContactInfoResponse[i].splice(k, 1);
+		    }
+	    }
 	    io.sockets.emit('responseDone', {gender: data.gender});
 	}
     });
@@ -260,9 +272,9 @@ io.on('connection', function(socket) {
 	io.sockets.emit('userHasJoined', {gender: data.gender, name: data.name, picpath: data.userImagePath, userBubbles: data.userBubbles});
     });
         
-    socket.on('saveRating', function (rating,message, privID, fn) {
+    socket.on('saveRating', function (rating, message, privID, fn) {
+	console.log(rating);
 	data.saveRating(rating, message, privID);
-	io.sockets.emit('updateHostRating', {rating: data.rating});
 
     });
 
@@ -283,7 +295,7 @@ io.on('connection', function(socket) {
 
     /* A print function ensuring that things have been stored properly */
     socket.on('printALL', function(print){
-	print(data.ratingMessage + ' rating ' + data.rating);	
+	print(' rating ' + data.rating);	
     });
 
 });

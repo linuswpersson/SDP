@@ -17,7 +17,7 @@ const vm = new Vue({
 	socket.on('updatePhase', function(data){
 	    this.phase = data.phase;
 //	    load();
-	    console.log(data.phase);
+
 	}.bind(this));
     },
     methods: {
@@ -27,7 +27,6 @@ const vm = new Vue({
 		document.location.href = this.meetingList;
 	    }
 	    else {
-		console.log(this.phase);
 		this.saveRating(this.rating, this.ratingMessage);
 		document.location.href = 'event_wait.html';
 	    }

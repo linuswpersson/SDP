@@ -94,8 +94,6 @@ const vm = new Vue({
 	
 	socket.on('updateHostRating', function(data){
 	    this.rating = data.rating;
-	    console.log(data.rating);
-	    console.log(this.rating);
 	    loadRating(data);
 
 	    /* Försök att uppdatera skiten när någon klickar på join event-knappen  */
@@ -105,8 +103,6 @@ const vm = new Vue({
 	
 	socket.on('hello', function(data) {
 	    if (data.name != ''){
-		console.log(data.users[0].name);
-		console.log(data.userIndex);
 		let m = 0;
 		let f = 0;
 		for(let i = 0; i < data.userIndex; i++) {
@@ -349,11 +345,8 @@ const vm = new Vue({
 	    }
 	    
 	    
-	    console.log(this.currentMatches);
 	    socket.emit('sendCurrentMatches', this.currentMatches);
 	    this.currentMatches = [];
-	    console.log("this.matches sent to server");
-	    console.log(this.matches);
 	    socket.emit('sendTablePlacement', this.matches);
 	    socket.emit('signal', {phase: this.phase}); 
 	},	
@@ -393,6 +386,7 @@ const vm = new Vue({
 			this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 			this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		    }
+		    console.log(this.rating);
 		    let manIndex = 0;
 		    let feIndex = 0;
 		    for (let i = 0; i < this.userName.length; i++){
@@ -407,7 +401,6 @@ const vm = new Vue({
 			    feIndex += 1;
 			}
 		    }
-		    console.log(this.userName.length);
 		
 		    this.phase += 1;
 		    let newphase = document.createElement("Div");
@@ -431,6 +424,7 @@ const vm = new Vue({
 		    }
 		    let manIndex = 0;
 		    let feIndex = 0;
+		    console.log(this.rating);
 		    for (let i = 0; i < this.userName.length; i++){
 			if (this.isMale[i]){
 			    this.maleArray[manIndex].rating = this.rating[i];
@@ -484,7 +478,7 @@ const vm = new Vue({
 			}		
 		    }
 		}
-		console.log(prevMatches);
+		
 		socket.emit('sendUserMatches', {prevMatches: prevMatches, phase: this.phase});
 
 	    }
@@ -540,7 +534,7 @@ const vm = new Vue({
 	//// TABLEPLACEMENT CODE
 	//// 
 	tablePlacementButton: function() {
-	    console.log("table placement clicked");
+	   
 	    document.getElementById("tablePlacement").style.display = "block";
 	    this.updateMatches();
 	},
@@ -548,7 +542,7 @@ const vm = new Vue({
 	    for (let i = 0; i < this.matches.length; i++) {
 		this.matches.splice(i, 1, {maleName : this.maleArray[i].name, femaleName : this.femaleArray[i].name, tableNum : i, users: this.userName});
 	    }
-	    console.log(this.matches);
+	    
 	},
 	
 	updateMatches: function (){
@@ -561,16 +555,16 @@ const vm = new Vue({
 		}
 		
 	    }
-	    console.log(this.matches);
+
 	},
 	
 	closeTablePlacement: function() {
-	    console.log("table placement modal closed");
+
 	    document.getElementById("tablePlacement").style.display = "none";
 	},
 	dragstartHandler: function(ev) {
 	    ev.dataTransfer.setData("text", ev.srcElement.id);
-	    console.log(ev.srcElement.id);
+
 	},
 	allowDrop : function(ev) {
 	    ev.preventDefault();
@@ -578,15 +572,11 @@ const vm = new Vue({
 	dropHandler: function(ev) {
 	    ev.preventDefault();
 	    var data = ev.dataTransfer.getData("text");
-	    console.log(ev.target.id);
-	    console.log(ev.target);
 	    this.matches[data.slice(-1)].tableNum = Number(ev.target.id.slice(-1));	
-	    console.log(this.matches);
 	    
 	    
 	},
 	confirmTablePlacement: function() {
-	    console.log(this.matches);
 	    socket.emit('sendTablePlacement', this.matches);
 	},
 	////
@@ -608,5 +598,22 @@ function loadRating(data){
     vm.$set(vm.rating, 0, data.rating[0]);
     vm.$set(vm.rating, 1, data.rating[1]);
     vm.$set(vm.rating, 2, data.rating[2]);
+    vm.$set(vm.rating, 3, data.rating[3]);
+    vm.$set(vm.rating, 4, data.rating[4]);
+    vm.$set(vm.rating, 5, data.rating[5]);
+    vm.$set(vm.rating, 6, data.rating[6]);
+    vm.$set(vm.rating, 7, data.rating[7]);
+    vm.$set(vm.rating, 8, data.rating[8]);
+    vm.$set(vm.rating, 9, data.rating[9]);
+    vm.$set(vm.rating, 10, data.rating[10]);
+    vm.$set(vm.rating, 11, data.rating[11]);
+    vm.$set(vm.rating, 12, data.rating[12]);
+    vm.$set(vm.rating, 13, data.rating[13]);
+    vm.$set(vm.rating, 14, data.rating[14]);
+    vm.$set(vm.rating, 15, data.rating[15]);
+    vm.$set(vm.rating, 16, data.rating[16]);
+    vm.$set(vm.rating, 17, data.rating[17]);
+    vm.$set(vm.rating, 18, data.rating[18]);
+    vm.$set(vm.rating, 19, data.rating[19]);
     vm.$forceUpdate();
 }

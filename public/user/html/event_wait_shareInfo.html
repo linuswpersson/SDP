@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="/user/css/event_wait_shareInfo.css">
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="https://vuejs.org/js/vue.js" defer></script>
+  <script src="/user/js/event_wait.js" defer></script>
+
+</head>
+
+<body>
+  <div id="content">
+    <div class="header">
+      <div class="headertext">
+	{{eventName}}
+      </div>
+    </div>
+    
+    <br>
+    <div class="bodytext">
+      Waiting for the other participants to share information...
+      <br><br>
+    </div>
+    
+    <section id="buttons">
+      <button class="leavebutton" v-on:click="joinEventClick()">Leave Event</button>
+    </section>
+    
+  </div>
+</body>
+
+</html>

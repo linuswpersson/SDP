@@ -4,7 +4,7 @@ const vm = new Vue({
     el: '#pageWrapper',
 
     data: {
-	contactPage: 'contact_page.html',
+	contactPage: 'event_wait_shareInfo.html',
 	userPreviousMatches: [{name: 'no data from server1', imgPath: ''}, {name: 'no data from server2', imgPath: ''}, {name: 'no data from server3', imgPath: ''}],
 	checkedDate: [],
 	privID: 0,
@@ -15,7 +15,7 @@ const vm = new Vue({
 	nextClick: function() {
 	    //printing which checkbox been checked
 	    console.log(this.checkedDate);
-	    socket.emit('userShareContactInfo', {checkedDate: this.checkedDate, Id: this.privID});
+	    socket.emit('userShareContactInfo', {name: this.checkedDate, Id: this.privID});
 	    document.location.href = this.contactPage;
 	},
     },

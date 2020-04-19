@@ -177,21 +177,18 @@ Data.prototype.remove = function(list, sendID) {
     return list;
 }
 
-Data.prototype.compareList = function(list1, list2) {
-    if (typeof list1 == 'undefined') {
-	for (let i = 0; i < list1.length; i++) {
-	    if (typeof list1[i] != 'undefined' || list2[i] != 'undefined'){   
-		for (let k = 0; k < list2.length; k++) {
-		    if (list1[i].ID != -1 || list2[k].ID != -1){
-			if (list1[i].sendID == list2[k].ID) {
-			    return true;
-			}
-		    }
+Data.prototype.compareList = function(list2, sendID) {
+    if (!typeof list2 == 'undefined') {
+	for (let i = 0; i < list2.length; i++) {
+		if (sendID == list2[i].ID) {
+		    console.log("match!");
+		    return true;
 		}
-	    }
 	}
     }
-    /*
+
+	
+/*
     let list1ID = this.findID(list1);
     let list2ID = this.findID(list2);
     this.remove(list1, list1ID, list2ID);
@@ -386,7 +383,7 @@ io.on('connection', function(socket) {
 		if (typeof data.userShareContactInfoResponse[sentID] == 'undefined') {
 		    data.userShareContactInfoResponse[i] = data.remove(data.userShareContactInfoResponse[i], sentID);
 		}
-		let test = data.compareList(data.userShareContactInfoResponse[i], data.userShareContactInfoResponse[sentID]);
+		let test = data.compareList(data.userShareContactInfoResponse[sentID], sentID);
 	
 		if (!test) {
 		    data.userShareContactInfoResponse[i] = data.remove(data.userShareContactInfoResponse[i], sentID);

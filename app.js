@@ -41,6 +41,7 @@ function Data() {
     this.seeking = '';
     this.phone = '';
     this.name = '';
+    this.email = '';
     this.ratingIndex = 0;
     this.rating = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
     this.ratingMessage = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
@@ -120,7 +121,8 @@ Data.prototype.saveUserArray = function(array){
     this.gender = array.gender;
     this.seeking = array.seeking;
     this.phone = array.phone;
-    let newUser = {gender: this.gender, name: this.name, seeking: this.seeking, phone: this.phone};
+    this.email = array.email;
+    let newUser = {gender: this.gender, name: this.name, seeking: this.seeking, phone: this.phone, email: this.email};
     this.users[this.userIndex] = newUser;
 
 }
@@ -147,19 +149,18 @@ Data.prototype.findID = function(list) {
 }
 
 Data.prototype.findsendID = function(list) {
+    let templist = [];
     for (let i = 0; i < list.length; i++){
 	if (typeof list[i] != 'undefined'){
 	    if (list[i].sendID != -1){
-		return list[i].sendID;
+		templist.push(list[i].sendID);
 	    }
 	}
     }
-    return -1;
+    return templist;
 }
 
 Data.prototype.remove = function(list, sendID) {
-    console.log("enter");
-    console.log(list);
     if (sendID != -1){
 	for (let i = 0; i < list.length; i++) {
 	    if (list[i].sendID == sendID) {
@@ -173,45 +174,18 @@ Data.prototype.remove = function(list, sendID) {
 	}
     }
     
-    console.log(sendID);
-    console.log("no splice");
+
     return list;
 }
 
-Data.prototype.compareList = function(list2, sendID) {
-    if (!typeof list2 == 'undefined') {
+Data.prototype.compareList = function(list2, ID) {
+    if (typeof list2 != 'undefined') {
 	for (let i = 0; i < list2.length; i++) {
-		if (sendID == list2[i].ID) {
-		    console.log("match!");
+		if (ID == list2[i].sendID) {
 		    return true;
 		}
 	}
     }
-
-	
-/*
-    let list1ID = this.findID(list1);
-    let list2ID = this.findID(list2);
-    this.remove(list1, list1ID, list2ID);
-    this.remove(list2, list2ID, list1ID); 
-    if (list1ID != -1){
-	for (let i = 0; i < list2.length; i++) {
-	    if (this.users[list1ID].name == list1[i].info.name) {
-		console.log("hej");
-		list2.splice(i, i);		
-	    }
-	}
-    }
-
-    if (list2ID != -1) {
-	for (let i = 0; i < list1.length; i++) {
-	    if (this.users[list2ID].name == list2[i].info.name) {
-		console.log("då");
-		list1.splice(i, i);
-		return false;
-	    }
-	}
-    }*/
     return false;
 }    
 
@@ -352,7 +326,6 @@ io.on('connection', function(socket) {
     });
 
     socket.on('userShareContactInfo', function(checkedDate){
-	// {names: "G", "T", "H", ID: 0}
 	let bool;
 	let tempArr = [];
 	for (let i = 0; i < checkedDate.names.length; i++) {
@@ -369,8 +342,6 @@ io.on('connection', function(socket) {
 	}
 	for (let i = 0; i < tempArr.length; i++){                           
 	    var toSave = {info: data.users[checkedDate.Id], image: data.userImageArray[checkedDate.Id], ID: tempArr[i], sendID: checkedDate.Id};
-	    console.log(tempArr[i]); //1
-	    console.log(checkedDate.Id); //0
 	    data.userShareContactInfoResponse[tempArr[i]].push(toSave);
 
 	} 
@@ -378,22 +349,23 @@ io.on('connection', function(socket) {
 	data.sentInfoInt += 1;
 	if (data.userIndex == data.sentInfoInt) {
 	    for (let i = 0; i < data.userIndex; i++){
-		let ID = data.findID(data.userShareContactInfoResponse[i]);
-		let sentID = data.findsendID(data.userShareContactInfoResponse[i]);
-
-		if (typeof data.userShareContactInfoResponse[sentID] == 'undefined') {
-		    data.userShareContactInfoResponse[i] = data.remove(data.userShareContactInfoResponse[i], sentID);
-		}
-		let test = data.compareList(data.userShareContactInfoResponse[sentID], sentID);
-	
-		if (!test) {
-		    data.userShareContactInfoResponse[i] = data.remove(data.userShareContactInfoResponse[i], sentID);
+		if (typeof data.userShareContactInfoResponse[i] != 'undefined') {
+		    let ID = i;
+		    let sentID = data.findsendID(data.userShareContactInfoResponse[i]);
+		    if (typeof sentID[0] != 'undefined') {		    		    		
+			for (let k = 0; k < sentID.length; k++) {
+			    let test = data.compareList(data.userShareContactInfoResponse[sentID[k]], ID);
+			    
+			    if (!test) {
+				data.userShareContactInfoResponse[i] = data.remove(data.userShareContactInfoResponse[i], sentID[k]);
+			    }
+			}
+		    }
 		}
 	    }
-	    
+	    io.sockets.emit('responseDone', {gender: data.gender});    
 	}	
-	io.sockets.emit('responseDone', {gender: data.gender});
-    
+		
     });
       
 
@@ -404,7 +376,6 @@ io.on('connection', function(socket) {
     });
         
     socket.on('saveRating', function (rating, phase, privID, message, fn) {
-	console.log(rating);
 	data.saveRating(rating, message, privID);
 
     });

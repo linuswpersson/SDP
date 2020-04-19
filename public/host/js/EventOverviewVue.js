@@ -389,8 +389,7 @@ const vm = new Vue({
 			this.maleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 			this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		    }
-		    console.log(this.rating);
-		    console.log(this.ratingMessage);
+
 		    let manIndex = 0;
 		    let feIndex = 0;
 		    for (let i = 0; i < this.userName.length; i++){
@@ -430,7 +429,6 @@ const vm = new Vue({
 		    }
 		    let manIndex = 0;
 		    let feIndex = 0;
-		    console.log(this.rating);
 		    for (let i = 0; i < this.userName.length; i++){
 			if (this.isMale[i]){
 			    this.maleArray[manIndex].rating = this.rating[i];

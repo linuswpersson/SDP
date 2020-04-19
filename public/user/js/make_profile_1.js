@@ -9,6 +9,7 @@ const vm = new Vue({
 	phone : '',
 	gender : '',
 	seeking : '',
+	email : '',
 	userIndex: 0,
 	femaleIndex: 0,
 	
@@ -40,6 +41,7 @@ const vm = new Vue({
 		seeking: this.seeking,
 		id: this.userIndex,
 		phone: this.phone,
+		email: this.email,
 		matched: false,
 		picpath: '',
 		bubbles: '',

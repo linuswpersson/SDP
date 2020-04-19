@@ -40,6 +40,6 @@ NOTE! A profile MUST be completed(got to home page), before the next profile is 
 10. Go to step 6. 
 11. When all three dates have ended, choose which ones you would like to share contacts with.
 12. If you got matched with someone else you may click on the picture for contact information.
-13. Your recent matches can be viewed under 'recent matches' in the main menu. 
+NOTE: recent matches can be viewed under 'recent matches' in the main menu. 
 
 

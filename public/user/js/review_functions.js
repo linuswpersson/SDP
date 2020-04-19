@@ -9,6 +9,7 @@ const vm = new Vue({
 	ratingMessage: '',
 	rating: '',
 	phase: [null],
+	privID: '',
 	
     },
     created: function(){
@@ -16,7 +17,7 @@ const vm = new Vue({
 	socket.on('updatePhase', function(data){
 	    this.phase = data.phase;
 //	    load();
-	    console.log(data.phase);
+
 	}.bind(this));
     },
     methods: {
@@ -26,15 +27,15 @@ const vm = new Vue({
 		document.location.href = this.meetingList;
 	    }
 	    else {
-		console.log(this.phase);
 		this.saveRating(this.rating, this.ratingMessage);
 		document.location.href = 'event_wait.html';
 	    }
 	},
 	//Sends the data to app.js, where it is stored.
 	saveRating: function(rating, message) {
-	    
-	    socket.emit('saveRating', rating, message, function(data) {
+	    this.privID = sessionStorage.getItem("UniqueId");
+	    console.log(rating);
+	    socket.emit('saveRating', rating, this.phase, this.privID, ('\n'+ "Message: "+message), function(data) {
 	    });
 	},
 	//Print is simply to confirm that everything has been stored in app.js.

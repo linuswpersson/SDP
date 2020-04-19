@@ -19,11 +19,11 @@
       <div v-for="(match,index) in matchContactInfoResponse" class="match" :id="'match' + index" v-on:click="showInfo(match)">
 	
 	<div class="imgWrapper" >
-	  <img class="profileImg" :src="match.imgPath">
+	  <img class="profileImg" :src="match.image">
 	</div>
 
 	<div id="textWrapper">
-	  <span>{{match.name}} wants to contact you!</span>
+	  <span>{{match.info.name}} wants to contact you!</span>
 	</div>
       </div>
 

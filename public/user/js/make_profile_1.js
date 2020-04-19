@@ -9,6 +9,7 @@ const vm = new Vue({
 	phone : '',
 	gender : '',
 	seeking : '',
+	email : '',
 	userIndex: 0,
 	femaleIndex: 0,
 	
@@ -18,11 +19,14 @@ const vm = new Vue({
     /* Fetch the array from app.js aswell as the userIndex */
     created: function() {
 	socket.on('getUsers', function(data) {
-	    this.userIndex = data.userIndex;
-	    this.fullname = data.username;
-	    this.phone = data.phone;
-	    this.gender = data.gender;
-	    this.seeking = data.seeking;
+	    if (data.users.length - 1 == data.userIndex) {
+		this.userIndex = data.userIndex;
+		this.fullname = data.users[this.userIndex].name;
+		sessionStorage.setItem("UniqueId", data.userIndex);
+		this.phone = data.users[this.userIndex].phone;
+		this.gender = data.users[this.userIndex].gender;
+		this.seeking = data.users[this.userIndex].seeking;
+	    }
 
 	}.bind(this));
     },
@@ -37,6 +41,7 @@ const vm = new Vue({
 		seeking: this.seeking,
 		id: this.userIndex,
 		phone: this.phone,
+		email: this.email,
 		matched: false,
 		picpath: '',
 		bubbles: '',

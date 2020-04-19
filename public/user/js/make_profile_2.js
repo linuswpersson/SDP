@@ -22,7 +22,7 @@ const vm = new Vue({
 	created: function(){
 	    socket.on('getImage', function(data){
 		this.picpath = data.userImagePath;
-	    }.bind(this));	
+	    }.bind(this));
 	},
     methods: {
 	openModular: function() {

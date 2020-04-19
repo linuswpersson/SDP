@@ -7,6 +7,7 @@ const vm = new Vue ({
 	userHome: 'user_home.html',
 	matchContactInfoResponse: [],
 	modalContent: {name: '', email: '', phone: ''},
+	privID: '',
 	
     },
 
@@ -14,9 +15,9 @@ const vm = new Vue ({
 	showInfo: function (match) {
 	    let element = 'myModal';
 	    document.getElementById('myModal').style.display = "block";
-	    this.modalContent.name = match.name;
-	    this.modalContent.email = match.email;
-	    this.modalContent.phone = match.phone;
+	    this.modalContent.name = match.info.name;
+	    this.modalContent.email = match.info.email;
+	    this.modalContent.phone = match.info.phone;
 	    
 	},
 	closeModal: function() {
@@ -29,9 +30,9 @@ const vm = new Vue ({
 	
     },
     created: function(){
-	socket.on('sendMatchContactInfo', function(contactInfo) {
-	    this.matchContactInfoResponse.splice(contactInfo.contact.length);
-	    this.matchContactInfoResponse = contactInfo.contact;
+	socket.on('sendMatchContactInfo', function(contactInfo) { 
+	    this.privID = sessionStorage.getItem("UniqueId");
+	    this.matchContactInfoResponse = contactInfo.contact[this.privID];
 	    console.log(this.matchContactInfoResponse);
 	}.bind(this));
     },

@@ -17,9 +17,13 @@ NOTE! A profile MUST be completed(got to home page), before the next profile is 
 6. You may now do the following:
 	1. Start the event, if so proceed to step 7
 	2. Change table placements by clicking the table placement button.
+
 		I. Drag the assigned couples to the table of choice.
+
 		II. Make sure ONLY one couple is seated at selected tables.
+
 		III. Press confirm and close the pop-up window by clicking the 'X' in the top right corner.
+
 	3. Rematch participants
 		i. To rematch, select two candidates and click "rematch"
 7. Click on "Start Meeting" to start the event. 

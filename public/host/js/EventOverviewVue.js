@@ -47,30 +47,30 @@ const vm = new Vue({
 	
 	maleArray : [
 
-	    {name : 'Johan', matchId : 10, id : 0, image: 20, picpath: 'https://images.unsplash.com/photo-1492447273231-0f8fecec1e3a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Erik', matchId : 11, id : 1, image: 21, picpath: 'https://images.unsplash.com/photo-1484186304838-0bf1a8cff81c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Hjalmar', matchId : 12, id : 2, image: 22, picpath: 'https://images.unsplash.com/photo-1508216404415-a35220fab80e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Lars', matchId : 13, id : 3, image: 23, picpath: 'https://images.unsplash.com/photo-1579038773867-044c48829161?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Åke', matchId : 14, id : 4, image: 24, picpath: 'https://images.unsplash.com/photo-1479685894911-37e888d38f0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Tor', matchId : 15, id : 5, image: 25, picpath: 'https://images.unsplash.com/photo-1546434946-3e8a5564945d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Valdermar', matchId : 16, id : 6, image: 26, picpath: 'https://images.unsplash.com/photo-1573156770063-01139113dbdd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Jan', matchId : 17, id : 7, image: 27, picpath: 'https://images.unsplash.com/photo-1507864676385-e69c0ca53dbd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Olle', matchId : 18, id : 8, image: 28, picpath: 'https://images.unsplash.com/photo-1544048242-e9b516820f97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Rolf', matchId : 19, id : 9, image: 29, picpath: 'https://images.unsplash.com/photo-1552504462-0c6b5fef0925?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+	    {name : 'Johan', matchId : 10, id : 0, image: 20, picpath: 'https://images.unsplash.com/photo-1492447273231-0f8fecec1e3a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Erik', matchId : 11, id : 1, image: 21, picpath: 'https://images.unsplash.com/photo-1484186304838-0bf1a8cff81c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Hjalmar', matchId : 12, id : 2, image: 22, picpath: 'https://images.unsplash.com/photo-1508216404415-a35220fab80e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Lars', matchId : 13, id : 3, image: 23, picpath: 'https://images.unsplash.com/photo-1579038773867-044c48829161?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Åke', matchId : 14, id : 4, image: 24, picpath: 'https://images.unsplash.com/photo-1479685894911-37e888d38f0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Tor', matchId : 15, id : 5, image: 25, picpath: 'https://images.unsplash.com/photo-1546434946-3e8a5564945d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Valdermar', matchId : 16, id : 6, image: 26, picpath: 'https://images.unsplash.com/photo-1573156770063-01139113dbdd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Jan', matchId : 17, id : 7, image: 27, picpath: 'https://images.unsplash.com/photo-1507864676385-e69c0ca53dbd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Olle', matchId : 18, id : 8, image: 28, picpath: 'https://images.unsplash.com/photo-1544048242-e9b516820f97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Rolf', matchId : 19, id : 9, image: 29, picpath: 'https://images.unsplash.com/photo-1552504462-0c6b5fef0925?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
 	],
 
 
 	femaleArray : [
-            {name : 'Lina', matchId : 0, id : 10, picpath: 'https://images.unsplash.com/photo-1484800089236-7ae8f5dffc8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Frida', matchId : 1, id : 11, picpath: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Mona Lisa', matchId : 2, id : 12, picpath: 'https://images.unsplash.com/photo-1423742774270-6884aac775fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Erika', matchId : 3, id : 13, picpath: 'https://images.unsplash.com/photo-1560768686-52887fe71392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Linn', matchId : 4, id : 14, picpath: 'https://images.unsplash.com/photo-1521118224700-e216379d1ae2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Simone', matchId : 5, id : 15, picpath: 'https://images.unsplash.com/photo-1520989125854-939a8bdfa81e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Julia', matchId : 6, id : 16, picpath: 'https://images.unsplash.com/photo-1563306406-e66174fa3787?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Bennilina', matchId : 7, id : 17, picpath: 'https://images.unsplash.com/photo-1567850179641-1d2f8bec55cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Johanna', matchId : 8, id : 18, picpath: 'https://images.unsplash.com/photo-1524638431109-93d95c968f03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
-	    {name : 'Stina', matchId : 9, id : 19, picpath: 'https://images.unsplash.com/photo-1505685679686-2490cab6217d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], bubbleArray: [], previousDate: []},
+            {name : 'Lina', matchId : 0, id : 10, picpath: 'https://images.unsplash.com/photo-1484800089236-7ae8f5dffc8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Frida', matchId : 1, id : 11, picpath: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Mona Lisa', matchId : 2, id : 12, picpath: 'https://images.unsplash.com/photo-1423742774270-6884aac775fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Erika', matchId : 3, id : 13, picpath: 'https://images.unsplash.com/photo-1560768686-52887fe71392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Linn', matchId : 4, id : 14, picpath: 'https://images.unsplash.com/photo-1521118224700-e216379d1ae2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Simone', matchId : 5, id : 15, picpath: 'https://images.unsplash.com/photo-1520989125854-939a8bdfa81e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Julia', matchId : 6, id : 16, picpath: 'https://images.unsplash.com/photo-1563306406-e66174fa3787?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Bennilina', matchId : 7, id : 17, picpath: 'https://images.unsplash.com/photo-1567850179641-1d2f8bec55cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Johanna', matchId : 8, id : 18, picpath: 'https://images.unsplash.com/photo-1524638431109-93d95c968f03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
+	    {name : 'Stina', matchId : 9, id : 19, picpath: 'https://images.unsplash.com/photo-1505685679686-2490cab6217d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', rating: [null, null, null], ratingMessage: Array(3), bubbleArray: [], previousDate: []},
 	],
 	
 	matches : Array(10),
@@ -94,6 +94,7 @@ const vm = new Vue({
 	
 	socket.on('updateHostRating', function(data){
 	    this.rating = data.rating;
+	    this.ratingMessage = data.ratingMessage;
 	    loadRating(data);
 
 	    /* Försök att uppdatera skiten när någon klickar på join event-knappen  */
@@ -125,15 +126,16 @@ const vm = new Vue({
 			f += 1;
 		    }
 		}
-	    this.rating = data.rating;
-	    this.eventName = data.eventName;
-	    this.eventTimeFrom = data.eventTimeFrom;
-	    this.eventTimeTo = data.eventTimeTo;
-	    this.eventMessage = data.eventMessage;
-	    this.eventDate = data.eventDate;
-	    this.eventEmail = data.eventEmail;
-	    this.eventLocation = data.eventLocation;
-	    this.calculateDateTimes();
+		this.rating = data.rating;
+		this.ratingMessage = data.ratingMessage;
+		this.eventName = data.eventName;
+		this.eventTimeFrom = data.eventTimeFrom;
+		this.eventTimeTo = data.eventTimeTo;
+		this.eventMessage = data.eventMessage;
+		this.eventDate = data.eventDate;
+		this.eventEmail = data.eventEmail;
+		this.eventLocation = data.eventLocation;
+		this.calculateDateTimes();
 	    }
 	    load();
 	    }.bind(this));
@@ -231,7 +233,8 @@ const vm = new Vue({
 		let dateWithWho = document.createTextNode("Date with : " + this.maleArray[male].previousDate[date-1].name);
 		dateWith.appendChild(dateWithWho);
 		let ratingElement = document.createElement("p");
-		let fetchedRating = document.createTextNode("rating : "+this.maleArray[male].rating[date-1]);
+		let fetchedRating = document.createTextNode("rating : "+this.maleArray[male].rating[date-1] + this.maleArray[male].ratingMessage[date-1]);
+		
 		ratingElement.appendChild(fetchedRating);
 		dateElement.appendChild(dateHeader);
 		dateElement.appendChild(dateWith);
@@ -254,7 +257,7 @@ const vm = new Vue({
 		let dateWithWho = document.createTextNode("Date with : " + this.femaleArray[female-10].previousDate[date-1].name);
 		dateWith.appendChild(dateWithWho);
 		let ratingElement = document.createElement("p");
-		let fetchedRating = document.createTextNode("rating : "+this.femaleArray[female-10].rating[date-1]);
+		let fetchedRating = document.createTextNode("rating : "+this.femaleArray[female-10].rating[date-1] + this.femaleArray[female-10].ratingMessage[date-1]);
 		ratingElement.appendChild(fetchedRating);
 		dateElement.appendChild(dateHeader);
 		dateElement.appendChild(dateWith);
@@ -387,15 +390,18 @@ const vm = new Vue({
 			this.femaleArray[i].rating[this.phase-1] = Math.floor(Math.random() * 5) + 1;
 		    }
 		    console.log(this.rating);
+		    console.log(this.ratingMessage);
 		    let manIndex = 0;
 		    let feIndex = 0;
 		    for (let i = 0; i < this.userName.length; i++){
 			if (this.isMale[i]){
 			    this.maleArray[manIndex].rating = this.rating[i];
+			    this.maleArray[manIndex].ratingMessage = this.ratingMessage[i];
 			    manIndex += 1;
 			}		    	    
 			else {
 			    let temp = feIndex + this.phase - 1;
+			    this.femaleArray[temp].ratingMessage = this.ratingMessage[i];
 			    this.femaleArray[temp].rating = this.rating[i];
 
 			    feIndex += 1;
@@ -428,11 +434,13 @@ const vm = new Vue({
 		    for (let i = 0; i < this.userName.length; i++){
 			if (this.isMale[i]){
 			    this.maleArray[manIndex].rating = this.rating[i];
+			    this.maleArray[manIndex].ratingMessage = this.ratingMessage[i];
 			    manIndex += 1;
 			}		    	    
 			else {
 			    let temp = feIndex + this.phase - 1;
 			    this.femaleArray[temp].rating = this.rating[i];
+			    this.femaleArray[temp].ratingMessage = this.ratingMessage[i];
 			    feIndex += 1;
 			}
 			
@@ -596,24 +604,44 @@ function load(){
 }
 function loadRating(data){
     vm.$set(vm.rating, 0, data.rating[0]);
+    vm.$set(vm.ratingMessage, 0, data.ratingMessage[0]);
     vm.$set(vm.rating, 1, data.rating[1]);
+    vm.$set(vm.ratingMessage, 1, data.ratingMessage[1]);
     vm.$set(vm.rating, 2, data.rating[2]);
+    vm.$set(vm.ratingMessage, 2, data.ratingMessage[2]);
     vm.$set(vm.rating, 3, data.rating[3]);
+    vm.$set(vm.ratingMessage, 3, data.ratingMessage[3]);
     vm.$set(vm.rating, 4, data.rating[4]);
+    vm.$set(vm.ratingMessage, 4, data.ratingMessage[4]);
     vm.$set(vm.rating, 5, data.rating[5]);
+    vm.$set(vm.ratingMessage, 5, data.ratingMessage[5]);
     vm.$set(vm.rating, 6, data.rating[6]);
+    vm.$set(vm.ratingMessage, 6, data.ratingMessage[6]);
     vm.$set(vm.rating, 7, data.rating[7]);
+    vm.$set(vm.ratingMessage, 7, data.ratingMessage[7]);
     vm.$set(vm.rating, 8, data.rating[8]);
+    vm.$set(vm.ratingMessage, 8, data.ratingMessage[8]);
     vm.$set(vm.rating, 9, data.rating[9]);
+    vm.$set(vm.ratingMessage, 9, data.ratingMessage[9]);
     vm.$set(vm.rating, 10, data.rating[10]);
+    vm.$set(vm.ratingMessage, 10, data.ratingMessage[10]);
     vm.$set(vm.rating, 11, data.rating[11]);
+    vm.$set(vm.ratingMessage, 11, data.ratingMessage[11]);
     vm.$set(vm.rating, 12, data.rating[12]);
+    vm.$set(vm.ratingMessage, 12, data.ratingMessage[12]);
     vm.$set(vm.rating, 13, data.rating[13]);
+    vm.$set(vm.ratingMessage, 13, data.ratingMessage[13]);
     vm.$set(vm.rating, 14, data.rating[14]);
+    vm.$set(vm.ratingMessage, 14, data.ratingMessage[14]);
     vm.$set(vm.rating, 15, data.rating[15]);
+    vm.$set(vm.ratingMessage, 15, data.ratingMessage[15]);
     vm.$set(vm.rating, 16, data.rating[16]);
+    vm.$set(vm.ratingMessage, 16, data.ratingMessage[16]);
     vm.$set(vm.rating, 17, data.rating[17]);
+    vm.$set(vm.ratingMessage, 17, data.ratingMessage[17]);
     vm.$set(vm.rating, 18, data.rating[18]);
+    vm.$set(vm.ratingMessage, 18, data.ratingMessage[18]);
     vm.$set(vm.rating, 19, data.rating[19]);
+    vm.$set(vm.ratingMessage, 19, data.ratingMessage[19]);
     vm.$forceUpdate();
 }

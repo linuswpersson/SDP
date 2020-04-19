@@ -43,7 +43,7 @@ function Data() {
     this.name = '';
     this.ratingIndex = 0;
     this.rating = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
-    this.ratingMessage = '';
+    this.ratingMessage = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
     this.users = [''];
     this.userIndex = 0;
     this.userImagePath = '../img/plus.png';
@@ -107,7 +107,8 @@ Data.prototype.saveImage = function(image){
 /* Hopefully there is a better looking way of saving these. */
 Data.prototype.saveRating = function(rating, message, privID) {
     this.rating[privID].push(rating);
-    io.sockets.emit('updateHostRating', {rating: data.rating});
+    this.ratingMessage[privID].push(message);
+    io.sockets.emit('updateHostRating', {rating: data.rating, ratingMessage: data.ratingMessage});
 }
 
 Data.prototype.getUserArray = function(){
@@ -272,7 +273,7 @@ io.on('connection', function(socket) {
     socket.emit('getUsers', {users: data.users, userIndex: data.userIndex});
     socket.emit('getImage', {userImagePath: data.userImagePath, index: data.userIndex});
     socket.emit('getBubbles', {userBubbles: data.userBubbles, userIndex: data.userIndex});
-    socket.emit('hello', {userIndex: data.userIndex, users: data.users, picpath: data.userImageArray, userBubbles: data.userBubbles, eventName: data.eventName, eventTimeTo: data.eventTimeTo, eventTimeFrom: data.eventTimeFrom, eventMessage: data.eventMessage, eventDate: data.eventDate, eventEmail: data.eventEmail, eventLocation: data.eventLocation, rating: data.rating});
+    socket.emit('hello', {userIndex: data.userIndex, users: data.users, picpath: data.userImageArray, userBubbles: data.userBubbles, eventName: data.eventName, eventTimeTo: data.eventTimeTo, eventTimeFrom: data.eventTimeFrom, eventMessage: data.eventMessage, eventDate: data.eventDate, eventEmail: data.eventEmail, eventLocation: data.eventLocation, rating: data.rating, ratingMessage: data.ratingMessage});
 
     /*-----------------------------------------------------------------*/
     // sending event info to user
@@ -402,7 +403,7 @@ io.on('connection', function(socket) {
 	io.sockets.emit('userHasJoined', {gender: data.gender, name: data.name, picpath: data.userImagePath, userBubbles: data.userBubbles});
     });
         
-    socket.on('saveRating', function (rating, message, privID, fn) {
+    socket.on('saveRating', function (rating, phase, privID, message, fn) {
 	console.log(rating);
 	data.saveRating(rating, message, privID);
 

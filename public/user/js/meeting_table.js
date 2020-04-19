@@ -45,7 +45,6 @@ const vm = new Vue({
 	socket.on('recieveTablePlacement', function(data) {
 	    this.privID = sessionStorage.getItem("UniqueId");
 	    console.log(this.privID);
-	    this.myName = data.matches[this.privID].users[this.privID];	
 	    this.matches.splice(data.matches.length);
 	    this.matches = data.matches;
 	    this.myDateInfo = data.info;
@@ -56,7 +55,6 @@ const vm = new Vue({
 		}
 	    }
 	    console.log(this.table);
-	    console.log(this.myName);
 	    console.log(this.matches);
 	}.bind(this));
 	

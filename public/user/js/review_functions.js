@@ -35,7 +35,7 @@ const vm = new Vue({
 	saveRating: function(rating, message) {
 	    this.privID = sessionStorage.getItem("UniqueId");
 	    console.log(rating);
-	    socket.emit('saveRating', rating, this.phase, this.privID, function(data) {
+	    socket.emit('saveRating', rating, this.phase, this.privID, ('\n'+ "Message: "+message), function(data) {
 	    });
 	},
 	//Print is simply to confirm that everything has been stored in app.js.

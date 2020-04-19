@@ -15,6 +15,7 @@ NOTE! A profile MUST be completed(got to home page), before the next profile is 
 4. Click on "My Event", here you get an overview of the ongoing event.
 5. Wait for all the participants to join. NOTE! When a user joins, the default participants will be replaced by the users.
 6. You may now do the following:
+
 	6.1 Start the event, if so proceed to step 7
 
 	6.2 Change table placements by clicking the table placement button.

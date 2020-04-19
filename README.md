@@ -1,5 +1,6 @@
 # Supah Speed Dating
 
+This program does not support Mozilla, because of technical diversity! 
 Our Speeddating app is a webbased one and supports two unique modes:
 
 1. The organiser
